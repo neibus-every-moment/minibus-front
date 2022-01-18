@@ -1,7 +1,8 @@
 //부트스트랩의 container와 같은 역할입니다.
 .container {
   width: 100%;
-  padding: 0 $sm-margin;
+  max-width: $md-breakpoint - 1px;
+  padding: 0 $sm-margin - $gutter / 2;
   margin: 0 auto;
 
   .row {
