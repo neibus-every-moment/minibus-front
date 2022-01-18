@@ -1,0 +1,12 @@
+//스크린 리더기만 읽을 수 있는 클래스
+.sr-only {
+  position: absolute;
+  top: -99999999px;
+  left: -99999999px;
+  z-index: -99999999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+}
