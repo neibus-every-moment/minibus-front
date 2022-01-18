@@ -31,25 +31,25 @@
 @mixin text-style-body1() {
   font-size: $font-size-body1;
   line-height: $line-height;
-  font-weight: font-weight-regular-1234;
+  font-weight: $font-weight-regular-1234;
 }
 
 @mixin text-style-body2() {
   font-size: $font-size-body2;
   line-height: $line-height;
-  font-weight: font-weight-regular-1234;
+  font-weight: $font-weight-regular-1234;
 }
 
 @mixin text-style-body3() {
   font-size: $font-size-body3;
   line-height: $line-height;
-  font-weight: font-weight-regular-1234;
+  font-weight: $font-weight-regular-1234;
 }
 
 @mixin text-style-body4() {
   font-size: $font-size-body4;
   line-height: $line-height;
-  font-weight: font-weight-regular-1234;
+  font-weight: $font-weight-regular-1234;
 }
 
 @mixin text-style-body5() {
@@ -82,7 +82,7 @@
   font-weight: font-weight-flag;
 }
 
-@mixin text-style($size, $color: false) {
+@mixin text-style($size, $color: false, $lang: $font-ko) {
   @if ($size == headline1) {
     @include text-style-heading1();
   }
@@ -141,5 +141,9 @@
 
   @if (type-of($color) == color) {
     color: $color;
+  }
+
+  @if (type-of($lang) == font-family) {
+    font-family: $lang;
   }
 }
