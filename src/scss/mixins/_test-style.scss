@@ -1,0 +1,145 @@
+@mixin text-style-heading1() {
+  font-size: $font-size-heading1;
+  line-height: $line-height;
+  font-weight: font-weight-heading;
+}
+
+@mixin text-style-heading2() {
+  font-size: $font-size-heading2;
+  line-height: $line-height;
+  font-weight: font-weight-heading;
+}
+
+@mixin text-style-heading3() {
+  font-size: $font-size-heading3;
+  line-height: $line-height;
+  font-weight: font-weight-heading;
+}
+
+@mixin text-style-heading4() {
+  font-size: $font-size-heading4;
+  line-height: $line-height;
+  font-weight: font-weight-heading;
+}
+
+@mixin text-style-heading5() {
+  font-size: $font-size-heading5;
+  line-height: $line-height;
+  font-weight: font-weight-heading;
+}
+
+@mixin text-style-body1() {
+  font-size: $font-size-body1;
+  line-height: $line-height;
+  font-weight: font-weight-regular-1234;
+}
+
+@mixin text-style-body2() {
+  font-size: $font-size-body2;
+  line-height: $line-height;
+  font-weight: font-weight-regular-1234;
+}
+
+@mixin text-style-body3() {
+  font-size: $font-size-body3;
+  line-height: $line-height;
+  font-weight: font-weight-regular-1234;
+}
+
+@mixin text-style-body4() {
+  font-size: $font-size-body4;
+  line-height: $line-height;
+  font-weight: font-weight-regular-1234;
+}
+
+@mixin text-style-body5() {
+  font-size: $font-size-body5;
+  line-height: $line-height;
+  font-weight: font-weight-regular-5678;
+}
+
+@mixin text-style-body6() {
+  font-size: $font-size-body6;
+  line-height: $line-height;
+  font-weight: font-weight-regular-5678;
+}
+
+@mixin text-style-body7() {
+  font-size: $font-size-body7;
+  line-height: $line-height;
+  font-weight: font-weight-regular-5678;
+}
+
+@mixin text-style-body8() {
+  font-size: $font-size-body8;
+  line-height: $line-height;
+  font-weight: font-weight-regular-5678;
+}
+
+@mixin text-style-flag() {
+  font-size: $font-size-flag;
+  line-height: $line-height;
+  font-weight: font-weight-flag;
+}
+
+@mixin text-style($size, $color: false) {
+  @if ($size == headline1) {
+    @include text-style-heading1();
+  }
+
+  @if ($size == headline2) {
+    @include text-style-heading2();
+  }
+
+  @if ($size == headline3) {
+    @include text-style-heading3();
+  }
+
+  @if ($size == headline4) {
+    @include text-style-heading4();
+  }
+
+  @if ($size == headline5) {
+    @include text-style-heading5();
+  }
+
+  @if ($size == body1) {
+    @include text-style-body1();
+  }
+
+  @if ($size == body2) {
+    @include text-style-body2();
+  }
+
+  @if ($size == body3) {
+    @include text-style-body3();
+  }
+
+  @if ($size == body4) {
+    @include text-style-body4();
+  }
+
+  @if ($size == body5) {
+    @include text-style-body5();
+  }
+
+  @if ($size == body6) {
+    @include text-style-body6();
+  }
+
+  @if ($size == body7) {
+    @include text-style-body7();
+  }
+
+  @if ($size == body8) {
+    @include text-style-body8();
+  }
+
+  @if ($size == flag) {
+    @include text-style-flag();
+  }
+
+  @if (type-of($color) == color) {
+    color: $color;
+  }
+}
