@@ -1,0 +1,32 @@
+.swiper {
+  // min-height: 260px;
+  margin-bottom: 16px;
+}
+
+.swiper-slide {
+  min-height: 260px;
+  border-radius: 16px;
+
+  // temp
+  border: 2px pink solid;
+  font-size: 48px;
+  text-align: center;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.swiper-button {
+  &-prev::after, &-next::after {
+    color: white;
+    visibility: hidden;
+  }
+}
+
+.swiper-pagination-bullet {
+  background-color: black;
+}
