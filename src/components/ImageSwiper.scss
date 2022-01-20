@@ -18,6 +18,24 @@
     left: 0;
     object-fit: cover;
   }
+
+  .page-number {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    z-index: 10;
+
+    // width: 36px;
+    // height: 28px;
+    font-size: 12px;
+    line-height: 160%;
+    padding: 4px 8px;
+    border-radius: 20px;
+
+    background-color: black;
+    opacity: .5;
+    color: white;
+  }
 }
 
 .swiper-button {

@@ -31,13 +31,15 @@ function ImageSwiper() {
       <Swiper
         modules={[Navigation, Pagination]}
         navigation
-        pagination={{ clickable: true }}
+        pagination
         onSwiper={(swiper) => console.log(swiper)}
       >
-        {slides?.map(({ id, url }) => (
+        {slides?.map(({ id }) => (
           <SwiperSlide key={id}>
-            {/* {url} */}
             <img src="../static/dummy/picture-empty.png" alt="" />
+            {slides.length > 1 &&
+              <div className="page-number">{id}/{slides.length}</div>
+            }
           </SwiperSlide>
         ))}
       </Swiper>
