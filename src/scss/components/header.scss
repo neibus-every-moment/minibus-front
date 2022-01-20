@@ -1,0 +1,8 @@
+.header {
+  @include flexbox(between);
+  height: 60px;
+
+  &-title {
+    @include text-style(headline4, $title01);
+  }
+}
