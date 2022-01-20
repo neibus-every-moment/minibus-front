@@ -2,12 +2,13 @@
 .container {
   width: 100%;
   max-width: $md-breakpoint - 1px;
-  padding: 0 $sm-margin - $gutter / 2;
   margin: 0 auto;
+  background-color: $background;
 
   .row {
     display: flex;
     flex-wrap: wrap;
+    padding: 0 $sm-margin - $gutter / 2;
   }
 
   [class^='col-'] {
