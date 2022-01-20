@@ -36,7 +36,8 @@ function ImageSwiper() {
       >
         {slides?.map(({ id, url }) => (
           <SwiperSlide key={id}>
-            {url}
+            {/* {url} */}
+            <img src="../static/dummy/picture-empty.png" alt="" />
           </SwiperSlide>
         ))}
       </Swiper>
