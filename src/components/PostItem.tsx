@@ -1,5 +1,3 @@
-import './PostItem.scss';
-
 import React from 'react';
 
 import ImageSwiper from './ImageSwiper';

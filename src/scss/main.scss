@@ -11,8 +11,8 @@
 @import './mixins/scrollbar';
 @import './mixins/test-style';
 
-// @import './modules/' 버튼, 아이콘, 태그 같은 스타일 저장소
+@import './modules/ImageSwiper.scss';
 
-// @import './components/' 컴포넌트 하나하나의 스타일 저장소
+@import './components/PostItem.scss';
 
 @import './layouts/grid';
