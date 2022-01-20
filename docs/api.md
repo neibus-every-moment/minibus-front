@@ -17,11 +17,11 @@ undefined
     "data" : [
         { 
             "id": 1, 
-            "transport": "🚃 지하철" //아이콘도 같이 넣어주세요
+            "transportation": "🚃 지하철" //아이콘도 같이 넣어주세요
         }, 
         { 
             "id": 2, 
-            "transport": "🚌 버스"
+            "transportation": "🚌 버스"
         },
         // ...
     ] 
@@ -61,8 +61,8 @@ undefined
 ```json
 {
     "start": 1,
-    "region": "서울", // optional, 비어있다면 모든 지역에 대해 반환
-    "transportation": "bus", // optional, 비어있다면 모든 교통 수단에 대해 반환
+    "region": "서울", // optional, 비어있다면 모든 지역에 대해 반환 -> 아이디로 요청을 받고 싶으시면 수정해주세요
+    "transportation": "bus", // optional, 비어있다면 모든 교통 수단에 대해 반환  -> 아이디로 요청을 받고 싶으시면 수정해주세요
 
 }
 ```
@@ -104,8 +104,8 @@ undefined
 ```json
 {
     "start": 1,
-    "region": "서울", // optional, 비어있다면 모든 지역에 대해 반환
-    "transportation": "bus", // optional, 비어있다면 모든 교통 수단에 대해 반환
+    "region": "서울", // optional, 비어있다면 모든 지역에 대해 반환  -> 아이디로 요청을 받고 싶으시면 수정해주세요
+    "transportation": "bus", // optional, 비어있다면 모든 교통 수단에 대해 반환  -> 아이디로 요청을 받고 싶으시면 수정해주세요
 
 }
 ```
@@ -196,8 +196,7 @@ true
 - 응답 예시
 
 ```
-화면에 응답을 뿌리지 않습니다.
-응답은 성공, 혹은 실패라는 텍스트만 주시면 됩니다.
+true
 ```
 
 ### 신고 사유 요청
@@ -239,11 +238,11 @@ undefined
     "data": [
         { 
             "id":1, 
-            "emotion": "like" // emotion은 감정 이모티콘 이름입니다. 영어로 작성 부탁드려요~
+            "emoticon": "like" // emotion은 감정 이모티콘 이름입니다. 영어로 작성 부탁드려요~
         }, 
         { 
             "id":2, 
-            "emotion": "dislike" 
+            "emoticon": "dislike"
         },  
     ] 
     // ...
