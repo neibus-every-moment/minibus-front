@@ -6,8 +6,11 @@
 
   &_list {
     @include inline-flexbox(start);
-    margin-bottom: 8px;
     white-space: nowrap;
+
+    &.first {
+      margin-bottom: 8px;
+    }
   }
 }
 
