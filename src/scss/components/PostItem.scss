@@ -1,12 +1,19 @@
+button {
+  right: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+}
+
 .post-container {
   max-width: $md-breakpoint - 1px;
   min-width: $sm-breakpoint;
-  background-color: white;
-  color: black;
-  margin: 0 24px 10px;
   padding: 16px 20px;
+  margin: 0 24px 10px;
+  color: #000;
+  background-color: #fff;
   border-radius: 12px;
-  @include text-style-body7
+  @include text-style-body7;
 }
 
 .post-top {
@@ -58,11 +65,11 @@
   width: 100%;
   @include text-style-flag;
 
-  div {
-    margin-right: 8px;
+  li {
     padding: 4px 8px;
-    background-color: white;
+    margin-right: 8px;
     color: $neibus02;
+    background-color: #fff;
     border: 1px solid $neibus02;
     border-radius: 18px;
   }
@@ -77,14 +84,14 @@
   }
 
   &-btn {
-    width:18px;
-    height:18px;
+    width: 18px;
+    height: 18px;
     overflow: hidden;
 
     img {
-      width:100%;
-      height:100%;
-      object-fit:cover;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 }
