@@ -6,6 +6,7 @@ button {
 }
 
 .post-container {
+  // TODO: 상위 파일에서 조정 예정
   max-width: $md-breakpoint - 1px;
   min-width: $sm-breakpoint;
   padding: 16px 20px;
