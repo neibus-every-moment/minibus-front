@@ -6,18 +6,18 @@ function Header() {
   const [title, setTitle] = useState('지금 어디가');
   const [view, setView] = useState(false);
 
-  const defalutPath = 'http://localhost:3000/';
+  const defaultPath = 'http://localhost:3000/';
   const path = document.location.href;
 
   useEffect(() => {
     switch (path) {
-    case defalutPath: setTitle('지금 어디가');
+    case defaultPath: setTitle('지금 어디가');
       break;
 
-    case `${defalutPath}bingo`: setTitle('도전! 데일리빙고');
+    case `${defaultPath}bingo`: setTitle('도전! 데일리빙고');
       break;
 
-    case `${defalutPath}quiz`: setTitle('교통상식퀴즈');
+    case `${defaultPath}quiz`: setTitle('교통상식퀴즈');
       break;
 
     default: setTitle('지금 어디가');
