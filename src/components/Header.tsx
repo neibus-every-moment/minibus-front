@@ -43,7 +43,7 @@ function Header() {
           </div>
         </div>
       </header>
-      {view && <SideMenu />}
+      {view && <SideMenu onSideMenuToggle={onSideMenuToggle}/>}
     </>);
 }
 
