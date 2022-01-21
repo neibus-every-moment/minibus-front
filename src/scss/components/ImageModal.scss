@@ -9,8 +9,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  // TODO: 상위 파일에서 조정 예정
-  z-index: 99;
+  z-index: $image-modal;
   display: none;
   background-color: #323232;
 

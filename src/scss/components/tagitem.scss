@@ -1,0 +1,17 @@
+.tag_item {
+  @include inline-flexbox;
+  @include text-style(body4, $neibus02);
+  padding: 6px 16px 2px;
+  margin-right: 8px;
+  white-space: nowrap;
+  border-radius: 42px;
+
+  &.active {
+    color: $background;
+    background-color: $neibus01;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

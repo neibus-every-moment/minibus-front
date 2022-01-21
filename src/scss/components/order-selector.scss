@@ -1,0 +1,5 @@
+.order_selector {
+  @include flexbox(end);
+  @include text-style(body03, $title02);
+  margin: 10px 0;
+}
