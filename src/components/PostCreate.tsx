@@ -1,6 +1,19 @@
 import React from 'react';
 
 function PostCreate() {
+  const transportations = [
+    { id: 1, name: '🚃 지하철' },
+    { id: 2, name: '🚌 버스' },
+    { id: 3, name: '🚕 택시' },
+    { id: 4, name: '기타교통수단' },
+  ];
+  const regions = [
+    { id: 1, name: '서울' },
+    { id: 2, name: '경기북부' },
+    { id: 3, name: '경기남부' },
+    { id: 4, name: '인천' },
+  ];
+
   return (
     <div className='post_create-container'>
       <header className="post_create-top">
@@ -32,6 +45,18 @@ function PostCreate() {
           />
         </form>
         <hr />
+        <section className='post_create-tags'>
+          <ul className='post_create-transportations'>
+            {transportations.map(({ id, name }) => (
+              <li key={id}>{name}</li>
+            ))}
+          </ul>
+          <ul className='post_create-regions'>
+            {regions.map(({ id, name }) => (
+              <li key={id}>{name}</li>
+            ))}
+          </ul>
+        </section>
       </main>
     </div>
   );
