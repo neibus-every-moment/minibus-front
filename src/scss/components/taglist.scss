@@ -1,0 +1,13 @@
+.tag {
+  @include no-scrollbar();
+  padding: 0 $sm-margin;
+  margin: 0 calc(-1 * $sm-margin);
+  overflow-x: auto;
+
+  &_list {
+    @include inline-flexbox(start);
+    margin-bottom: 8px;
+    white-space: nowrap;
+  }
+}
+
