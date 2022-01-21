@@ -12,7 +12,7 @@ interface Configuration extends WebpackConfiguration {
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const config: Configuration = {
-  name: 'boilerplate',
+  name: 'minibus',
   mode: isDevelopment ? 'development' : 'production',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
