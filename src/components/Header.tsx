@@ -37,7 +37,7 @@ function Header() {
             <div className='header'>
               <h1 className='header-title'>{title}</h1>
               <button onClick={onSideMenuToggle}>
-                <img src="/static/hamburger.svg" alt="메뉴 보기" />
+                <img src="/static/icons/hamburger.svg" alt="메뉴 보기" />
               </button>
             </div>
           </div>
