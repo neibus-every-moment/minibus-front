@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import SideMenu from './SideMenu';
 
 function Header() {
-  const [title, setTitle] = useState('지금 어디가');
+  const [title, setTitle] = useState('지금 어디가?');
   const [view, setView] = useState(false);
 
   const defaultPath = 'http://localhost:3000/';
@@ -11,7 +11,7 @@ function Header() {
 
   useEffect(() => {
     switch (path) {
-    case defaultPath: setTitle('지금 어디가');
+    case defaultPath: setTitle('지금 어디가?');
       break;
 
     case `${defaultPath}bingo`: setTitle('도전! 데일리빙고');
