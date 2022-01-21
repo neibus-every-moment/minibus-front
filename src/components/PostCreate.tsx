@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 function PostCreate() {
   const emoticons = [
@@ -22,6 +22,22 @@ function PostCreate() {
     { id: 3, name: '경기남부' },
     { id: 4, name: '인천' },
   ];
+
+  const selectedTags: string[] = [];
+
+  // TODO: 타입 호환 문제 해결
+  const handleToggleTag = (event: MouseEventHandler<HTMLLIElement> | any): void => {
+    const { target: { classList, innerText } } = event;
+
+    if (classList.contains('active')) {
+      classList.remove('active');
+      selectedTags.splice(selectedTags.indexOf(innerText), 1);
+      return;
+    }
+
+    classList.add('active');
+    selectedTags.push(innerText);
+  };
 
   return (
     <div className='post_create-container'>
@@ -61,12 +77,22 @@ function PostCreate() {
         <section className='post_create-tags'>
           <ul className='post_create-transportations'>
             {transportations.map(({ id, name }) => (
-              <li key={id}>{name}</li>
+              <li
+                key={id}
+                onClick={handleToggleTag}
+              >
+                {name}
+              </li>
             ))}
           </ul>
           <ul className='post_create-regions'>
             {regions.map(({ id, name }) => (
-              <li key={id}>{name}</li>
+              <li
+                key={id}
+                onClick={handleToggleTag}
+              >
+                {name}
+              </li>
             ))}
           </ul>
         </section>
