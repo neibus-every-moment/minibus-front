@@ -9,6 +9,11 @@ function Header() {
   const defaultPath = 'http://localhost:3000/';//TODO: 변수 모듈화
   const path = document.location.href;
 
+  // TODO: 라우팅 된 직후에 헤더가 렌더링되는 문제 해결
+  if (path === `${defaultPath}write`) {
+    return null;
+  }
+
   useEffect(() => {
     switch (path) {
     case defaultPath: setTitle('지금 어디가?');
