@@ -1,4 +1,5 @@
 import React, { MouseEventHandler } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function PostCreate() {
   const emoticons = [
@@ -25,6 +26,12 @@ function PostCreate() {
 
   const selectedTags: string[] = [];
 
+  const navigate = useNavigate();
+
+  const goBackToHome = () => {
+    navigate('/');
+  };
+
   // TODO: 타입 호환 문제 해결
   const handleToggleTag = (event: MouseEventHandler<HTMLLIElement> | any): void => {
     const { target: { classList, innerText } } = event;
@@ -42,7 +49,10 @@ function PostCreate() {
   return (
     <div className='post_create-container'>
       <header className="post_create-top">
-        <button className='post_create-back'>
+        <button
+          className='post_create-back'
+          onClick={goBackToHome}
+        >
           <img src="../static/icons/arrow-left.svg" alt="" />
         </button>
         <div>의견</div>

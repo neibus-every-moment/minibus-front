@@ -9,7 +9,8 @@ function Header() {
   const defaultPath = 'http://localhost:3000/';//TODO: 변수 모듈화
   const path = document.location.href;
 
-  // TODO: 라우팅 된 직후에 헤더가 렌더링되는 문제 해결
+  // TODO: 새로고침 전에는 인식하지 못하는 문제
+  // 다른 방식으로 해결해야 할 것을 예상됨
   if (path === `${defaultPath}write`) {
     return null;
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Header from '../components/Header';
+import PostCreate from '../components/PostCreate';
 import Home from './Home';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path='/write' element={<PostCreate />}></Route>
       </Routes>
     </>
   );
