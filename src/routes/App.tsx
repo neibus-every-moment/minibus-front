@@ -1,18 +1,18 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import PostItem from '../components/PostItem';
-import Board from './Board';
+import Header from '../components/Header';
+import Home from './Home';
 
-const App = () => {
+function App() {
   return (
     <>
+      <Header/>
       <Routes>
-        <Route path='/' element={<Board />} />
+        <Route path="/" element={<Home />} />
       </Routes>
-      <PostItem />
     </>
   );
-};
+}
 
 export default App;
