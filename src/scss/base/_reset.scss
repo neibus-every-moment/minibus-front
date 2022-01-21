@@ -10,7 +10,17 @@ button {
   border: 0;
 }
 
-select {
+select,
+select:active,
+select:focus {
+  cursor: pointer;
   background-color: transparent;
   border: 0;
+  outline: 0;
+}
+
+button:hover,
+button:active,
+button:focus {
+  cursor: pointer;
 }
