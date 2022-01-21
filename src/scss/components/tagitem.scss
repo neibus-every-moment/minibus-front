@@ -1,11 +1,9 @@
 .tag_item {
   @include inline-flexbox;
   @include text-style(body4, $neibus02);
-  height: 27px;
   padding: 6px 16px 2px;
   margin-right: 8px;
   white-space: nowrap;
-  background-color: $background;
   border-radius: 42px;
 
   &.active {
