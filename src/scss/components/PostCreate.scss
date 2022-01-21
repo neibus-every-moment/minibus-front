@@ -30,4 +30,24 @@
       margin: 0 6px;
     }
   }
+
+  &-tags {
+    ul {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      margin-bottom: 8px;
+      overflow-x: scroll;
+      white-space: nowrap;
+
+      li {
+        @include text-style-body4;
+        padding: 4px 16px;
+        margin-right: 8px;
+        color: $neibus02;
+        border: 1px solid $neibus02;
+        border-radius: 42px;
+      }
+    }
+  }
 }
