@@ -11,8 +11,10 @@
 @import './mixins/scrollbar';
 @import './mixins/test-style';
 
-// @import './modules/' 버튼, 아이콘, 태그 같은 스타일 저장소
+@import './modules/ImageSwiper';
 
-@import './components/PostCreate.scss';
+@import './components/PostCreate';
+@import './components/PostItem';
+@import './components/ImageModal';
 
 @import './layouts/grid';

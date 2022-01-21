@@ -1,0 +1,98 @@
+button {
+  right: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+}
+
+.post-container {
+  // TODO: 상위 파일에서 조정 예정
+  max-width: $md-breakpoint - 1px;
+  min-width: $sm-breakpoint;
+  padding: 16px 20px;
+  margin: 0 24px 10px;
+  color: #000;
+  background-color: #fff;
+  border-radius: 12px;
+  @include text-style-body7;
+}
+
+.post-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .post-info {
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    width: 100%;
+
+    &-emotion {
+      width: 32px;
+      height: 32px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    &-date {
+      margin-left: 12px;
+    }
+  }
+
+  .post-report {
+    right: 0;
+  }
+}
+
+.post-content {
+  &-text {
+    margin-bottom: 16px;
+  }
+}
+
+.post-bottom {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.post-tag_list {
+  display: flex;
+  width: 100%;
+  @include text-style-flag;
+
+  li {
+    padding: 4px 8px;
+    margin-right: 8px;
+    color: $neibus02;
+    background-color: #fff;
+    border: 1px solid $neibus02;
+    border-radius: 18px;
+  }
+}
+
+.post-like {
+  display: flex;
+  align-items: center;
+
+  &-count {
+    margin-right: 6px;
+  }
+
+  &-btn {
+    width: 18px;
+    height: 18px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
