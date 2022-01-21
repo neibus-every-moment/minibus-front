@@ -8,23 +8,21 @@ function Home() {
 
   return (
     <div className='container'>
-      <div className='background'>
-        <div className='row'>
-          <div className='col-sm-4'>
-            <TagList list={list}/>
-          </div>
+      <div className='row'>
+        <div className='col-sm-4'>
+          <TagList list={list}/>
         </div>
+      </div>
 
-        <div className='row'>
-          <div className='col-sm-4'>
-            <TagList list={list}/>
-          </div>
+      <div className='row'>
+        <div className='col-sm-4'>
+          <TagList list={list}/>
         </div>
+      </div>
 
-        <div className="row">
-          <div className="col-sm-4">
-            <OrderSelector />
-          </div>
+      <div className="row">
+        <div className="col-sm-4">
+          <OrderSelector />
         </div>
       </div>
 
