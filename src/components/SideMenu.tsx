@@ -1,12 +1,11 @@
 import React, { MouseEventHandler } from 'react';
+import { Link } from 'react-router-dom';
 
 interface SideMenuProps {
   onSideMenuToggle: MouseEventHandler;
-}//handler 종류 상 모바일에서 안될 수도 있음
+} // handler 종류 상 모바일에서 안될 수도 있음
 
-function SideMenu ({ onSideMenuToggle }:SideMenuProps) {
-  const defaultPath = 'http://localhost:3000/'; //TODO: 변수 모듈화
-
+function SideMenu ({ onSideMenuToggle }: SideMenuProps) {
   return (
     <>
       <aside className='side_menu'>
@@ -17,17 +16,17 @@ function SideMenu ({ onSideMenuToggle }:SideMenuProps) {
           </div>
         </button>
         <ul className='page_link_list'>
-          <li className='page_link_item'>
-            <a href={defaultPath}>지금 어디가?</a>
+          <li className='page_link_item' onClick={onSideMenuToggle}>
+            <Link to='/'>지금 어디가?</Link>
           </li>
-          <li className='page_link_item'>
-            <a href={`${defaultPath}bingo`}>도전! 일상빙고</a>
+          <li className='page_link_item' onClick={onSideMenuToggle}>
+            <Link to='/bingo'>도전! 데일리빙고</Link>
           </li>
-          <li className='page_link_item'>
-            <a href={`${defaultPath}quiz`}>교통상식 테스트</a>
+          <li className='page_link_item' onClick={onSideMenuToggle}>
+            <Link to='/quiz'>교통상식 테스트</Link>
           </li>
-          <li className='page_link_item'>
-            <a href={`${defaultPath}faq`}>FAQ</a>
+          <li className='page_link_item' onClick={onSideMenuToggle}>
+            <Link to='/faq'>FAQ</Link>
           </li>
         </ul>
 
