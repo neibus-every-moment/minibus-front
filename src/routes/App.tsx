@@ -1,16 +1,18 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Board from './Board';
+import Header from '../components/Header';
+import Home from './Home';
 
-const App = () => {
+function App() {
   return (
     <>
+      <Header/>
       <Routes>
-        <Route path='/' element={<Board />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </>
   );
-};
+}
 
 export default App;
