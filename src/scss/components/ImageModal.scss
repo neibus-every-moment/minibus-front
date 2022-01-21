@@ -4,13 +4,13 @@
     align-items: center;
   }
 
-  display: none;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 99;
+  display: none;
   background-color: #323232;
 
   section {
@@ -19,12 +19,12 @@
   }
 
   button {
-    cursor: pointer;
-    border: 0;
     position: absolute;
     top: 14px;
     right: 12px;
+    cursor: pointer;
     background-color: #323232;
+    border: 0;
   }
 
   .swiper-slide {
@@ -32,8 +32,9 @@
   }
 
   .swiper-button {
-    &-prev::after, &-next::after {
-      color: white;
+    &-prev::after,
+    &-next::after {
+      color: #fff;
       visibility: visible;
     }
   }
