@@ -2,16 +2,16 @@ import React, { MouseEventHandler } from 'react';
 
 interface SideMenuProps {
   onSideMenuToggle: MouseEventHandler;
-}
+}//handler 종류 상 모바일에서 안될 수도 있음
 
 function SideMenu ({ onSideMenuToggle }:SideMenuProps) {
-  const defaultPath = 'http://localhost:3000/';
+  const defaultPath = 'http://localhost:3000/'; //TODO: 변수 모듈화
 
   return (
     <>
       <aside className='side_menu'>
         <h2 className='sr-only'>사이드 메뉴</h2>
-        <button type="button" aria-label="닫기 버튼" onClick={onSideMenuToggle} className='close_btn'>
+        <button type="button" aria-label="닫기 버튼" onClick={onSideMenuToggle} className='close_btn'> {/* TODO: lint 룰 (속성 한 줄에 너무 많음) */}
           <div>
             <img src="/static/icons/cancel-black.svg" alt="닫기 버튼" />
           </div>
@@ -44,16 +44,13 @@ function SideMenu ({ onSideMenuToggle }:SideMenuProps) {
               </a>
             </li>
             <li className='external_link_item'>
-              <a href="">
+              <a href=""> {/* TODO: lint 룰 따옴표 통일*/}
                 <img src="/static/icons/facebook.svg" alt="네이버스 페이스북 바로가기" />
               </a>
             </li>
           </ul>
-
           <p className='copyright'>&copy; Nei&amp;Company Corp.</p>
         </div>
-
-
       </aside>
 
       <div className='shadow' onClick={onSideMenuToggle}></div>

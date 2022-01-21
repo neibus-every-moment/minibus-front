@@ -6,7 +6,7 @@ function Header() {
   const [title, setTitle] = useState('지금 어디가?');
   const [view, setView] = useState(false);
 
-  const defaultPath = 'http://localhost:3000/';
+  const defaultPath = 'http://localhost:3000/';//TODO: 변수 모듈화
   const path = document.location.href;
 
   useEffect(() => {
