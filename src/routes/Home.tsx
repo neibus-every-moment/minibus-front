@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import OrderSelector from '../components/OrderSelector';
+import PostList from '../components/PostList';
 import TagList from '../components/TagList';
 
 function Home() {
@@ -26,8 +27,7 @@ function Home() {
         </div>
       </div>
 
-
-      {/* 게시글 컴포넌트 */}
+      <PostList />
     </div>
   );
 }
