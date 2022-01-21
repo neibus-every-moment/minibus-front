@@ -2,14 +2,16 @@ import React from 'react';
 
 function PostCreate() {
   return (
-    <div>
-      <section className="post_create-top">
-        <div>뒤로 가기</div>
+    <div className='post_create-container'>
+      <header className="post_create-top">
+        <button className='post_create-back'>
+          <img src="../static/icons/arrow-left.svg" alt="" />
+        </button>
         <div>의견</div>
         <button className='post_create-submit'>남기기</button>
-      </section>
+      </header>
       <main>
-        <ul>
+        <ul className='post_create-emoticon_list'>
           <li>emo 1</li>
           <li>emo 2</li>
           <li>emo 3</li>

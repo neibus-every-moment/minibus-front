@@ -1,3 +1,33 @@
-.post_create-submit {
-  color: $neibus02;
+.post_create {
+  &-container {
+    padding: 16px 20px;
+  }
+
+  &-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    @include text-style-body1;
+    margin-bottom: 16px;
+  }
+
+  &-back {
+    margin-left: 4px;
+  }
+
+  &-submit {
+    @include text-style-body6;
+    margin-right: 4px;
+    color: $neibus02;
+  }
+
+  &-emoticon_list {
+    display: flex;
+    height: 24px;
+
+    li {
+      margin: 0 6px;
+    }
+  }
 }
