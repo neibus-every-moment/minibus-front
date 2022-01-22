@@ -12,7 +12,12 @@
 @import './mixins/scrollbar';
 @import './mixins/text-style';
 
+@import './modules/ImageSwiper';
 @import './modules/shadow';
+
+@import './components/PostCreate';
+@import './components/PostItem';
+@import './components/ImageModal';
 
 @import './components/header';
 @import './components/order-selector';
