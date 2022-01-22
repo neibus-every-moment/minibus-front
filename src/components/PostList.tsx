@@ -11,7 +11,7 @@ function PostList() {
         posts.map(post => (
           <div className="row" key={post}>
             <div className="col-sm-4">
-              <PostItem /> {/*TODO: lint 룰 추가*/}
+              <PostItem />
             </div>
           </div>
         ))
