@@ -7,7 +7,7 @@ interface TagListProps {
 }
 
 function TagList({ list }: TagListProps) {
-  return (<div className='tag'>
+  return (<div className="tag">
     <ul className="tag_list first">
       {list.map(el => (
         /*
@@ -15,7 +15,7 @@ function TagList({ list }: TagListProps) {
         Home에서 에러 메시지가 너무 많이 떠서 디버깅이 번거로워 임시방편으로
         키값을 난수로 대체했습니다.
         */
-        <TagItem item={el} key={Math.random()}/>
+        <TagItem item={el} key={Math.random()} />
       ))}
     </ul>
   </div>);

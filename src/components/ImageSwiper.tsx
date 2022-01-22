@@ -53,7 +53,7 @@ function ImageSwiper() {
           </SwiperSlide>
         ))}
       </Swiper>
-      <ImageModal isOpen={modalOpen} closeModal={closeModal} images={images}/>
+      <ImageModal isOpen={modalOpen} closeModal={closeModal} images={images} />
     </>
   );
 }
