@@ -33,19 +33,19 @@ function SideMenu ({ onSideMenuToggle }: SideMenuProps) {
         <div className='side_menu_bottom'>
           <ul className='external_link_list'>
             <li className='external_link_item'>
-              <a href="">
+              <Link to="">
                 <img src='/static/icons/neibus.svg' alt="네이버스 바로가기 링크" />
-              </a>
+              </Link>
             </li>
             <li className='external_link_item'>
-              <a href="">
+              <Link to="">
                 <img src="/static/icons/instagram.svg" alt="네이버스 인스타그램 바로가기" />
-              </a>
+              </Link>
             </li>
             <li className='external_link_item'>
-              <a href=""> {/* TODO: lint 룰 따옴표 통일*/}
+              <Link to=""> {/* TODO: lint 룰 따옴표 통일*/}
                 <img src="/static/icons/facebook.svg" alt="네이버스 페이스북 바로가기" />
-              </a>
+              </Link>
             </li>
           </ul>
           <p className='copyright'>&copy; Nei&amp;Company Corp.</p>
