@@ -8,10 +8,10 @@ import Home from './Home';
 function App() {
   return (
     <>
-      <Header/>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path='/write' element={<PostCreate />}></Route>
+        <Route path="/write" element={<PostCreate />}></Route>
       </Routes>
     </>
   );

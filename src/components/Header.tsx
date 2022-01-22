@@ -44,11 +44,11 @@ function Header() {
 
   return (
     <>
-      <header className='container'>
-        <div className='row'>
-          <div className='col-sm-4'>
-            <div className='header'>
-              <h1 className='header-title'>{title}</h1>
+      <header className="container">
+        <div className="row">
+          <div className="col-sm-4">
+            <div className="header">
+              <h1 className="header-title">{title}</h1>
               <button onClick={onSideMenuToggle}>
                 <img src="/static/icons/hamburger.svg" alt="메뉴 보기" />
               </button>
