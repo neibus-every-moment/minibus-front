@@ -1,14 +1,20 @@
 import React, { MouseEventHandler } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 interface SideMenuProps {
   onSideMenuToggle: MouseEventHandler;
 } // handler 종류 상 모바일에서 안될 수도 있음
 
 function SideMenu ({ onSideMenuToggle }: SideMenuProps) {
+  const location = useLocation();
+  const { pathname } = location;
+
   return (
     <>
       <aside className="side_menu">
+        <h1 className="side_menu-logo" aria-label="미니버스 로고">
+          <img src="/static/icons/minibus.svg" alt="미니버스" />
+        </h1>
         <h2 className="sr-only">사이드 메뉴</h2>
         <button
           type="button"
@@ -22,16 +28,36 @@ function SideMenu ({ onSideMenuToggle }: SideMenuProps) {
         </button>
         <ul className="page_link_list">
           <li className="page_link_item" onClick={onSideMenuToggle}>
-            <Link to="/">지금 어디가?</Link>
+            <Link
+              to="/"
+              className={pathname === '/' ? 'isActive' : ''}
+            >
+              지금 어디가?
+            </Link>
           </li>
           <li className="page_link_item" onClick={onSideMenuToggle}>
-            <Link to="/bingo">도전! 데일리빙고</Link>
+            <Link
+              to="/quiz"
+              className={pathname === '/quiz' ? 'isActive' : ''}
+            >
+              교통상식 테스트
+            </Link>
           </li>
           <li className="page_link_item" onClick={onSideMenuToggle}>
-            <Link to="/quiz">교통상식 테스트</Link>
+            <Link
+              to="/bingo"
+              className={pathname === '/bingo' ? 'isActive' : ''}
+            >
+              도전! 데일리빙고
+            </Link>
           </li>
           <li className="page_link_item" onClick={onSideMenuToggle}>
-            <Link to="/faq">FAQ</Link>
+            <Link
+              to="/faq"
+              className={pathname === '/faq' ? 'isActive' : ''}
+            >
+              FAQ
+            </Link>
           </li>
         </ul>
 

@@ -19,30 +19,31 @@ function Home() {
 
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-sm-4">
-          <TagList list={list} />
+      <div className="background">
+        <div className="row">
+          <div className="col-sm-4 taglist_first">
+            <TagList list={list} />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-sm-4">
+            <TagList list={list} />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-sm-4">
+            <OrderSelector />
+          </div>
+        </div>
+
+        <PostList />
+
+        <div className="write_btn">
+          <WriteButton />
         </div>
       </div>
-
-      <div className="row">
-        <div className="col-sm-4">
-          <TagList list={list} />
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="col-sm-4">
-          <OrderSelector />
-        </div>
-      </div>
-
-      <PostList />
-
-      <div className="write_btn">
-        <WriteButton />
-      </div>
-
     </div>
   );
 }
