@@ -84,10 +84,10 @@
     ],
     // Indent: ["error", 4],
     "keyword-spacing": "error",
-    "multiline-ternary": [
-        "error",
-        "never"
-    ],
+    // "multiline-ternary": [
+    //     "error",
+    //     "never"
+    // ],
     // "no-lonely-if": "error",
     "no-mixed-operators": "error",
     "no-multiple-empty-lines": [
