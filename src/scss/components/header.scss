@@ -1,7 +1,6 @@
 .header {
   @include flexbox(between);
   height: 60px;
-  margin-bottom: 16px;
 
   &-title {
     @include text-style(headline4, $title01);
