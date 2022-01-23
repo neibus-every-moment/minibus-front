@@ -33,12 +33,19 @@
     gap: 4px;
 
     li {
+      &.active {
+        background-image: url('/static/icons/circle.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
       display: table;
       @include text-style-body8;
       padding: 12px;
+      vertical-align: middle;
       background-color: #fff;
       border-radius: 12px;
-      vertical-align: middle;
 
       div {
         display: table-cell;
