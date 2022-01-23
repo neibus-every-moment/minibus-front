@@ -1,11 +1,23 @@
 .side_menu {
+  $logo-top-margin: 60px;
+  $logo-height: 32px;
+  @include no-scrollbar;
   @include column-flexbox(between, center);
   position: fixed;
   top: 0;
   right: 0;
   z-index: $side-menu;
+  width: 216px;
   height: 100vh;
+  overflow-y: auto;
   background-color: $background;
+  overscroll-behavior: contain;
+
+  &-logo {
+    position: absolute;
+    top: $logo-top-margin;
+    left: $sm-margin;
+  }
 
   .close_btn {
     position: absolute;
@@ -14,28 +26,30 @@
   }
 
   .page_link_list {
-    padding: 60px 38px;
+    width: 100%;
+    padding: calc($logo-top-margin + $logo-height) $sm-margin;
   }
 
   .page_link_item {
     display: block;
-    width: 140px;
-    border-bottom: 1px solid $title02;
+    width: 100%;
 
     a {
-      @include text-style(headline5, $title02);
+      @include text-style(body7, $title02);
       display: block;
-      margin: 14px 0;
+      margin-top: 16px;
       text-decoration: none;
       cursor: pointer;
-    }
 
-    &:first-child {
-      margin-top: 0;
+      &.isActive {
+        font-weight: 700;
+        color: $neibus02;
+      }
     }
 
     &:last-child {
-      border-bottom: 0;
+      margin-top: 16px;
+      border-top: 1px solid $line03;
     }
   }
 
@@ -44,7 +58,7 @@
 
     .external_link_list {
       @include flexbox;
-      margin-bottom: 8px;
+      margin-bottom: 16px;
     }
 
     .external_link_item {
@@ -68,7 +82,7 @@
     }
 
     .copyright {
-      @include text-style(body4, $title02, $font-en);
+      @include text-style(body8, #888, $font-en);
       margin-bottom: 24px;
     }
   }
