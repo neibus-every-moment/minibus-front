@@ -24,4 +24,19 @@
     background-color: #fff;
     border-radius: 12px;
   }
+
+  &-board {
+    margin-bottom: 8px;
+  }
+
+  &-share_btn {
+    @include text-style-body3;
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-bottom: 60px;
+    color: #fff;
+    background-color: #1cd9d9;
+    border-radius: 12px;
+  }
 }
