@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 function Bingo() {
   const initialBingoBoard = [...new Array(16)].map((v, i) => i + 1);
   const [bingoBoard, setBingoBoard] = useState(initialBingoBoard);
+  const [bingoCount, setBingoCount] = useState(0);
 
   // TODO: 나중에 서버에서 24시간마다 새 빙고판 가져오도록
   // useEffect(() => {
@@ -22,7 +23,7 @@ function Bingo() {
             </p>
           </div>
           <div className="col-sm-4">
-            <div className="bingo-count">0 빙고!</div>
+            <div className="bingo-count">{bingoCount} 빙고!</div>
             <ul className="bingo-board">
               {bingoBoard.map(item => (
                 <li key={item}>{item}</li>
