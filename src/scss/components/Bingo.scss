@@ -1,4 +1,19 @@
 .bingo {
   height: calc(100vh - 76px); // Header가 차지하는 부분 제외
   background-color: $surface;
+
+  &-info {
+    text-align: center;
+
+    &-title {
+      @include text-style-heading5;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      @include text-style-body6;
+      margin-bottom: 32px;
+    }
+  }
 }
