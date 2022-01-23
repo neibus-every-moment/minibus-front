@@ -22,7 +22,7 @@ function Bingo() {
             </p>
           </div>
           <div className="col-sm-4">
-            <div>0 빙고!</div>
+            <div className="bingo-count">0 빙고!</div>
             <ul className="bingo-board">
               {bingoBoard.map(item => (
                 <li key={item}>{item}</li>
