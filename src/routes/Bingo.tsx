@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-
 interface BingoItemProps {
   index: number,
   content: string
@@ -61,7 +60,12 @@ function Bingo() {
   const [bingoBoard, setBingoBoard] =
     useState<BingoItemProps[]>(initialBingoBoard);
   const [bingoCount, setBingoCount] = useState(0);
-
+  const bingoMatrix = [
+    [...bingoBoard.map(({ isSelected }) => isSelected).slice(0, 4)],
+    [...bingoBoard.map(({ isSelected }) => isSelected).slice(4, 8)],
+    [...bingoBoard.map(({ isSelected }) => isSelected).slice(8, 12)],
+    [...bingoBoard.map(({ isSelected }) => isSelected).slice(12, 16)],
+  ];
 
   // TODO: 나중에 서버에서 24시간마다 새 빙고판 가져오도록
   // useEffect(() => {
@@ -69,16 +73,58 @@ function Bingo() {
   // }, [])
 
   const handleToggleBingo = (index: number) => {
-    setBingoBoard(
+    setBingoBoard(bingoBoard => (
       bingoBoard.map(
         item => (
           item.index === index
             ? { ...item, isSelected: !item.isSelected }
             : item
         )
-      )
-    );
+      )));
   };
+
+  const checkBingo = () => {
+    let count = 0;
+    // 가로
+    bingoMatrix.forEach((row) => {
+      if (row.reduce((acc, cur) => acc + Number(cur), 0) === 4) {
+        count++;
+      }
+    });
+
+    // 세로
+    bingoMatrix.forEach((row, i) => {
+      let bingo = true;
+      row.forEach((_, j) => {
+        bingo = bingo && bingoMatrix[j][i];
+      });
+      if (bingo) {
+        count++;
+      }
+    });
+
+    // 대각선
+    let diagonalOne = true;
+    let diagonalTwo = true;
+    bingoMatrix.forEach((_, i) => {
+      diagonalOne = diagonalOne && bingoMatrix[i][3 - i];
+      diagonalTwo = diagonalTwo && bingoMatrix[i][i];
+    });
+
+    if (diagonalOne) {
+      count++;
+    }
+
+    if (diagonalTwo) {
+      count++;
+    }
+
+    setBingoCount(count);
+  };
+
+  useEffect(() => {
+    checkBingo();
+  }, [bingoBoard]);
 
   return (
     <div className="container">
