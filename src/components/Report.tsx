@@ -15,21 +15,23 @@ function Report ({ handleReportView, setView }:ReportProps) {
       '기타',
     ]);
   const [viewDetailReason, setViewDetailReason] = useState(false);
-  const [submitReason, setSubmitReason] = useState('');
-  const [submitDetailReason, setSubmitDetailReason] = useState('');
+  const [selectedReason, setSelectedReason]
+    = useState({ reason: '', detailReason: '' });
 
   const handleSubmitReport = (e:React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (submitReason || submitDetailReason) {
-      console.log(submitReason, submitDetailReason);
+    const { reason, detailReason } = selectedReason;
+
+    if (reason || detailReason) {
+      console.log(reason, detailReason);
       setView(false);
       alert('신고가 접수되었습니다');
     }
   };
 
   const handleDetailReason = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
-    setSubmitDetailReason(e.target.value);
+    setSelectedReason(prev => ({ ...prev, detailReason: e.target.value }));
   };
 
   const handleChangeRadio = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -37,9 +39,10 @@ function Report ({ handleReportView, setView }:ReportProps) {
       setViewDetailReason(true);
     } else {
       setViewDetailReason(false);
+      setSelectedReason(prev => ({ ...prev, detailReason: '' }));
     }
 
-    setSubmitReason(e.target.value);
+    setSelectedReason(prev => ({ ...prev, reason: e.target.value }));
   };
 
 
@@ -91,8 +94,9 @@ function Report ({ handleReportView, setView }:ReportProps) {
                 <button
                   type="submit"
                   className="submit_btn"
-                  disabled={!submitReason ||
-                    (submitReason === '기타' && !submitDetailReason)}
+                  disabled={!selectedReason.reason ||
+                    (selectedReason.reason === '기타' &&
+                    !selectedReason.detailReason)}
                 >
                   신고하기
                 </button>
