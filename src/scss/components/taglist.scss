@@ -7,10 +7,9 @@
   &_list {
     @include inline-flexbox(start);
     white-space: nowrap;
-
-    &.first {
-      margin-bottom: 8px;
-    }
   }
 }
 
+.taglist_first {
+  margin: 16px 0 8px;
+}
