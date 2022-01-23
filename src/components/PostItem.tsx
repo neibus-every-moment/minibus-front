@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import ImageSwiper from './ImageSwiper';
+import Report from './Report';
 
 function PostItem() {
+  const [view, setView] = useState(false);
+
+  const handleReportView = () => {
+    setView(prev => !prev);
+  };
+
   return (
     <>
       <div className="post-container">
@@ -18,7 +25,7 @@ function PostItem() {
               created date
             </time>
           </div>
-          <button className="post-report">
+          <button className="post-report" onClick={handleReportView}>
             <img src="..\static\icons\icon_report.svg" alt="신고 버튼" />
           </button>
         </div>
@@ -47,6 +54,9 @@ function PostItem() {
             </div>
           </button>
         </div>
+        {view && <Report
+          handleReportView={handleReportView}
+          setView={setView} />}
       </div>
     </>
   );
