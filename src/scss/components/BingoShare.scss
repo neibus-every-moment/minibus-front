@@ -6,4 +6,26 @@
   width: 100vw;
   height: 100vh;
   background-color: $background;
+
+  &-header {
+    @include flexbox(center);
+    @include text-style(body1, $title02);
+    height: 70px;
+
+    h2 {
+      position: relative;
+      width: inherit;
+    }
+
+    button {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      display: block;
+
+      img {
+        display: block;
+      }
+    }
+  }
 }
