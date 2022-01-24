@@ -201,6 +201,8 @@ function Bingo() {
         </div>
         {shareView && <BingoShare
           onClickShare={handleClickShare}
+          bingoBoard={bingoBoard}
+          bingoCount={bingoCount}
         />}
       </div>
     </div>
