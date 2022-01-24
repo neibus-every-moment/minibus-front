@@ -42,10 +42,18 @@ function BingoShare({
           </section>
           <footer className="col-sm-4">
             <ul className="bingo-share-social">
-              <li>facebook</li>
-              <li>twitter</li>
-              <li>kakaotalk</li>
-              <li>link</li>
+              <li>
+                <img src="static/icons/icon-facebook.svg" alt="페이스북에 공유" />
+              </li>
+              <li>
+                <img src="static/icons/icon-twitter.svg" alt="트위터에 공유" />
+              </li>
+              <li>
+                <img src="static/icons/icon-kakaotalk.svg" alt="카카오톡에 공유" />
+              </li>
+              <li>
+                <img src="static/icons/icon-link.svg" alt="링크 공유" />
+              </li>
             </ul>
             <p>
               오늘 대중교통에서 겪은 일<br />

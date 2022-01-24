@@ -1,11 +1,14 @@
 .bingo-share {
+  @include no-scrollbar;
   position: fixed;
   top: 0;
   right: 0;
   z-index: $bingo-share;
   width: 100vw;
   height: 100vh;
+  overflow-y: auto;
   background-color: $background;
+  overscroll-behavior: contain;
 
   &-header {
     @include flexbox(center);
