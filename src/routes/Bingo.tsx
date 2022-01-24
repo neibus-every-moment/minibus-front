@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import BingoShare from '../components/BingoShare';
+
 interface BingoItemProps {
   index: number,
   content: string
@@ -97,6 +99,7 @@ function Bingo() {
     [...bingoBoard.map(({ isSelected }) => isSelected).slice(8, 12)],
     [...bingoBoard.map(({ isSelected }) => isSelected).slice(12, 16)],
   ];
+  const [shareView, setShareView] = useState(true);
 
   // TODO: 나중에 서버에서 24시간마다 새 빙고판 가져오도록
   // useEffect(() => {
@@ -153,6 +156,11 @@ function Bingo() {
     setBingoCount(count);
   };
 
+  const handleClickShare = () => {
+    console.log('share!');
+    setShareView(view => !view);
+  };
+
   useEffect(() => {
     checkBingo();
   }, [bingoBoard]);
@@ -186,11 +194,14 @@ function Bingo() {
             </ul>
           </div>
           <div className="col-sm-4">
-            <button className="bingo-share_btn">
+            <button className="bingo-share_btn" onClick={handleClickShare}>
               내 빙고 공유하기
             </button>
           </div>
         </div>
+        {shareView && <BingoShare
+          onClickShare={handleClickShare}
+        />}
       </div>
     </div>
   );
