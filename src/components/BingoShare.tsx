@@ -26,7 +26,7 @@ function BingoShare({
           </header>
           <section className="col-sm-4 bingo-share-contents">
             <h5>도전! 일상 빙고</h5>
-            <div className="bingo-count">{bingoCount} 빙고!</div>
+            <div className="bingo-count">오늘 {bingoCount}빙고 달성!!</div>
             <ul className="bingo-board">
               {bingoBoard.map(({ index, content, isSelected }) => (
                 <li
