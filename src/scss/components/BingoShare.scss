@@ -43,4 +43,17 @@
       border: 2px solid $surface;
     }
   }
+
+  &-social {
+    @include flexbox(center);
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  p {
+    @include text-style-body2;
+    color: #8d89a5;
+    background-color: $surface;
+    padding: 18px 0;
+  }
 }

@@ -55,13 +55,13 @@ function BingoShare({
                 <img src="static/icons/icon-link.svg" alt="링크 공유" />
               </li>
             </ul>
-            <p>
-              오늘 대중교통에서 겪은 일<br />
-              공유하고 싶다면?
-            </p>
           </footer>
         </div>
       </div>
+      <p>
+        오늘 대중교통에서 겪은 일<br />
+        공유하고 싶다면?
+      </p>
     </div>
   );
 }
