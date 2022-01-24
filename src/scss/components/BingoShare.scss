@@ -28,4 +28,16 @@
       }
     }
   }
+
+  &-contents {
+    margin-bottom: 48px;
+    color: #8d89a5;
+
+    li {
+      font-size: 10px;
+      font-weight: bold;
+      line-height: 160%;
+      border: 2px solid $surface;
+    }
+  }
 }

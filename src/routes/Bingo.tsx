@@ -99,7 +99,7 @@ function Bingo() {
     [...bingoBoard.map(({ isSelected }) => isSelected).slice(8, 12)],
     [...bingoBoard.map(({ isSelected }) => isSelected).slice(12, 16)],
   ];
-  const [shareView, setShareView] = useState(true);
+  const [shareView, setShareView] = useState(false);
 
   // TODO: 나중에 서버에서 24시간마다 새 빙고판 가져오도록
   // useEffect(() => {

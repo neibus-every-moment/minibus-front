@@ -24,11 +24,9 @@ function BingoShare({
               <img src="/static/icons/cancel-black.svg" alt="공유 취소" />
             </button>
           </header>
-          <section className="col-sm-4 bingo-share-info">
+          <section className="col-sm-4 bingo-share-contents">
             <h5>도전! 일상 빙고</h5>
             <div className="bingo-count">{bingoCount} 빙고!</div>
-          </section>
-          <section className="col-sm-4 bingo-share-board">
             <ul className="bingo-board">
               {bingoBoard.map(({ index, content, isSelected }) => (
                 <li
