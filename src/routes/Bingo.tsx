@@ -7,55 +7,86 @@ interface BingoItemProps {
 }
 function Bingo() {
   const initialBingoBoard: BingoItemProps[] = [
-    { index: 1,
+    {
+      index: 1,
       content: '오늘의 빙고 어쩌구',
       isSelected: false,
     },
-    { index: 2,
+    {
+      index: 2,
       content: '오늘의 빙고 저쩌구',
-      isSelected: false },
-    { index: 3,
+      isSelected: false,
+    },
+    {
+      index: 3,
       content: '오늘의 빙고 어쩌구',
-      isSelected: false },
-    { index: 4,
+      isSelected: false,
+    },
+    {
+      index: 4,
       content: '오늘의 빙고 저쩌구',
-      isSelected: false },
-    { index: 5,
+      isSelected: false,
+    },
+    {
+      index: 5,
       content: '오늘의 빙고 어쩌구',
-      isSelected: false },
-    { index: 6,
+      isSelected: false,
+    },
+    {
+      index: 6,
       content: '오늘의 빙고 저쩌구',
-      isSelected: false },
-    { index: 7,
+      isSelected: false,
+    },
+    {
+      index: 7,
       content: '오늘의 빙고 어쩌구',
-      isSelected: false },
-    { index: 8,
+      isSelected: false,
+    },
+    {
+      index: 8,
       content: '오늘의 빙고 저쩌구',
-      isSelected: false },
-    { index: 9,
+      isSelected: false,
+    },
+    {
+      index: 9,
       content: '오늘의 빙고 어쩌구',
-      isSelected: false },
-    { index: 10,
+      isSelected: false,
+    },
+    {
+      index: 10,
       content: '오늘의 빙고 저쩌구',
-      isSelected: false },
-    { index: 11,
+      isSelected: false,
+    },
+    {
+      index: 11,
       content: '오늘의 빙고 어쩌구',
-      isSelected: false },
-    { index: 12,
+      isSelected: false,
+    },
+    {
+      index: 12,
       content: '오늘의 빙고 저쩌구',
-      isSelected: false },
-    { index: 13,
+      isSelected: false,
+    },
+    {
+      index: 13,
       content: '오늘의 빙고 어쩌구',
-      isSelected: false },
-    { index: 14,
+      isSelected: false,
+    },
+    {
+      index: 14,
       content: '오늘의 빙고 저쩌구',
-      isSelected: false },
-    { index: 15,
+      isSelected: false,
+    },
+    {
+      index: 15,
       content: '오늘의 빙고 어쩌구',
-      isSelected: false },
-    { index: 16,
+      isSelected: false,
+    },
+    {
+      index: 16,
       content: '오늘의 빙고 저쩌구',
-      isSelected: false },
+      isSelected: false,
+    },
   ];
   const [bingoBoard, setBingoBoard] =
     useState<BingoItemProps[]>(initialBingoBoard);
