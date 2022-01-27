@@ -3,8 +3,31 @@ import React, { useState } from 'react';
 import ImageSwiper from './ImageSwiper';
 import Report from './Report';
 
+export interface ImageProps {
+  id: number,
+  url: string
+}
+
 function PostItem() {
   const [view, setView] = useState(false);
+  const images: ImageProps[] = [
+    {
+      id: 1,
+      url: `https://picsum.photos/800?random=${Math.random()}`,
+    },
+    {
+      id: 2,
+      url: `https://picsum.photos/800?random=${Math.random()}`,
+    },
+    {
+      id: 3,
+      url: `https://picsum.photos/800?random=${Math.random()}`,
+    },
+    {
+      id: 4,
+      url: `https://picsum.photos/800?random=${Math.random()}`,
+    },
+  ];
 
   const handleReportView = () => {
     setView(prev => !prev);
@@ -37,7 +60,7 @@ function PostItem() {
             dolorum provident aliquam eligendi alias porro fugiat
             distinctio, voluptatibus ratione.
           </p>
-          <ImageSwiper />
+          <ImageSwiper images={images} />
         </div>
         <div className="post-bottom">
           <ul className="post-tag_list">

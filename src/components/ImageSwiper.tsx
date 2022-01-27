@@ -6,27 +6,9 @@ import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import ImageModal from './ImageModal';
+import { ImageProps } from './PostItem';
 
-const images = [
-  {
-    id: 1,
-    url: 'Slide 1',
-  },
-  {
-    id: 2,
-    url: 'Slide 2',
-  },
-  {
-    id: 3,
-    url: 'Slide 3',
-  },
-  {
-    id: 4,
-    url: 'Slide 4',
-  },
-];
-
-function ImageSwiper() {
+function ImageSwiper({ images }: { images: Array<ImageProps> }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const closeModal = (): void => {
@@ -40,11 +22,11 @@ function ImageSwiper() {
         navigation
         pagination
       >
-        {images?.map(({ id }) => (
+        {images?.map(({ id, url }) => (
           <SwiperSlide key={id}>
             <img
-              src="../static/dummy/picture-empty.png"
-              alt=""
+              src={url}
+              alt="유저 입력 사진"
               onClick={() => setModalOpen(true)}
             />
             {images.length > 1 &&

@@ -2,10 +2,12 @@ import React from 'react';
 import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { ImageProps } from './PostItem';
+
 function ImageModal({ isOpen, closeModal, images }: {
   isOpen: boolean,
   closeModal: () => void,
-  images: {id: number, url: string}[],
+  images: ImageProps[],
 }) {
   return (
     <div className={isOpen ? 'modal openModal' : 'modal'}>
@@ -18,9 +20,9 @@ function ImageModal({ isOpen, closeModal, images }: {
           navigation
           pagination={{ type: 'fraction' }}
         >
-          {images?.map(({ id }) => (
+          {images?.map(({ id, url }) => (
             <SwiperSlide key={id}>
-              <img src="../static/dummy/picture-empty.png" alt="" />
+              <img src={url} alt="유저 입력 사진" />
             </SwiperSlide>
           ))}
         </Swiper>
