@@ -71,3 +71,12 @@
     background-color: $surface;
   }
 }
+
+canvas {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  z-index: $bingo-share;
+  margin: 0 auto;
+  border: 4px solid $neibus02;
+}

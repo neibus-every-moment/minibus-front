@@ -33,7 +33,7 @@ function BingoShare({
         container.current.appendChild(canvas);
         setTimeout(() => {
           container.current.removeChild(canvas);
-        }, 1000);
+        }, 1500);
         const myImage = canvas.toDataURL();
         downloadURI(myImage, 'capture.png');
       });
