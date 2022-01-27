@@ -14,8 +14,8 @@ interface ShareProps {
 function BingoShare({
   onClickShare, bingoBoard, bingoCount,
 }: ShareProps) {
-  const container: any = useRef();
-  const capture: any = useRef();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const captureRef = useRef<HTMLElement>(null);
 
   function downloadURI(uri: string, name: string) {
     const link = document.createElement('a');
@@ -26,17 +26,19 @@ function BingoShare({
   }
 
   const handleClickCapture = () => {
-    html2canvas(capture.current, {
-      // x: 10,
-    })
-      .then(canvas => {
-        container.current.appendChild(canvas);
-        setTimeout(() => {
-          container.current.removeChild(canvas);
-        }, 1500);
-        const myImage = canvas.toDataURL();
-        downloadURI(myImage, 'capture.png');
-      });
+    if (captureRef.current !== null) {
+      html2canvas(captureRef.current, {
+        // x: 10,
+      })
+        .then(canvas => {
+          containerRef.current?.appendChild(canvas);
+          setTimeout(() => {
+            containerRef.current?.removeChild(canvas);
+          }, 1500);
+          const myImage = canvas.toDataURL();
+          downloadURI(myImage, 'capture.png');
+        });
+    }
   };
 
   useEffect(() => {
@@ -45,7 +47,7 @@ function BingoShare({
 
   return (
     <div className="bingo-share">
-      <div className="container" ref={container}>
+      <div className="container" ref={containerRef}>
         <div className="row">
           <header className="col-sm-4 bingo-share-header">
             <h2>내 빙고 공유하기</h2>
@@ -53,7 +55,7 @@ function BingoShare({
               <img src="/static/icons/cancel-black.svg" alt="공유 취소" />
             </button>
           </header>
-          <section className="col-sm-4 bingo-share-contents" ref={capture}>
+          <section className="col-sm-4 bingo-share-contents" ref={captureRef}>
             <h5>도전! 일상 빙고</h5>
             <div className="bingo-count">오늘 {bingoCount}빙고 달성!!</div>
             <ul className="bingo-board">
