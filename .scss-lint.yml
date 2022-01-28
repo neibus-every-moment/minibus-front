@@ -97,7 +97,7 @@ linters:
 
   PropertySpelling:
     enabled: true
-    extra_properties: []
+    extra_properties: ['gap']
     disabled_properties: []
 
   PseudoElement:

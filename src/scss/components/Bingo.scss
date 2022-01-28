@@ -1,0 +1,66 @@
+.bingo {
+  height: calc(100vh - 76px); // Header가 차지하는 부분 제외
+  text-align: center;
+  background-color: $surface;
+
+  &-info {
+    &-title {
+      @include text-style-heading5;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      @include text-style-body6;
+      margin-bottom: 32px;
+    }
+  }
+
+  &-count {
+    @include text-style-body2;
+    padding-top: 8px;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    background-color: #fff;
+    border-radius: 12px;
+  }
+
+  &-board {
+    display: grid;
+    margin-bottom: 8px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 4px;
+
+    li {
+      &.active {
+        background-image: url('/static/icons/circle.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      display: table;
+      @include text-style-body8;
+      padding: 12px;
+      vertical-align: middle;
+      background-color: #fff;
+      border-radius: 12px;
+
+      div {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &-share_btn {
+    @include text-style-body3;
+    width: 100%;
+    padding: 12px 0;
+    margin-bottom: 60px;
+    color: #fff;
+    background-color: #1cd9d9;
+    border-radius: 12px;
+  }
+}
