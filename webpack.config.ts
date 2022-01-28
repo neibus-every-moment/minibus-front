@@ -27,6 +27,7 @@ const config: Configuration = {
         test: /\.tsx?$/,
         loader: 'babel-loader',
         options: {
+          plugins: ['@babel/plugin-transform-runtime'],
           presets: [
             [
               '@babel/preset-env',
