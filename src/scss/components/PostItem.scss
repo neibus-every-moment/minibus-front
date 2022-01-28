@@ -14,6 +14,22 @@ button {
   @include text-style-body7;
 }
 
+.post-tag_list {
+  @include text-style-flag;
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+
+  li {
+    padding: 4px 8px;
+    margin-right: 8px;
+    color: $neibus02;
+    background-color: #fff;
+    border: 1px solid $neibus02;
+    border-radius: 18px;
+  }
+}
+
 .post-top {
   display: flex;
   align-items: center;
@@ -55,41 +71,24 @@ button {
 
 .post-bottom {
   display: flex;
+  justify-content: flex-end;
   margin-bottom: 16px;
+  gap: 12px;
 }
 
-.post-tag_list {
-  display: flex;
-  width: 100%;
-  @include text-style-flag;
+// .post-like {
+//   display: flex;
+//   align-items: center;
 
-  li {
-    padding: 4px 8px;
-    margin-right: 8px;
-    color: $neibus02;
-    background-color: #fff;
-    border: 1px solid $neibus02;
-    border-radius: 18px;
-  }
-}
+//   &-btn {
+//     width: 18px;
+//     height: 18px;
+//     overflow: hidden;
 
-.post-like {
-  display: flex;
-  align-items: center;
-
-  &-count {
-    margin-right: 6px;
-  }
-
-  &-btn {
-    width: 18px;
-    height: 18px;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-}
+//     img {
+//       width: 100%;
+//       height: 100%;
+//       object-fit: cover;
+//     }
+//   }
+// }
