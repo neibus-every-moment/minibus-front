@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
 import ImageSwiper from './ImageSwiper';
@@ -36,6 +37,11 @@ function PostItem() {
   return (
     <>
       <div className="post-container">
+        <ul className="post-tag_list">
+          <li>tag1</li>
+          <li>tag2</li>
+          <li>tag3</li>
+        </ul>
         <div className="post-top">
           <div className="post-info">
             <div className="post-info-emotion">
@@ -63,19 +69,20 @@ function PostItem() {
           <ImageSwiper images={images} />
         </div>
         <div className="post-bottom">
-          <ul className="post-tag_list">
-            <li>tag1</li>
-            <li>tag2</li>
-            <li>tag3</li>
-          </ul>
           <button className="post-like">
-            <div className="post-like-count">
-            0
-            </div>
             <div className="post-like-btn">
-              <img src="..\static\icons\icon_like.svg" alt="추천 버튼" />
+              <img src="..\static\icons\icon_like_empty.svg" alt="추천 버튼" />
             </div>
           </button>
+          <div className="post-like-count">
+            0
+          </div>
+          <button className="post-comment">
+            <img src="static/icons/icon_comment.svg" alt="댓글 버튼" />
+          </button>
+          <div className="post-comment-count">
+            0
+          </div>
         </div>
         {view && <Report
           handleReportView={handleReportView}
