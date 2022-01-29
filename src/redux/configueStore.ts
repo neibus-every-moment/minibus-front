@@ -15,7 +15,7 @@ export default function configureStore () {
       : composeWithDevTools(applyMiddleware(...middlewares));
 
   const store = createStore(rootReducer, enhancer);
-  store.sagaTask = sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga);
   return store;
 }
 
