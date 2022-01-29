@@ -29,6 +29,7 @@ export const LogInHandler = createAsyncAction(
   LOG_IN_SUCCESS,
   LOG_IN_FAILURE
 )<null, AxiosResponse<userState>, AxiosError>();
+//순서대로 request 요청시 넘어오는 payload의 타입 , 요청 성공 시 반환 값, 요청 실패 시 반환값
 
 export const LogOutHandler = createAsyncAction(
   LOG_OUT_REQUEST,
@@ -54,19 +55,19 @@ const userReducer = createReducer<userState, UserAction>(initialState, {
   [LOG_IN_REQUEST]: (state) => ({
     ...state,
     spinner: true,
-  }),
+  }), //request 액션은 action.data대신 action.payload를 받습니다.
   [LOG_IN_SUCCESS]: (state, { payload }) => ({ //action.payload 객체 구조 분해
     ...state,
     id: payload.data.id,
     nickname: payload.data.nickname,
     spinner: false,
     systemMessage: null,
-  }),
+  }), //success가 되면 action.payload.data로 응답 결과가 저장되어 옵니다.
   [LOG_IN_FAILURE]: (state, { payload: error }) => ({
     ...state,
     spinner: false,
     systemMessage: error.message,
-  }),
+  }), //failure가 되면 action.payload.message로 오류 메세지를 읽습니다.
   [LOG_OUT_REQUEST]: (state) => ({
     ...state,
     spinner: true,

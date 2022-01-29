@@ -1,7 +1,6 @@
 import {
   all,
   call,
-  delay,
   fork,
   put,
   takeLatest } from '@redux-saga/core/effects';
@@ -18,17 +17,17 @@ import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS } from '../ducks/user';
 
-function logInAPI(data:any):Promise<AxiosResponse> {
-  return axios.post('/user/login', data);
-}
+function logInAPI(payload:any):Promise<AxiosResponse> {
+  return axios.post('/login', payload);
+}//any 대신 예상되는 요청 데이터 타입을 명시해주세요
 
-function* logIn(action:any) {
-  //LOG_IN_REQUEST에서 리턴되는 객체를 받아옴
+function* logIn(action:any) { //any는 에러 방지용입니다. 아마 action이라는 타입 만들면 될듯?
   try {
-    const result: AxiosResponse = yield call(logInAPI, action.data);
+    const result: AxiosResponse = yield call(logInAPI, action.payload);
     yield put({
-      type: LOG_IN_SUCCESS, //다시 그냥 리덕스쪽으로 액션이 넘어감
-      data: result.data,
+      type: LOG_IN_SUCCESS,
+      payload: result.data,
+      // payload: { data: { id: 1, nickname: '안녕' } }, //이 형태로 반환해줘야 상태가 반영됩니다.
     });
   } catch (error) {
     console.error(error);
@@ -39,14 +38,12 @@ function* logIn(action:any) {
 }
 
 function logOutAPI() {
-  return axios.post('/user/logout');
+  return axios.post('/logout');
 }
 
 function* logOut() {
   try {
-    // yield call(logOutAPI);
-    yield delay(1000);
-    console.log('로그아웃');
+    yield call(logOutAPI);
     yield put({
       type: LOG_OUT_SUCCESS,
     });
@@ -60,7 +57,7 @@ function* logOut() {
 
 function signUpAPI(data:any) {
   return axios.post('/user', data);
-}
+}//any 대신 예상되는 요청 데이터 타입을 명시해주세요
 
 function* signUp(action:any) {
   try {
