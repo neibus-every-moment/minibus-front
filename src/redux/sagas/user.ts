@@ -1,4 +1,10 @@
-import { all, call, delay, fork, put, takeLatest } from '@redux-saga/core/effects';
+import {
+  all,
+  call,
+  delay,
+  fork,
+  put,
+  takeLatest } from '@redux-saga/core/effects';
 import axios, { AxiosResponse } from 'axios';
 
 import {
@@ -74,7 +80,6 @@ function* watchLogIn() {
   yield takeLatest(LOG_IN_REQUEST, logIn);
 }
 function* watchLogOut() {
-  console.log('사가진입');
   yield takeLatest(LOG_OUT_REQUEST, logOut);
 }
 
