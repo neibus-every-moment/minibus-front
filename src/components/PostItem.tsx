@@ -1,16 +1,16 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 
+import Comments from './Comments';
 import ImageSwiper from './ImageSwiper';
 import Report from './Report';
-
 export interface ImageProps {
   id: number,
   url: string
 }
 
 function PostItem() {
-  const [view, setView] = useState(false);
+  const [reportView, setReportView] = useState(false);
+  const [commentsView, setCommentsView] = useState(false);
   const images: ImageProps[] = [
     {
       id: 1,
@@ -31,7 +31,11 @@ function PostItem() {
   ];
 
   const handleReportView = () => {
-    setView(prev => !prev);
+    setReportView(prev => !prev);
+  };
+
+  const handleCommentsView = () => {
+    setCommentsView(prev => !prev);
   };
 
   return (
@@ -77,16 +81,20 @@ function PostItem() {
           <div className="post-like-count">
             0
           </div>
-          <button className="post-comment">
+          <button
+            className="post-comment"
+            onClick={handleCommentsView}
+          >
             <img src="static/icons/icon_comment.svg" alt="댓글 버튼" />
           </button>
           <div className="post-comment-count">
             0
           </div>
         </div>
-        {view && <Report
+        {reportView && <Report
           handleReportView={handleReportView}
-          setView={setView} />}
+          setView={setReportView} />}
+        {commentsView && <Comments />}
       </div>
     </>
   );
