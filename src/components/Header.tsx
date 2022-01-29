@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
+import { LOG_OUT_REQUEST } from '../redux/ducks/user';
 import SideMenu from './SideMenu';
 
 function Header() {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('지금 어디가?');
   const [view, setView] = useState(false);
 
@@ -40,6 +43,9 @@ function Header() {
 
   const onSideMenuToggle = () => {
     setView((prev) => !prev);
+    dispatch({
+      type: LOG_OUT_REQUEST,
+    });
   };
 
   return (
