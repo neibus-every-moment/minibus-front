@@ -2,33 +2,26 @@ import React, { useState } from 'react';
 
 import Comments from './Comments';
 import ImageSwiper from './ImageSwiper';
+import { PostProps } from './PostList';
 import Report from './Report';
-export interface ImageProps {
-  id: number,
-  url: string
-}
 
-function PostItem() {
+function PostItem({ post }: { post: PostProps }) {
+  const {
+    // id,
+    user,
+    createdAt,
+    // updatedAt,
+    transportations,
+    regions,
+    content,
+    likeCount,
+    commentCount,
+  } = post;
+  const tags = [...transportations, ...regions];
+
   const [reportView, setReportView] = useState(false);
   const [commentsView, setCommentsView] = useState(false);
-  const images: ImageProps[] = [
-    {
-      id: 1,
-      url: `https://picsum.photos/800?random=${Math.random()}`,
-    },
-    {
-      id: 2,
-      url: `https://picsum.photos/800?random=${Math.random()}`,
-    },
-    {
-      id: 3,
-      url: `https://picsum.photos/800?random=${Math.random()}`,
-    },
-    {
-      id: 4,
-      url: `https://picsum.photos/800?random=${Math.random()}`,
-    },
-  ];
+
 
   const handleReportView = () => {
     setReportView(prev => !prev);
@@ -42,20 +35,23 @@ function PostItem() {
     <>
       <div className="post-container">
         <ul className="post-tag_list">
-          <li>tag1</li>
-          <li>tag2</li>
-          <li>tag3</li>
+          {tags.map(tag => (
+            <li key={tag}>{tag}</li>
+          ))}
         </ul>
         <div className="post-top">
           <div className="post-info">
             <div className="post-info-emotion">
               <img src="..\static\dummy\avatar-empty.png" alt="아바타" />
             </div>
+            <div className="post-info-user">
+              {user.nickname}
+            </div>
             <time
               className="post-info-date"
-              // dateTime ='2021-01-21'
+              dateTime={String(createdAt)}
             >
-              created date
+              {createdAt.toLocaleDateString()}
             </time>
           </div>
           <button className="post-report" onClick={handleReportView}>
@@ -64,13 +60,9 @@ function PostItem() {
         </div>
         <div className="post-content">
           <p className="post-content-text">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Porro fugiat hic blanditiis assumenda animi.
-            Commodi accusantium, incidunt, quam sapiente vitae
-            dolorum provident aliquam eligendi alias porro fugiat
-            distinctio, voluptatibus ratione.
+            {content.text}
           </p>
-          <ImageSwiper images={images} />
+          <ImageSwiper images={content.images} />
         </div>
         <div className="post-bottom">
           <button className="post-like">
@@ -79,7 +71,7 @@ function PostItem() {
             </div>
           </button>
           <div className="post-like-count">
-            0
+            {likeCount}
           </div>
           <button
             className="post-comment"
@@ -88,7 +80,7 @@ function PostItem() {
             <img src="static/icons/icon_comment.svg" alt="댓글 버튼" />
           </button>
           <div className="post-comment-count">
-            0
+            {commentCount}
           </div>
         </div>
         {reportView && <Report
