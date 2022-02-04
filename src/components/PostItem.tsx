@@ -13,9 +13,9 @@ function PostItem({ post }: { post: PostProps }) {
     // updatedAt,
     transportations,
     regions,
-    content,
-    likeCount,
-    commentCount,
+    contents,
+    like,
+    comments,
   } = post;
   const tags = [...transportations, ...regions];
 
@@ -60,9 +60,9 @@ function PostItem({ post }: { post: PostProps }) {
         </div>
         <div className="post-content">
           <p className="post-content-text">
-            {content.text}
+            {contents.text}
           </p>
-          <ImageSwiper images={content.images} />
+          <ImageSwiper images={contents.images} />
         </div>
         <div className="post-bottom">
           <button className="post-like">
@@ -71,7 +71,7 @@ function PostItem({ post }: { post: PostProps }) {
             </div>
           </button>
           <div className="post-like-count">
-            {likeCount}
+            {like.count}
           </div>
           <button
             className="post-comment"
@@ -80,7 +80,7 @@ function PostItem({ post }: { post: PostProps }) {
             <img src="static/icons/icon_comment.svg" alt="댓글 버튼" />
           </button>
           <div className="post-comment-count">
-            {commentCount}
+            {comments.count}
           </div>
         </div>
         {reportView && <Report

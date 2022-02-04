@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { getPosts } from '../utils/post';
 import PostItem from './PostItem';
 
 export interface ImageProps {
@@ -10,6 +11,7 @@ export interface ImageProps {
 export interface PostProps {
   id: number,
   user: {
+    id: number,
     avatar: string,
     nickname: string,
   },
@@ -17,12 +19,21 @@ export interface PostProps {
   updatedAt: Date,
   transportations: string[],
   regions: string[],
-  content: {
+  contents: {
     text: string,
     images: ImageProps[] | [],
   },
-  likeCount: number,
-  commentCount: number,
+  like: {
+    count: number,
+    users: number[],
+  },
+  comments: {
+    count: number,
+    contents: {
+      id: number,
+      text: string
+    }[],
+  },
 }
 
 function PostList() {
@@ -30,6 +41,7 @@ function PostList() {
     {
       id: 1,
       user: {
+        id: 1,
         avatar: 'image',
         nickname: 'nickname',
       },
@@ -37,41 +49,7 @@ function PostList() {
       updatedAt: new Date(),
       transportations: ['지하철', '버스'],
       regions: ['서울', '인천'],
-      content: {
-        text: '글 내용이라네~',
-        images: [
-          {
-            id: 1,
-            url: `https://picsum.photos/800?random=${Math.random()}`,
-          },
-          {
-            id: 2,
-            url: `https://picsum.photos/800?random=${Math.random()}`,
-          },
-          {
-            id: 3,
-            url: `https://picsum.photos/800?random=${Math.random()}`,
-          },
-          {
-            id: 4,
-            url: `https://picsum.photos/800?random=${Math.random()}`,
-          },
-        ],
-      },
-      likeCount: 3,
-      commentCount: 5,
-    },
-    {
-      id: 2,
-      user: {
-        avatar: 'image',
-        nickname: 'nickname',
-      },
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      transportations: ['지하철', '버스'],
-      regions: ['서울', '인천'],
-      content: {
+      contents: {
         text: '글 내용이라네~',
         images: [
           {
@@ -88,33 +66,31 @@ function PostList() {
           },
         ],
       },
-      likeCount: 3,
-      commentCount: 5,
+      like: {
+        count: 3,
+        users: [1, 2, 3],
+      },
+      comments: {
+        count: 2,
+        contents: [
+          {
+            id: 1,
+            text: '댓글 1',
+          },
+          {
+            id: 2,
+            text: '댓글 2',
+          },
+        ],
+      },
     },
   ];
-  const [posts, setPost] = useState<PostProps[]>([
-    {
-      id: 0,
-      user: {
-        avatar: 'image',
-        nickname: 'nickname',
-      },
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      transportations: [],
-      regions: [],
-      content: {
-        text: '',
-        images: [],
-      },
-      likeCount: 0,
-      commentCount: 0,
-    },
-  ]);
+
+  const [posts, setPosts] = useState<PostProps[]>(dummyPosts);
 
   useEffect(() => {
-    setPost(dummyPosts);
-    // TODO: 게시글 가져오기 요청
+    const newPosts = getPosts({ start: 0, size: 10, sorting: 'likeCount' });
+    // setPosts(newPosts);
   }, []);
 
   return (
