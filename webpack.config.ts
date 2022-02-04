@@ -79,7 +79,7 @@ const config: Configuration = {
   },
   devServer: {
     historyApiFallback: true,
-    port: 8080,
+    port: 3000,
     devMiddleware: { publicPath: '/dist/' },
     static: { directory: path.resolve(__dirname) },
   },
