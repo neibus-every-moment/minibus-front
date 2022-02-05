@@ -6,7 +6,7 @@ interface postsParams {
     transportationState: string[]
 }
 
-export function posts({
+export function getPostsRequestURI({
   start,
   size,
   sorting,

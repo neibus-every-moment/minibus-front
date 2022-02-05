@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import PostList from '../components/PostList';
 import SelectorGroup from '../components/SelectorGroup';
 import fetcher from '../utils/fetcher';
-import { posts } from '../utils/posts';
+import { getPostsRequestURI } from '../utils/getUri';
 
 function Home() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -13,7 +13,7 @@ function Home() {
   const [regionState, setRegionState] = useState(['']);
   const [transportationState, setTransportationState] = useState(['']);
 
-  const { data, error } = useSWR(posts({
+  const { data, error } = useSWR(getPostsRequestURI({
     start: currentPage,
     size: pageSize,
     sorting: sortingState,
