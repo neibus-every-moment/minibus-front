@@ -31,7 +31,16 @@ function Header() {
     }
   }, [pathname]);
 
-  if (pathname === ('/write' || 'report' || '/login')) {
+  if (pathname === '/write') {
+    return null;
+  }
+
+  if (pathname === '/report') {
+    return null;
+  }
+
+
+  if (pathname === '/login') {
     return null;
   }
 
