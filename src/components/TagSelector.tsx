@@ -1,6 +1,7 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
+import { getRegionNameArray,
+  getTransportationNameArray } from '../apis/getTags';
 import TagList from './TagList';
 
 interface TagSelectorProps {
@@ -16,25 +17,27 @@ function TagSelector ({
   setRegionState,
   setTransportationState,
 }:TagSelectorProps) {
-  const [transportationTags, setTransportationTags] = useState([]);
-  const [regionTags, setRegionTags] = useState([]);
+  const [transportationTags, setTransportationTags] = useState(['']);
+  const [regionTags, setRegionTags] = useState(['']);
 
   useEffect(() => {
     async function getTransportations () {
-      const { data: { data } }
-            = await axios.get('http://3.37.182.59:8080/api/transportations');
+      const tags = await getTransportationNameArray();
 
-      setTransportationTags(data.map(
-        (transportation: { name: string; }) => transportation.name));
+      if (tags) {
+        setTransportationTags(tags);
+      }
     }
     getTransportations();
   }, []);
 
   useEffect(() => {
     async function getRegions () {
-      const { data: { data } } =
-            await axios.get('http://3.37.182.59:8080/api/regions');
-      setRegionTags(data.map((region: { name: string; }) => region.name));
+      const tags = await getRegionNameArray();
+
+      if (tags) {
+        setRegionTags(tags);
+      }
     }
     getRegions();
   }, []);
