@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import useSWR from 'swr';
 
-import { posts } from '../apis/posts';
 import PostList from '../components/PostList';
 import SelectorGroup from '../components/SelectorGroup';
 import fetcher from '../utils/fetcher';
+import { posts } from '../utils/posts';
 
 function Home() {
   const [currentPage, setCurrentPage] = useState(0);
