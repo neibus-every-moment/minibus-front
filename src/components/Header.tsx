@@ -39,7 +39,6 @@ function Header() {
     return null;
   }
 
-
   if (pathname === '/login') {
     return null;
   }
