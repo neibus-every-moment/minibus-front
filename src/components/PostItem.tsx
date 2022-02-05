@@ -1,51 +1,57 @@
 import React, { useState } from 'react';
 
+import Comments from './Comments';
 import ImageSwiper from './ImageSwiper';
+import { PostProps } from './PostList';
 import Report from './Report';
 
-export interface ImageProps {
-  id: number,
-  url: string
-}
+function PostItem({ post }: { post: PostProps }) {
+  const {
+    // id,
+    user,
+    createdAt,
+    // updatedAt,
+    transportations,
+    regions,
+    contents,
+    like,
+    comments,
+  } = post;
+  const tags = [...transportations, ...regions];
 
-function PostItem() {
-  const [view, setView] = useState(false);
-  const images: ImageProps[] = [
-    {
-      id: 1,
-      url: `https://picsum.photos/800?random=${Math.random()}`,
-    },
-    {
-      id: 2,
-      url: `https://picsum.photos/800?random=${Math.random()}`,
-    },
-    {
-      id: 3,
-      url: `https://picsum.photos/800?random=${Math.random()}`,
-    },
-    {
-      id: 4,
-      url: `https://picsum.photos/800?random=${Math.random()}`,
-    },
-  ];
+  const [reportView, setReportView] = useState(false);
+  const [commentsView, setCommentsView] = useState(false);
+
 
   const handleReportView = () => {
-    setView(prev => !prev);
+    setReportView(prev => !prev);
+  };
+
+  const handleCommentsView = () => {
+    setCommentsView(prev => !prev);
   };
 
   return (
     <>
       <div className="post-container">
+        <ul className="post-tag_list">
+          {tags.map(tag => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
         <div className="post-top">
           <div className="post-info">
             <div className="post-info-emotion">
               <img src="..\static\dummy\avatar-empty.png" alt="아바타" />
             </div>
+            <div className="post-info-user">
+              {user.nickname}
+            </div>
             <time
               className="post-info-date"
-              // dateTime ='2021-01-21'
+              dateTime={String(createdAt)}
             >
-              created date
+              {createdAt.toLocaleDateString()}
             </time>
           </div>
           <button className="post-report" onClick={handleReportView}>
@@ -54,32 +60,33 @@ function PostItem() {
         </div>
         <div className="post-content">
           <p className="post-content-text">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Porro fugiat hic blanditiis assumenda animi.
-            Commodi accusantium, incidunt, quam sapiente vitae
-            dolorum provident aliquam eligendi alias porro fugiat
-            distinctio, voluptatibus ratione.
+            {contents.text}
           </p>
-          <ImageSwiper images={images} />
+          <ImageSwiper images={contents.images} />
         </div>
         <div className="post-bottom">
-          <ul className="post-tag_list">
-            <li>tag1</li>
-            <li>tag2</li>
-            <li>tag3</li>
-          </ul>
           <button className="post-like">
-            <div className="post-like-count">
-            0
-            </div>
             <div className="post-like-btn">
-              <img src="..\static\icons\icon_like.svg" alt="추천 버튼" />
+              <img src="..\static\icons\icon_like_empty.svg" alt="추천 버튼" />
             </div>
           </button>
+          <div className="post-like-count">
+            {like.count}
+          </div>
+          <button
+            className="post-comment"
+            onClick={handleCommentsView}
+          >
+            <img src="static/icons/icon_comment.svg" alt="댓글 버튼" />
+          </button>
+          <div className="post-comment-count">
+            {comments.count}
+          </div>
         </div>
-        {view && <Report
+        {reportView && <Report
           handleReportView={handleReportView}
-          setView={setView} />}
+          setView={setReportView} />}
+        {commentsView && <Comments />}
       </div>
     </>
   );
