@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import SideMenu from './SideMenu';
-
 function Header() {
   const [title, setTitle] = useState('지금 어디가?');
-  const [view, setView] = useState(false);
 
   const location = useLocation();
   const { pathname } = location;
@@ -24,8 +21,8 @@ function Header() {
       setTitle('교통상식퀴즈');
       break;
 
-    case '/faq':
-      setTitle('FAQ');
+    case '/mypage':
+      setTitle('마이페이지');
       break;
 
     default:
@@ -34,13 +31,9 @@ function Header() {
     }
   }, [pathname]);
 
-  if (pathname === '/write') {
+  if (pathname === ('/write' || 'report' || '/login')) {
     return null;
   }
-
-  const onSideMenuToggle = () => {
-    setView((prev) => !prev);
-  };
 
   return (
     <>
@@ -49,14 +42,10 @@ function Header() {
           <div className="col-sm-4">
             <div className="header">
               <h1 className="header-title">{title}</h1>
-              <button onClick={onSideMenuToggle}>
-                <img src="/static/icons/hamburger.svg" alt="메뉴 보기" />
-              </button>
             </div>
           </div>
         </div>
       </header>
-      {view && <SideMenu onSideMenuToggle={onSideMenuToggle} />}
     </>);
 }
 
