@@ -36,10 +36,10 @@ function Home() {
 
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedSorting, setSelectdSorting] = useState('createdAt');
-  const [selectedRegion, setSelectedRegion] = useState<string[]>([]);
+  const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
   const [
-    selectedTransportation,
-    setSelectedTransportation,
+    selectedTransportations,
+    setSelectedTransportations,
   ] = useState<string[]>([]);
   const [posts, setPosts] = useState<PostProps[]>([]);
 
@@ -49,8 +49,8 @@ function Home() {
         start: currentPage,
         size: pageSize,
         sorting: selectedSorting,
-        regions: selectedRegion,
-        transportations: selectedTransportation,
+        regions: selectedRegions,
+        transportations: selectedTransportations,
       });
 
       setPosts(newPosts);
@@ -58,8 +58,8 @@ function Home() {
   }, [
     currentPage,
     selectedSorting,
-    selectedRegion,
-    selectedTransportation,
+    selectedRegions,
+    selectedTransportations,
   ]);
 
   return (
@@ -71,11 +71,11 @@ function Home() {
           </div>
         </div>
         <SelectorGroup
-          selectedRegion={selectedRegion}
-          selectedTransportation={selectedTransportation}
+          selectedRegions={selectedRegions}
+          selectedTransportations={selectedTransportations}
           setSelectdSorting={setSelectdSorting}
-          setSelectedRegion={setSelectedRegion}
-          setSelectedTransportation={setSelectedTransportation}
+          setSelectedRegions={setSelectedRegions}
+          setSelectedTransportations={setSelectedTransportations}
         />
         <PostList posts={posts} />
       </div>

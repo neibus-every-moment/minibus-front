@@ -1,11 +1,8 @@
-import React, { MouseEventHandler, useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 
-interface ReportProps {
-  handleReportView: MouseEventHandler<HTMLButtonElement>;
-  setView: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-function Report ({ handleReportView, setView }:ReportProps) {
+function Report () {
+  const navigate = useNavigate();
   const [reportReasons, setReportReasons] = useState(
     [
       '욕설이나 비속어',
@@ -25,8 +22,8 @@ function Report ({ handleReportView, setView }:ReportProps) {
 
     if (reason || detailReason) {
       console.log(reason, detailReason);
-      setView(false);
       alert('신고가 접수되었습니다');
+      navigate(-1);
     }
   };
 
@@ -53,7 +50,7 @@ function Report ({ handleReportView, setView }:ReportProps) {
           <div className="col-sm-4">
             <header className="report_header">
               <h2>신고하기</h2>
-              <button onClick={handleReportView}>
+              <button onClick={() => { navigate(-1); }}>
                 <img src="/static/icons/cancel-black.svg" alt="신고창 닫기" />
               </button>
             </header>

@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from 'react';
 
-interface TagListProps {
+interface TagItemProps {
   item: string;
-  tagState: string[];
-  setTagState:React.Dispatch<React.SetStateAction<string[]>>;
+  tagsState: string[];
+  setTagsState:React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-function TagItem({ item, tagState, setTagState }:TagListProps) {
+function TagItem({ item, tagsState, setTagsState }:TagItemProps) {
   const [isActive, setIsActive] = useState('');
 
   const handleToggleIsActive = useCallback(() => {
@@ -19,11 +19,11 @@ function TagItem({ item, tagState, setTagState }:TagListProps) {
 
   const handleChangeTagState = useCallback(() => {
     if (isActive === '') {
-      setTagState([...tagState, item]);
+      setTagsState([...tagsState, item]);
     } else {
-      setTagState([...tagState.filter(tag => tag !== item)]);
+      setTagsState([...tagsState.filter(tag => tag !== item)]);
     }
-  }, [isActive, tagState, setTagState]);
+  }, [isActive, tagsState, setTagsState]);
 
   const classGroup = `tag_item${ isActive}`;
 
