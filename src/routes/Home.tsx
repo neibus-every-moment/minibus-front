@@ -1,8 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { getPosts } from '../apis/post';
 import Banner from '../components/Banner';
 import PostList from '../components/PostList';
 import SelectorGroup from '../components/SelectorGroup';
+
+export interface ImageProps {
+  id: number,
+  url: string
+}
+
+export interface PostProps {
+  id: number,
+  user: {
+    id: number,
+    email: string,
+    avatar: string,
+    nickname: string,
+  },
+  createdAt: Date,
+  updatedAt: Date,
+  transportation: string,
+  region: string,
+  text: string,
+  images: ImageProps[] | [],
+  likeCount: number,
+  comments: {
+    count: number,
+    contents: string[] | [],
+  },
+}
 
 function Home() {
   const pageSize = 10;
@@ -14,6 +41,27 @@ function Home() {
     selectedTransportation,
     setSelectedTransportation,
   ] = useState<string[]>([]);
+  const [posts, setPosts] = useState<PostProps[]>([]);
+
+
+  useEffect(() => {
+    (async () => {
+      const newPosts = await getPosts({
+        start: currentPage,
+        size: pageSize,
+        sorting: selectedSorting,
+        region: selectedRegion,
+        transportation: selectedTransportation,
+      });
+
+      setPosts(newPosts);
+    })();
+  }, [
+    currentPage,
+    selectedSorting,
+    selectedRegion,
+    selectedTransportation,
+  ]);
 
   return (
     <div className="container">
@@ -30,7 +78,7 @@ function Home() {
           setSelectedRegion={setSelectedRegion}
           setSelectedTransportation={setSelectedTransportation}
         />
-        <PostList />
+        <PostList posts={posts} />
       </div>
     </div>
   );

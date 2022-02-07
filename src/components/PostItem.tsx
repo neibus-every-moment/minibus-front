@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
+import { PostProps } from '../routes/Home';
 import Comments from './Comments';
 import ImageSwiper from './ImageSwiper';
-import { PostProps } from './PostList';
 import Report from './Report';
 
 function PostItem({ post }: { post: PostProps }) {

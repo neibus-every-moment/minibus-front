@@ -6,8 +6,8 @@ export const getPosts = async (params: {
   start: number,
   size: number,
   sorting: string,
-  region?: string,
-  transportation?: string
+  region?: string[],
+  transportation?: string[]
 }) => {
   const {
     start,

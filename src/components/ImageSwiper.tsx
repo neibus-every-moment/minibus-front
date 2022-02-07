@@ -5,8 +5,9 @@ import React, { useState } from 'react';
 import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { ImageProps } from '../routes/Home';
 import ImageModal from './ImageModal';
-import { ImageProps } from './PostList';
+
 
 function ImageSwiper({ images }: { images: Array<ImageProps> }) {
   const [modalOpen, setModalOpen] = useState(false);
