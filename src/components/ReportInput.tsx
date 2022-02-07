@@ -1,51 +1,32 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
-interface selectedReason {
-    reason: string;
-    detailReason: string;
-}
-
 interface reportInputProps {
-    setSelectedReason: React.Dispatch<React.SetStateAction<selectedReason>>;
+    combindedSelectedReason: string;
+    handleChangeCombindedSelectedReason: (e:any) => void;
+    handleChangeDetailReason: (e:any) => void;
 }
-
 interface reportReasons {
     id: number;
     reportReason: string;
 }
 
 function ReportInput({
-  setSelectedReason }:reportInputProps) {
+  combindedSelectedReason,
+  handleChangeCombindedSelectedReason,
+  handleChangeDetailReason }:reportInputProps) {
   const [reportReasons, setReportReasons] = useState<reportReasons[]>([]);
-  const [viewDetailReason, setViewDetailReason] = useState(false);
+  const isView = combindedSelectedReason.split(',')[1] === '기타';
 
   useEffect(() => {
     async function getReportReasons() {
       const { data: { data } }
             = await axios.get('http://3.37.182.59:8080/api/reasons');
 
-      console.log(data);
       setReportReasons(data);
     }
 
     getReportReasons();
   }, []);
-
-  const handleChangeRadio = (e:React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value === '기타') {
-      setViewDetailReason(true);
-    } else {
-      setViewDetailReason(false);
-      setSelectedReason(prev => ({ ...prev, detailReason: '' }));
-    }
-
-    setSelectedReason(prev => ({ ...prev, reason: e.target.value }));
-  };
-
-  const handleDetailReason = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
-    setSelectedReason(prev => ({ ...prev, detailReason: e.target.value }));
-  };
 
   return (
     <>
@@ -57,8 +38,8 @@ function ReportInput({
                 type="radio"
                 id={reason.reportReason}
                 name="reason"
-                value={reason.reportReason}
-                onChange={handleChangeRadio}
+                value={`${reason.id},${reason.reportReason}`}
+                onChange={handleChangeCombindedSelectedReason}
               />
               <label htmlFor={reason.reportReason}>
                 {reason.reportReason}
@@ -71,8 +52,7 @@ function ReportInput({
       <div className="row">
         <div className="col-sm-4">
           {
-            viewDetailReason
-              && <textarea onChange={handleDetailReason} />
+            isView && <textarea onChange={handleChangeDetailReason} />
           }
         </div>
       </div>

@@ -1,25 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router';
 
 import ReportInput from '../components/ReportInput';
+import useInput from '../hooks/useInput';
+import { getParamId } from '../utils/location';
 
 function Report () {
+  const postId = getParamId();
   const navigate = useNavigate();
-  const [selectedReason, setSelectedReason]
-    = useState({ reason: '', detailReason: '' });
+  const [
+    combindedSelectedReason,
+    handleChangeCombindedSelectedReason,
+  ] = useInput('');
+  const [detailReason, handleChangeDetailReason] = useInput('');
+
+  const [
+    selectedReasonId,
+    selectedReportReason,
+  ] = combindedSelectedReason.split(',');
 
   const handleSubmitReport = (e:React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { reason, detailReason } = selectedReason;
-
-    if (reason || detailReason) {
-      console.log(reason, detailReason);
-      alert('신고가 접수되었습니다');
-      navigate(-1);
+    if (selectedReportReason !== '기타') {
+      console.log(postId, selectedReasonId);
     }
-  };
 
+    if (selectedReportReason === '기타' && detailReason) {
+      console.log(postId, selectedReasonId, detailReason);
+    }
+
+    alert('신고가 접수되었습니다');
+    navigate(-1);
+  };
 
   return (
     <section className="report">
@@ -37,15 +50,22 @@ function Report () {
 
         <div className="report_body">
           <form onSubmit={handleSubmitReport}>
-            <ReportInput setSelectedReason={setSelectedReason} />
+            <ReportInput
+              combindedSelectedReason={combindedSelectedReason}
+              handleChangeCombindedSelectedReason=
+                {handleChangeCombindedSelectedReason}
+              handleChangeDetailReason={handleChangeDetailReason}
+            />
             <div className="row">
               <div className="col-sm-4">
                 <button
                   type="submit"
                   className="submit_btn"
-                  disabled={!selectedReason.reason ||
-                    (selectedReason.reason === '기타' &&
-                    !selectedReason.detailReason)}
+                  disabled=
+                    {
+                      !selectedReportReason ||
+                    (selectedReportReason === '기타' && !detailReason)
+                    }
                 >
                   신고하기
                 </button>
