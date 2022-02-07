@@ -78,7 +78,7 @@ function PostItem({ post }: { post: PostProps }) {
             {comments.count}
           </div>
         </div>
-        {commentsView && <Comments />}
+        {commentsView && <Comments comments={comments} />}
       </div>
     </>
   );

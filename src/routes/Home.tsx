@@ -10,6 +10,23 @@ export interface ImageProps {
   url: string
 }
 
+interface CommentProps {
+  id: number,
+  user: {
+      id: number,
+      avatar: string,
+      nickname: string
+  },
+  text: string,
+  createdAt: Date,
+  updatedAt: Date
+}
+
+export interface CommentsProps {
+  count: number,
+  contents: CommentProps[] | []
+}
+
 export interface PostProps {
   id: number,
   user: {
@@ -27,7 +44,7 @@ export interface PostProps {
   likeCount: number,
   comments: {
     count: number,
-    contents: string[] | [],
+    contents: CommentProps[] | [],
   },
 }
 
