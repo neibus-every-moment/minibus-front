@@ -1,15 +1,13 @@
 import React, { useCallback } from 'react';
 
 interface SortingSelectorProps {
-  setSortingState: React.Dispatch<React.SetStateAction<string>>;
+  setSelectdSorting: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function SortingSelector({ setSortingState }: SortingSelectorProps) {
+function SortingSelector({ setSelectdSorting }: SortingSelectorProps) {
   const handleChangeSortingState = useCallback((e) => {
-    setSortingState(e.target.value);
+    setSelectdSorting(e.target.value);
   }, []);
-
-  console.log('sortingselector');
 
   return (
     <div>
@@ -21,4 +19,4 @@ function SortingSelector({ setSortingState }: SortingSelectorProps) {
 
 }
 
-export default SortingSelector;
+export default React.memo(SortingSelector);

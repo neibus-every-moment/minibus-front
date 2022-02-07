@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react';
 
-import { getRegionNameArray,
-  getTransportationNameArray } from '../apis/getTags';
+import { getRegionTagArray,
+  getTransportationTagArray } from '../apis/tags';
 import TagList from './TagList';
 
 interface TagSelectorProps {
-  regionState: string[];
-  transportationState: string[];
-  setRegionState:React.Dispatch<React.SetStateAction<string[]>>;
-  setTransportationState: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedRegion: string[];
+  selectedTransportation: string[];
+  setSelectedRegion:React.Dispatch<React.SetStateAction<string[]>>;
+  setSelectedTransportation: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 function TagSelector ({
-  regionState,
-  transportationState,
-  setRegionState,
-  setTransportationState,
+  selectedRegion,
+  selectedTransportation,
+  setSelectedRegion,
+  setSelectedTransportation,
 }:TagSelectorProps) {
-  const [transportationTags, setTransportationTags] = useState(['']);
-  const [regionTags, setRegionTags] = useState(['']);
+  const [transportationTags, setTransportationTags] = useState<string[]>([]);
+  const [regionTags, setRegionTags] = useState<string[]>([]);
 
   useEffect(() => {
     async function getTransportations () {
-      const tags = await getTransportationNameArray();
+      const tags = await getTransportationTagArray();
 
       if (tags) {
         setTransportationTags(tags);
@@ -33,7 +33,7 @@ function TagSelector ({
 
   useEffect(() => {
     async function getRegions () {
-      const tags = await getRegionNameArray();
+      const tags = await getRegionTagArray();
 
       if (tags) {
         setRegionTags(tags);
@@ -42,16 +42,14 @@ function TagSelector ({
     getRegions();
   }, []);
 
-  console.log('TagSelector');
-
   return (
     <>
       <div className="row">
         <div className="col-sm-4 taglist_first">
           <TagList
             list={transportationTags}
-            tagState={transportationState}
-            setTagState={setTransportationState}
+            tagState={selectedTransportation}
+            setTagState={setSelectedTransportation}
           />
         </div>
       </div>
@@ -60,12 +58,12 @@ function TagSelector ({
         <div className="col-sm-4">
           <TagList
             list={regionTags}
-            tagState={regionState}
-            setTagState={setRegionState} />
+            tagState={selectedRegion}
+            setTagState={setSelectedRegion} />
         </div>
       </div>
     </>
   );
 }
 
-export default TagSelector;
+export default React.memo(TagSelector);

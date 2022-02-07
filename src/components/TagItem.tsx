@@ -9,8 +9,6 @@ interface TagListProps {
 function TagItem({ item, tagState, setTagState }:TagListProps) {
   const [isActive, setIsActive] = useState('');
 
-  console.log('TagItem');
-
   const handleToggleIsActive = useCallback(() => {
     if (isActive === '') {
       setIsActive(' active');
@@ -37,5 +35,5 @@ function TagItem({ item, tagState, setTagState }:TagListProps) {
     }}>{item}</li>;
 }
 
-export default TagItem;
+export default React.memo(TagItem);
 

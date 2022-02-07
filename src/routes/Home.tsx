@@ -1,36 +1,34 @@
 import React, { useState } from 'react';
-import useSWR from 'swr';
 
+import Banner from '../components/Banner';
 import PostList from '../components/PostList';
 import SelectorGroup from '../components/SelectorGroup';
-import { fetcher } from '../utils/fetcher';
-import { getPostsRequestURI } from '../utils/getUri';
 
 function Home() {
+  const pageSize = 10;
+
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
-  const [sortingState, setSortingState] = useState('createdAt');
-  const [regionState, setRegionState] = useState(['']);
-  const [transportationState, setTransportationState] = useState(['']);
-
-  const { data, error } = useSWR(getPostsRequestURI({
-    start: currentPage,
-    size: pageSize,
-    sorting: sortingState,
-    regionState,
-    transportationState }), fetcher);
-
-  console.log(data);
+  const [selectedSorting, setSelectdSorting] = useState('createdAt');
+  const [selectedRegion, setSelectedRegion] = useState<string[]>([]);
+  const [
+    selectedTransportation,
+    setSelectedTransportation,
+  ] = useState<string[]>([]);
 
   return (
     <div className="container">
       <div className="background">
+        <div className="row">
+          <div className="col-sm-4">
+            <Banner />
+          </div>
+        </div>
         <SelectorGroup
-          regionState={regionState}
-          transportationState={transportationState}
-          setSortingState={setSortingState}
-          setRegionState={setRegionState}
-          setTransportationState={setTransportationState}
+          selectedRegion={selectedRegion}
+          selectedTransportation={selectedTransportation}
+          setSelectdSorting={setSelectdSorting}
+          setSelectedRegion={setSelectedRegion}
+          setSelectedTransportation={setSelectedTransportation}
         />
         <PostList />
       </div>

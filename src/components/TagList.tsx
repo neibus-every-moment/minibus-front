@@ -9,7 +9,6 @@ interface TagListProps {
 }
 
 function TagList({ list, tagState, setTagState }: TagListProps) {
-  console.log('TagList');
   return (<div className="tag">
     <ul className="tag_list">
       {list.map(item => (
@@ -24,4 +23,4 @@ function TagList({ list, tagState, setTagState }: TagListProps) {
   </div>);
 }
 
-export default TagList;
+export default React.memo(TagList);
