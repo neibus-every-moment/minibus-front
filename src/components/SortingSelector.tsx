@@ -9,8 +9,6 @@ function SortingSelector({ setSelectdSorting }: SortingSelectorProps) {
     setSelectdSorting(e.target.value);
   }, []);
 
-  console.log('sortingselector');
-
   return (
     <div>
       <select name="Sorting" id="Sorting" onChange={handleChangeSortingState}>
@@ -21,4 +19,4 @@ function SortingSelector({ setSelectdSorting }: SortingSelectorProps) {
 
 }
 
-export default SortingSelector;
+export default React.memo(SortingSelector);

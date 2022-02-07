@@ -18,8 +18,6 @@ function SelectorGroup ({
   setSelectedRegion,
   setSelectedTransportation,
 }:SelectorGroupProps) {
-  console.log('selectorGroup');
-
   return (
     <>
       <TagSelector
@@ -40,4 +38,4 @@ function SelectorGroup ({
   );
 }
 
-export default SelectorGroup;
+export default React.memo(SelectorGroup);

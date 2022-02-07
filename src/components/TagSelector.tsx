@@ -42,8 +42,6 @@ function TagSelector ({
     getRegions();
   }, []);
 
-  console.log('TagSelector');
-
   return (
     <>
       <div className="row">
@@ -68,4 +66,4 @@ function TagSelector ({
   );
 }
 
-export default TagSelector;
+export default React.memo(TagSelector);
