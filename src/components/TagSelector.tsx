@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import { getRegionTagArray,
-  getTransportationTagArray } from '../apis/tags';
+import {
+  getRegionTagArray,
+  getTransportationTagArray,
+} from '../apis/tags';
 import TagList from './TagList';
 
 interface TagSelectorProps {
@@ -16,7 +18,7 @@ function TagSelector ({
   selectedTransportation,
   setSelectedRegion,
   setSelectedTransportation,
-}:TagSelectorProps) {
+}: TagSelectorProps) {
   const [transportationTags, setTransportationTags] = useState<string[]>([]);
   const [regionTags, setRegionTags] = useState<string[]>([]);
 

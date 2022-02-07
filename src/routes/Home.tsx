@@ -43,15 +43,14 @@ function Home() {
   ] = useState<string[]>([]);
   const [posts, setPosts] = useState<PostProps[]>([]);
 
-
   useEffect(() => {
     (async () => {
       const newPosts = await getPosts({
         start: currentPage,
         size: pageSize,
         sorting: selectedSorting,
-        region: selectedRegion,
-        transportation: selectedTransportation,
+        regions: selectedRegion,
+        transportations: selectedTransportation,
       });
 
       setPosts(newPosts);

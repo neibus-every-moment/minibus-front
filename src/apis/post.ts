@@ -6,15 +6,15 @@ export const getPosts = async (params: {
   start: number,
   size: number,
   sorting: string,
-  region?: string[],
-  transportation?: string[]
+  regions?: string[],
+  transportations?: string[]
 }) => {
   const {
     start,
     size,
     sorting = 'createdAt',
-    region,
-    transportation,
+    regions,
+    transportations,
   } = params;
 
   try {
@@ -23,8 +23,9 @@ export const getPosts = async (params: {
         start,
         size,
         sorting,
-        region,
-        transportation,
+        // TODO: back에서 아직 이름을 변경하지 않았다.
+        region: regions?.join(','),
+        transportation: transportations?.join(','),
       },
     });
     console.log(data.data);
