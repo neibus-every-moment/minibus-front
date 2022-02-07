@@ -17,8 +17,8 @@ function TagSelector ({
   setRegionState,
   setTransportationState,
 }:TagSelectorProps) {
-  const [transportationTags, setTransportationTags] = useState(['']);
-  const [regionTags, setRegionTags] = useState(['']);
+  const [transportationTags, setTransportationTags] = useState<string[]>([]);
+  const [regionTags, setRegionTags] = useState<string[]>([]);
 
   useEffect(() => {
     async function getTransportations () {

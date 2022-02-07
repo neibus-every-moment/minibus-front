@@ -8,10 +8,10 @@ import { getPostsRequestURI } from '../utils/getUri';
 
 function Home() {
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
   const [sortingState, setSortingState] = useState('createdAt');
-  const [regionState, setRegionState] = useState(['']);
-  const [transportationState, setTransportationState] = useState(['']);
+  const [regionState, setRegionState] = useState<string[]>([]);
+  const [transportationState, setTransportationState] = useState<string[]>([]);
+  const pageSize = 10;
 
   const { data, error } = useSWR(getPostsRequestURI({
     start: currentPage,
