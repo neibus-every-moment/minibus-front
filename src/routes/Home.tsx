@@ -1,48 +1,36 @@
 import React, { useState } from 'react';
 
-import OrderSelector from '../components/OrderSelector';
+import Banner from '../components/Banner';
 import PostList from '../components/PostList';
-import TagList from '../components/TagList';
-import WriteButton from '../components/WriteButton';
+import SelectorGroup from '../components/SelectorGroup';
 
 function Home() {
-  const [list, setList] = useState([
-    '지하철',
-    '버스',
-    '택시',
-    '기타교통수단',
-    '지하철',
-    '버스',
-    '택시',
-    '기타교통수단',
-  ]);
+  const pageSize = 10;
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [selectedSorting, setSelectdSorting] = useState('createdAt');
+  const [selectedRegion, setSelectedRegion] = useState<string[]>([]);
+  const [
+    selectedTransportation,
+    setSelectedTransportation,
+  ] = useState<string[]>([]);
 
   return (
     <div className="container">
       <div className="background">
         <div className="row">
-          <div className="col-sm-4 taglist_first">
-            <TagList list={list} />
-          </div>
-        </div>
-
-        <div className="row">
           <div className="col-sm-4">
-            <TagList list={list} />
+            <Banner />
           </div>
         </div>
-
-        <div className="row">
-          <div className="col-sm-4">
-            <OrderSelector />
-          </div>
-        </div>
-
+        <SelectorGroup
+          selectedRegion={selectedRegion}
+          selectedTransportation={selectedTransportation}
+          setSelectdSorting={setSelectdSorting}
+          setSelectedRegion={setSelectedRegion}
+          setSelectedTransportation={setSelectedTransportation}
+        />
         <PostList />
-
-        <div className="write_btn">
-          <WriteButton />
-        </div>
       </div>
     </div>
   );
