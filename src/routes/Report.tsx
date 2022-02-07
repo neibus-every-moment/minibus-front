@@ -22,8 +22,8 @@ function Report () {
 
     if (reason || detailReason) {
       console.log(reason, detailReason);
-      navigate(-1);
       alert('신고가 접수되었습니다');
+      navigate(-1);
     }
   };
 
