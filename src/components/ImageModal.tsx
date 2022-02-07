@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { ImageProps } from './PostItem';
+import { ImageProps } from './PostList';
 
 function ImageModal({ isOpen, closeModal, images }: {
   isOpen: boolean,

@@ -6,7 +6,7 @@ import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import ImageModal from './ImageModal';
-import { ImageProps } from './PostItem';
+import { ImageProps } from './PostList';
 
 function ImageSwiper({ images }: { images: Array<ImageProps> }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -20,7 +20,9 @@ function ImageSwiper({ images }: { images: Array<ImageProps> }) {
       <Swiper
         modules={[Navigation, Pagination]}
         navigation
-        pagination
+        pagination={{
+          dynamicBullets: true,
+        }}
       >
         {images?.map(({ id, url }) => (
           <SwiperSlide key={id}>

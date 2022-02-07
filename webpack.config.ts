@@ -75,11 +75,10 @@ const config: Configuration = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/dist/',
   },
   devServer: {
     historyApiFallback: true,
-    port: 8080,
+    port: 3000,
     devMiddleware: { publicPath: '/dist/' },
     static: { directory: path.resolve(__dirname) },
   },
