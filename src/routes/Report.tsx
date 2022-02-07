@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+
+interface reportReasonProps {
+  id: number;
+  reportReason: string;
+}
 
 function Report () {
   const navigate = useNavigate();
-  const [reportReasons, setReportReasons] = useState(
-    [
-      '욕설이나 비속어',
-      '스팸메시지나 광고성 메시지',
-      '가학적이거나 혐오적인 콘텐츠',
-      '민감하거나 선정적인 컨텐츠',
-      '기타',
-    ]);
+  const [reportReasons, setReportReasons] = useState<reportReasonProps[]>([]);
   const [viewDetailReason, setViewDetailReason] = useState(false);
   const [selectedReason, setSelectedReason]
     = useState({ reason: '', detailReason: '' });
+
+
+  useEffect(() => {
+    async function getReportReasons() {
+      const { data: { data } }
+        = await axios.get('http://3.37.182.59:8080/api/reasons');
+
+      console.log(data);
+      setReportReasons(data);
+    }
+
+    getReportReasons();
+  }, []);
 
   const handleSubmitReport = (e:React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,17 +72,19 @@ function Report () {
         <div className="report_body">
           <form onSubmit={handleSubmitReport}>
             {reportReasons.map(reason => (
-              <div className="row" key={reason}>
+              <div className="row" key={reason.id}>
                 <div className="col-sm-4">
                   <div className="input_group">
                     <input
                       type="radio"
-                      id={reason}
+                      id={reason.reportReason}
                       name="reason"
-                      value={reason}
+                      value={reason.reportReason}
                       onChange={handleChangeRadio}
                     />
-                    <label htmlFor={reason}>{reason}</label>
+                    <label htmlFor={reason.reportReason}>
+                      {reason.reportReason}
+                    </label>
                   </div>
                 </div>
               </div>
