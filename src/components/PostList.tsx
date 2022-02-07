@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { getPosts } from '../utils/post';
+import { getPosts } from '../apis/post';
 import PostItem from './PostItem';
 
 export interface ImageProps {
