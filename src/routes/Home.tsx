@@ -1,48 +1,38 @@
 import React, { useState } from 'react';
+import useSWR from 'swr';
 
-import OrderSelector from '../components/OrderSelector';
 import PostList from '../components/PostList';
-import TagList from '../components/TagList';
-import WriteButton from '../components/WriteButton';
+import SelectorGroup from '../components/SelectorGroup';
+import fetcher from '../utils/fetcher';
+import { getPostsRequestURI } from '../utils/getUri';
 
 function Home() {
-  const [list, setList] = useState([
-    '지하철',
-    '버스',
-    '택시',
-    '기타교통수단',
-    '지하철',
-    '버스',
-    '택시',
-    '기타교통수단',
-  ]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+  const [sortingState, setSortingState] = useState('createdAt');
+  const [regionState, setRegionState] = useState(['']);
+  const [transportationState, setTransportationState] = useState(['']);
+
+  const { data, error } = useSWR(getPostsRequestURI({
+    start: currentPage,
+    size: pageSize,
+    sorting: sortingState,
+    regionState,
+    transportationState }), fetcher);
+
+  console.log(data);
 
   return (
     <div className="container">
       <div className="background">
-        <div className="row">
-          <div className="col-sm-4 taglist_first">
-            <TagList list={list} />
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-sm-4">
-            <TagList list={list} />
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-sm-4">
-            <OrderSelector />
-          </div>
-        </div>
-
+        <SelectorGroup
+          regionState={regionState}
+          transportationState={transportationState}
+          setSortingState={setSortingState}
+          setRegionState={setRegionState}
+          setTransportationState={setTransportationState}
+        />
         <PostList />
-
-        <div className="write_btn">
-          <WriteButton />
-        </div>
       </div>
     </div>
   );

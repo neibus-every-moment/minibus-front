@@ -4,18 +4,21 @@ import TagItem from './TagItem';
 
 interface TagListProps {
   list: Array<string>;
+  tagState: string[];
+  setTagState: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-function TagList({ list }: TagListProps) {
+function TagList({ list, tagState, setTagState }: TagListProps) {
+  console.log('TagList');
   return (<div className="tag">
     <ul className="tag_list">
-      {list.map(el => (
-        /*
-        TODO: 그냥 임시로 만든 거라 키값을 대충 두신 거 같기는 한데,
-        Home에서 에러 메시지가 너무 많이 떠서 디버깅이 번거로워 임시방편으로
-        키값을 난수로 대체했습니다.
-        */
-        <TagItem item={el} key={Math.random()} />
+      {list.map(item => (
+        <TagItem
+          item={item}
+          key={item}
+          tagState={tagState}
+          setTagState={setTagState}
+        />
       ))}
     </ul>
   </div>);
