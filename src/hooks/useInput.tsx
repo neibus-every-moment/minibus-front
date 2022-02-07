@@ -5,5 +5,5 @@ export default (initialValue = '') => {
   const onChange = useCallback((e) => {
     setValue(e.target.value);
   }, []);
-  return [value, onChange];
+  return [value, onChange] as const;
 };
