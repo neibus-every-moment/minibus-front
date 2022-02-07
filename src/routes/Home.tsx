@@ -18,7 +18,8 @@ function Home() {
     size: pageSize,
     sorting: sortingState,
     regionState,
-    transportationState }), fetcher);
+    transportationState,
+  }), fetcher);
 
   console.log(data);
 
