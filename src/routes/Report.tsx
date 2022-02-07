@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 
+import { postReportApi } from '../apis/report';
 import ReportInput from '../components/ReportInput';
 import useInput from '../hooks/useInput';
 import { getParamId } from '../utils/location';
@@ -23,14 +24,20 @@ function Report () {
     e.preventDefault();
 
     if (selectedReportReason !== '기타') {
-      console.log(postId, selectedReasonId);
+      postReportApi({
+        postId: parseInt(postId),
+        reportReasonId: parseInt(selectedReasonId),
+      });
     }
 
     if (selectedReportReason === '기타' && detailReason) {
-      console.log(postId, selectedReasonId, detailReason);
+      postReportApi({
+        postId: parseInt(postId),
+        reportReasonId: parseInt(selectedReasonId),
+        detail: detailReason,
+      });
     }
 
-    alert('신고가 접수되었습니다');
     navigate(-1);
   };
 
