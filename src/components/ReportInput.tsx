@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+
+import { getReportReasonsApi } from '../apis/report';
 interface reportInputProps {
     combindedSelectedReason: string;
     handleChangeCombindedSelectedReason: (e:any) => void;
@@ -19,12 +21,10 @@ function ReportInput({
 
   useEffect(() => {
     async function getReportReasons() {
-      const { data: { data } }
-            = await axios.get('http://3.37.182.59:8080/api/reasons');
+      const data = await getReportReasonsApi();
 
       setReportReasons(data);
     }
-
     getReportReasons();
   }, []);
 
