@@ -3,7 +3,7 @@ import useSWR from 'swr';
 
 import PostList from '../components/PostList';
 import SelectorGroup from '../components/SelectorGroup';
-import fetcher from '../utils/fetcher';
+import { fetcher } from '../utils/fetcher';
 import { getPostsRequestURI } from '../utils/getUri';
 
 function Home() {

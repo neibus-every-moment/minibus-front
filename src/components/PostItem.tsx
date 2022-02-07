@@ -11,13 +11,14 @@ function PostItem({ post }: { post: PostProps }) {
     user,
     createdAt,
     // updatedAt,
-    transportations,
-    regions,
-    contents,
-    like,
+    transportation,
+    region,
+    text,
+    images,
+    likeCount,
     comments,
   } = post;
-  const tags = [...transportations, ...regions];
+  const tags = [transportation, region];
 
   const [reportView, setReportView] = useState(false);
   const [commentsView, setCommentsView] = useState(false);
@@ -51,7 +52,7 @@ function PostItem({ post }: { post: PostProps }) {
               className="post-info-date"
               dateTime={String(createdAt)}
             >
-              {createdAt.toLocaleDateString()}
+              {String(createdAt)}
             </time>
           </div>
           <button className="post-report" onClick={handleReportView}>
@@ -60,9 +61,9 @@ function PostItem({ post }: { post: PostProps }) {
         </div>
         <div className="post-content">
           <p className="post-content-text">
-            {contents.text}
+            {text}
           </p>
-          <ImageSwiper images={contents.images} />
+          <ImageSwiper images={images} />
         </div>
         <div className="post-bottom">
           <button className="post-like">
@@ -71,7 +72,7 @@ function PostItem({ post }: { post: PostProps }) {
             </div>
           </button>
           <div className="post-like-count">
-            {like.count}
+            {likeCount}
           </div>
           <button
             className="post-comment"

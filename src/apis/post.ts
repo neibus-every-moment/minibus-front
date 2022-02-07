@@ -6,15 +6,15 @@ export const getPosts = async (params: {
   start: number,
   size: number,
   sorting: string,
-  regions?: string[],
-  transportations?: string[]
+  region?: string,
+  transportation?: string
 }) => {
   const {
     start,
     size,
     sorting = 'createdAt',
-    regions = [],
-    transportations = [],
+    region,
+    transportation,
   } = params;
 
   try {
@@ -23,8 +23,8 @@ export const getPosts = async (params: {
         start,
         size,
         sorting,
-        regions,
-        transportations,
+        region,
+        transportation,
       },
     });
     console.log(data.data);
