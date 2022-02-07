@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function getTransportationTagArray() {
+export async function getTransportationsApi() {
   try {
     const { data: { data } } =
         await axios.get('http://3.37.182.59:8080/api/transportations');
@@ -12,7 +12,7 @@ export async function getTransportationTagArray() {
 
 }
 
-export async function getRegionTagArray() {
+export async function getRegionsApi() {
   try {
     const { data: { data } } =
         await axios.get('http://3.37.182.59:8080/api/regions');
