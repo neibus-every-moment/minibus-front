@@ -9,10 +9,10 @@ function Home() {
 
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedSorting, setSelectdSorting] = useState('createdAt');
-  const [selectedRegion, setSelectedRegion] = useState<string[]>([]);
+  const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
   const [
-    selectedTransportation,
-    setSelectedTransportation,
+    selectedTransportations,
+    setSelectedTransportations,
   ] = useState<string[]>([]);
 
   return (
@@ -24,11 +24,11 @@ function Home() {
           </div>
         </div>
         <SelectorGroup
-          selectedRegion={selectedRegion}
-          selectedTransportation={selectedTransportation}
+          selectedRegions={selectedRegions}
+          selectedTransportations={selectedTransportations}
           setSelectdSorting={setSelectdSorting}
-          setSelectedRegion={setSelectedRegion}
-          setSelectedTransportation={setSelectedTransportation}
+          setSelectedRegions={setSelectedRegions}
+          setSelectedTransportations={setSelectedTransportations}
         />
         <PostList />
       </div>

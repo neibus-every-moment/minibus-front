@@ -4,27 +4,27 @@ import SortingSelector from './SortingSelector';
 import TagSelector from './TagSelector';
 
 interface SelectorGroupProps {
-    selectedRegion: string[];
-    selectedTransportation: string[];
+    selectedRegions: string[];
+    selectedTransportations: string[];
     setSelectdSorting: React.Dispatch<React.SetStateAction<string>>;
-    setSelectedRegion: React.Dispatch<React.SetStateAction<string[]>>;
-    setSelectedTransportation: React.Dispatch<React.SetStateAction<string[]>>;
+    setSelectedRegions: React.Dispatch<React.SetStateAction<string[]>>;
+    setSelectedTransportations: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 function SelectorGroup ({
-  selectedRegion,
-  selectedTransportation,
+  selectedRegions,
+  selectedTransportations,
   setSelectdSorting,
-  setSelectedRegion,
-  setSelectedTransportation,
+  setSelectedRegions,
+  setSelectedTransportations,
 }:SelectorGroupProps) {
   return (
     <>
       <TagSelector
-        selectedRegion={selectedRegion}
-        selectedTransportation={selectedTransportation}
-        setSelectedRegion={setSelectedRegion}
-        setSelectedTransportation={setSelectedTransportation}
+        selectedRegions={selectedRegions}
+        selectedTransportations={selectedTransportations}
+        setSelectedRegions={setSelectedRegions}
+        setSelectedTransportations={setSelectedTransportations}
       />
       <div className="row">
         <div className="col-sm-4">
