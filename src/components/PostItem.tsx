@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Comments from './Comments';
 import ImageSwiper from './ImageSwiper';
 import { PostProps } from './PostList';
-import Report from './Report';
 
 function PostItem({ post }: { post: PostProps }) {
   const {
-    // id,
+    id,
     user,
     createdAt,
     // updatedAt,
@@ -18,14 +18,8 @@ function PostItem({ post }: { post: PostProps }) {
     comments,
   } = post;
   const tags = [...transportations, ...regions];
-
-  const [reportView, setReportView] = useState(false);
+  const reportUri = `/report/post/${id}`;
   const [commentsView, setCommentsView] = useState(false);
-
-
-  const handleReportView = () => {
-    setReportView(prev => !prev);
-  };
 
   const handleCommentsView = () => {
     setCommentsView(prev => !prev);
@@ -54,9 +48,9 @@ function PostItem({ post }: { post: PostProps }) {
               {createdAt.toLocaleDateString()}
             </time>
           </div>
-          <button className="post-report" onClick={handleReportView}>
+          <Link to={reportUri} className="post-report">
             <img src="..\static\icons\icon_report.svg" alt="신고 버튼" />
-          </button>
+          </Link>
         </div>
         <div className="post-content">
           <p className="post-content-text">
@@ -83,9 +77,6 @@ function PostItem({ post }: { post: PostProps }) {
             {comments.count}
           </div>
         </div>
-        {reportView && <Report
-          handleReportView={handleReportView}
-          setView={setReportView} />}
         {commentsView && <Comments />}
       </div>
     </>
