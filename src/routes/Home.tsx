@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import Banner from '../components/Banner';
 import PostList from '../components/PostList';
 import SelectorGroup from '../components/SelectorGroup';
 
@@ -17,6 +18,11 @@ function Home() {
   return (
     <div className="container">
       <div className="background">
+        <div className="row">
+          <div className="col-sm-4">
+            <Banner />
+          </div>
+        </div>
         <SelectorGroup
           selectedRegion={selectedRegion}
           selectedTransportation={selectedTransportation}
