@@ -18,19 +18,17 @@ export const getPosts = async (params: {
   } = params;
 
   try {
-    const { data } = await axios.get(`${baseUrl}/posts`, {
+    const { data: { data } } = await axios.get(`${baseUrl}/posts`, {
       params: {
         start,
         size,
         sorting,
-        // TODO: back에서 아직 이름을 변경하지 않았다.
-        region: regions?.join(','),
-        transportation: transportations?.join(','),
+        regions: regions?.join(','),
+        transportations: transportations?.join(','),
       },
     });
-    console.log(data.data);
 
-    return data.data;
+    return data;
   } catch (error) {
     console.log(error);
   }
