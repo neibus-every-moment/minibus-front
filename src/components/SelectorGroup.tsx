@@ -1,30 +1,25 @@
 import React from 'react';
 
+import MultipleChoiceTagSelector
+  from './MultipleChoiceTags/MultipleChoiceTagSelector';
 import SortingSelector from './SortingSelector';
-import TagSelector from './TagSelector';
-
 interface SelectorGroupProps {
-    selectedRegions: string[];
-    selectedTransportations: string[];
     setSelectdSorting: React.Dispatch<React.SetStateAction<string>>;
-    setSelectedRegions: React.Dispatch<React.SetStateAction<string[]>>;
-    setSelectedTransportations: React.Dispatch<React.SetStateAction<string[]>>;
+    handleChangeSelectedRegions: (e:any) => void;
+    handleChangeselectedTransportations: (e:any)=>void;
 }
 
 function SelectorGroup ({
-  selectedRegions,
-  selectedTransportations,
   setSelectdSorting,
-  setSelectedRegions,
-  setSelectedTransportations,
+  handleChangeSelectedRegions,
+  handleChangeselectedTransportations,
 }:SelectorGroupProps) {
   return (
     <>
-      <TagSelector
-        selectedRegions={selectedRegions}
-        selectedTransportations={selectedTransportations}
-        setSelectedRegions={setSelectedRegions}
-        setSelectedTransportations={setSelectedTransportations}
+      <MultipleChoiceTagSelector
+        handleChangeselectedRegions={handleChangeSelectedRegions}
+        handleChangeselectedTransportations
+          ={handleChangeselectedTransportations}
       />
       <div className="row">
         <div className="col-sm-4">
@@ -34,7 +29,6 @@ function SelectorGroup ({
         </div>
       </div>
     </>
-
   );
 }
 

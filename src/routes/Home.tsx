@@ -4,6 +4,7 @@ import { getPosts } from '../apis/post';
 import Banner from '../components/Banner';
 import PostList from '../components/PostList';
 import SelectorGroup from '../components/SelectorGroup';
+import useInputArray from '../hooks/useInputArray';
 
 export interface ImageProps {
   id: number,
@@ -56,11 +57,14 @@ function Home() {
 
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedSorting, setSelectdSorting] = useState('createdAt');
-  const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
+  const [
+    selectedRegions,
+    handleChangeSelectedRegions,
+  ] = useInputArray<string>([]);
   const [
     selectedTransportations,
-    setSelectedTransportations,
-  ] = useState<string[]>([]);
+    handleChangeSelectedTransportations,
+  ] = useInputArray<string>([]);
   const [posts, setPosts] = useState<PostProps[]>([]);
 
   useEffect(() => {
@@ -91,11 +95,10 @@ function Home() {
           </div>
         </div>
         <SelectorGroup
-          selectedRegions={selectedRegions}
-          selectedTransportations={selectedTransportations}
           setSelectdSorting={setSelectdSorting}
-          setSelectedRegions={setSelectedRegions}
-          setSelectedTransportations={setSelectedTransportations}
+          handleChangeSelectedRegions={handleChangeSelectedRegions}
+          handleChangeselectedTransportations
+            ={handleChangeSelectedTransportations}
         />
         <PostList posts={posts} />
       </div>

@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 interface reportApiBody {
-    postId: number,
-    reportReasonId: number,
+    postId: string,
+    reportReason: string,
     detail?: string
 }
 
@@ -17,23 +17,38 @@ export async function getReportReasonsApi() {
   }
 }
 
-export async function postReportApi(body:reportApiBody) {
+export async function postReportApi({
+  postId,
+  reportReason,
+  detail,
+}:reportApiBody) {
   try {
-    const { data } = await axios.post(
-      'http://3.37.182.59:8080/api/report',
-      body
-    );
+    console.log(postId, reportReason, detail);
+    if (reportReason !== '기타') {
+      const { data } = await axios.post(
+        'http://3.37.182.59:8080/api/report',
+        {
+          postId: parseInt(postId),
+          reportReason,
+        }
+      );
 
-    if (data === true) {
-      alert('신고가 접수되었습니다!');
-      return;
+      return data;
     }
 
-    alert('다시 시도해주세요');
-    return;
+    if (reportReason === '기타' && detail) {
+      const { data } = await axios.post(
+        'http://3.37.182.59:8080/api/report',
+        {
+          postId: parseInt(postId),
+          reportReason,
+          detail,
+        }
+      );
 
+      return data;
+    }
   } catch (e) {
-    alert('다시 시도해주세요');
     console.error(e);
   }
 }

@@ -2,22 +2,18 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 import { getReportReasonsApi } from '../apis/report';
-interface reportInputProps {
-    combindedSelectedReason: string;
-    handleChangeCombindedSelectedReason: (e:any) => void;
-    handleChangeDetailReason: (e:any) => void;
-}
-interface reportReasons {
-    id: number;
-    reportReason: string;
+interface ReportInputProps {
+  selectedReportReason: string;
+  handleChangeSelectedReportReason: (e:any) => void;
+  handleChangeDetailReason: (e:any) => void;
 }
 
 function ReportInput({
-  combindedSelectedReason,
-  handleChangeCombindedSelectedReason,
-  handleChangeDetailReason }:reportInputProps) {
-  const [reportReasons, setReportReasons] = useState<reportReasons[]>([]);
-  const isView = combindedSelectedReason.split(',')[1] === '기타';
+  selectedReportReason,
+  handleChangeSelectedReportReason,
+  handleChangeDetailReason }:ReportInputProps) {
+  const [reportReasons, setReportReasons] = useState<string[]>([]);
+  const isView = selectedReportReason === '기타';
 
   useEffect(() => {
     async function getReportReasons() {
@@ -31,18 +27,18 @@ function ReportInput({
   return (
     <>
       {reportReasons.map(reason => (
-        <div className="row" key={reason.id}>
+        <div className="row" key={reason}>
           <div className="col-sm-4">
             <div className="input_group">
               <input
                 type="radio"
-                id={reason.reportReason}
+                id={reason}
                 name="reason"
-                value={`${reason.id},${reason.reportReason}`}
-                onChange={handleChangeCombindedSelectedReason}
+                value={reason}
+                onChange={handleChangeSelectedReportReason}
               />
-              <label htmlFor={reason.reportReason}>
-                {reason.reportReason}
+              <label htmlFor={reason}>
+                {reason}
               </label>
             </div>
           </div>
