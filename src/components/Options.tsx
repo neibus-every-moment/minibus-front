@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { deletePost } from '../apis/post';
 
-function PostOptions({ id }: {id: number}) {
+function Options({ id }: {id: number}) {
   const editUri = `/write/${id}`;
   const reportUri = `/report/post/${id}`;
 
@@ -40,4 +40,4 @@ function PostOptions({ id }: {id: number}) {
   );
 }
 
-export default PostOptions;
+export default Options;

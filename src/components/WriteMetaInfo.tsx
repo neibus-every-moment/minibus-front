@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import PostOptions from './PostOptions';
+import Options from './Options';
 
 function WriteMetaInfo({ id, user, createdAt }: {
   id: number,
@@ -17,27 +17,26 @@ function WriteMetaInfo({ id, user, createdAt }: {
   };
 
   return (
-    // TODO: className -> writeMetaInfo 관련으로
     <>
-      <div className="post-info">
-        <div className="post-info-emotion">
+      <div className="write_meta_info">
+        <div className="write_meta_info-avatar">
           <img src="avatar" alt="아바타" />
         </div>
-        <div className="post-info-user">
+        <div className="write_meta_info-user">
           {user.nickname}
         </div>
         <time
-          className="post-info-date"
+          className="write_meta_info-date"
           dateTime={String(createdAt)}
         >
           {String(createdAt)}
         </time>
         <button
-          className="post-options"
+          className="write_meta_info-options"
           onClick={handleOptionsView}
         >
           <img src="..\static\icons\icon_options.svg" alt="옵션 버튼" />
-          {optionsView && <PostOptions id={id} />}
+          {optionsView && <Options id={id} />}
         </button>
       </div>
     </>
