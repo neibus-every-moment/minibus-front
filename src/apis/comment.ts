@@ -27,3 +27,13 @@ export const createComment = async (body: CommentBodyProps) => {
     console.log(error);
   }
 };
+
+export const deleteComment = async (id: number) => {
+  try {
+    const { data } = await axios.delete(`${baseUrl}/comment/${id}`);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
