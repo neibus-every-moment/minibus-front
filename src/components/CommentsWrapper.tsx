@@ -9,10 +9,10 @@ function CommentsWrapper({ postId, comments }: {
   comments: CommentsProps,
 }) {
   return (
-    <>
+    <div className="comment">
       <CommentCreate postId={postId} />
       <CommentList comments={comments} />
-    </>
+    </div>
   );
 }
 

@@ -19,9 +19,10 @@ function CommentCreate({ postId }: { postId: number }) {
   };
 
   return (
-    <div>
+    <div className="comment-create">
       {/* TODO: avatar 부분, 로그인 후 useSelector */}
-      <form action="">
+      <img src="user.avatar" alt="유저 사진" />
+      <form>
         <input
           type="text"
           placeholder="댓글을 입력하세요"
