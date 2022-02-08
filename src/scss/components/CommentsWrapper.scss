@@ -49,6 +49,7 @@
   }
 
   &-text {
+    @include text-style-body8;
     margin-top: 4px;
   }
 }
