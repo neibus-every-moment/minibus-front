@@ -10,7 +10,7 @@ function Options({ isPost, id }: {
 }) {
   const editPostUri = `/write/${id}`;
   const reportPostUri = `/report/post/${id}`;
-  // const reportCommentUri = `/report/comment/${id}`;
+  const reportCommentUri = `/report/comment/${id}`;
 
   const handleDelete = (id: number) => {
     const response = confirm('정말로 삭제하시겠습니까?');
@@ -44,10 +44,17 @@ function Options({ isPost, id }: {
         </>
       )}
       {!isPost && (
-        <button onClick={() => handleDelete(id)}>
-          삭제하기
-        </button>
-        // TODO: 댓글 신고 버튼
+        <>
+          <button onClick={() => handleDelete(id)}>
+            삭제하기
+          </button>
+          {/* TODO: 댓글 신고 버튼 */}
+          <button onClick={() => handleDelete(id)}>
+            <Link to={reportCommentUri}>
+              신고하기
+            </Link>
+          </button>
+        </>
       )}
     </div>
   );
