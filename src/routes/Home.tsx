@@ -13,9 +13,9 @@ export interface ImageProps {
 interface CommentProps {
   id: number,
   user: {
-      id: number,
-      avatar: string,
-      nickname: string
+    id: number,
+    avatar: string,
+    nickname: string
   },
   text: string,
   createdAt: Date,
