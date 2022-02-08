@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-import { getRegionTagArray,
-  getTransportationTagArray } from '../apis/tags';
-import TagList from './TagList';
+import {
+  getRegionTagArray,
+  getTransportationTagArray } from '../../apis/tags';
+import MultipleChoiceTagList from './MultipleChoiceTagList';
 
-interface TagSelectorProps {
-  selectedRegions: string[];
-  selectedTransportations: string[];
-  setSelectedRegions:React.Dispatch<React.SetStateAction<string[]>>;
-  setSelectedTransportations: React.Dispatch<React.SetStateAction<string[]>>;
+
+interface MultipleChoiceTagSelectorProps {
+  handleChangeselectedRegionTags: (e:any)=> void,
+  handleChangeselectedTransportationTags: (e:any)=> void,
 }
 
-function TagSelector ({
-  selectedRegions,
-  selectedTransportations,
-  setSelectedRegions,
-  setSelectedTransportations,
-}:TagSelectorProps) {
+function MultipleChoiceTagSelector ({
+  handleChangeselectedRegionTags,
+  handleChangeselectedTransportationTags,
+}:MultipleChoiceTagSelectorProps) {
   const [transportationTags, setTransportationTags] = useState<string[]>([]);
   const [regionTags, setRegionTags] = useState<string[]>([]);
 
@@ -46,24 +44,24 @@ function TagSelector ({
     <>
       <div className="row">
         <div className="col-sm-4 taglist_first">
-          <TagList
-            list={transportationTags}
-            tagsState={selectedTransportations}
-            setTagsState={setSelectedTransportations}
+          <MultipleChoiceTagList
+            tags={transportationTags}
+            name="transportations"
+            handler={handleChangeselectedTransportationTags}
           />
         </div>
       </div>
 
       <div className="row">
         <div className="col-sm-4">
-          <TagList
-            list={regionTags}
-            tagsState={selectedRegions}
-            setTagsState={setSelectedRegions} />
+          <MultipleChoiceTagList
+            tags={regionTags}
+            name="regions"
+            handler={handleChangeselectedRegionTags} />
         </div>
       </div>
     </>
   );
 }
 
-export default React.memo(TagSelector);
+export default React.memo(MultipleChoiceTagSelector);
