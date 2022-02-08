@@ -16,7 +16,7 @@ function PostItem({ post }: { post: PostProps }) {
     region,
     text,
     images,
-    likeCount,
+    like,
     comments,
   } = post;
   const tags = [transportation, region];
@@ -63,7 +63,7 @@ function PostItem({ post }: { post: PostProps }) {
             </div>
           </button>
           <div className="post-like-count">
-            {likeCount}
+            {like.count}
           </div>
           <button
             className="post-comment"

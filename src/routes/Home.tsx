@@ -41,7 +41,10 @@ export interface PostProps {
   region: string,
   text: string,
   images: ImageProps[] | [],
-  likeCount: number,
+  like: {
+    count: number,
+    users: number[]
+  },
   comments: {
     count: number,
     contents: CommentProps[] | [],
