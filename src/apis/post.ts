@@ -33,3 +33,13 @@ export const getPosts = async (params: {
     console.log(error);
   }
 };
+
+export const deletePost = async (id: number) => {
+  try {
+    const { data: { data } } = await axios.delete(`${baseUrl}/post/${id}`);
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
