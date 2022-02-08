@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-import { likePost } from '../apis/post';
 import { PostProps } from '../routes/Home';
 import CommentsWrapper from './CommentsWrapper';
+import Like from './Like';
 import PostContent from './PostContent';
 import PostOptions from './PostOptions';
 import WriteMetaInfo from './WriteMetaInfo';
-
 
 function PostItem({ post }: { post: PostProps }) {
   const {
@@ -24,6 +23,7 @@ function PostItem({ post }: { post: PostProps }) {
   const tags = [transportation, region];
   const [commentsView, setCommentsView] = useState(false);
   const [optionsView, setOptionsView] = useState(false);
+  const [isLikeActive, setIsLikeActive] = useState(false);
 
   const handleCommentsView = () => {
     setCommentsView(prev => !prev);
@@ -31,10 +31,6 @@ function PostItem({ post }: { post: PostProps }) {
 
   const handleOptionsView = () => {
     setOptionsView(prev => !prev);
-  };
-
-  const handleToggleLike = () => {
-    likePost(id, 1); // TODO: 두 번째 인자는 userId
   };
 
   return (
@@ -63,17 +59,12 @@ function PostItem({ post }: { post: PostProps }) {
           images={images}
         />
         <div className="post-bottom">
-          <button
-            className="post-like"
-            onClick={handleToggleLike}
-          >
-            <div className="post-like-btn">
-              <img src="..\static\icons\icon_like_empty.svg" alt="추천 버튼" />
-            </div>
-          </button>
-          <div className="post-like-count">
-            {like.count}
-          </div>
+          <Like
+            postId={id}
+            count={like.count}
+            isLikeActive={isLikeActive}
+            setIsLikeActive={setIsLikeActive}
+          />
           <button
             className="post-comment"
             onClick={handleCommentsView}
