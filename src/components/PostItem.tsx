@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 
+import { likePost } from '../apis/post';
 import { PostProps } from '../routes/Home';
 import CommentsWrapper from './CommentsWrapper';
 import PostContent from './PostContent';
 import PostOptions from './PostOptions';
 import WriteMetaInfo from './WriteMetaInfo';
+
 
 function PostItem({ post }: { post: PostProps }) {
   const {
@@ -29,6 +31,10 @@ function PostItem({ post }: { post: PostProps }) {
 
   const handleOptionsView = () => {
     setOptionsView(prev => !prev);
+  };
+
+  const handleToggleLike = () => {
+    likePost(id, 1); // TODO: 두 번째 인자는 userId
   };
 
   return (
@@ -57,7 +63,10 @@ function PostItem({ post }: { post: PostProps }) {
           images={images}
         />
         <div className="post-bottom">
-          <button className="post-like">
+          <button
+            className="post-like"
+            onClick={handleToggleLike}
+          >
             <div className="post-like-btn">
               <img src="..\static\icons\icon_like_empty.svg" alt="추천 버튼" />
             </div>

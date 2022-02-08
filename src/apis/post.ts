@@ -49,7 +49,7 @@ export const likePost = async (postId: number, userId: number) => {
     const { data } = await axios.put(`${baseUrl}/post/like/${postId}`, {
       userId,
     });
-    console.log(data);
+
     return data;
   } catch (error) {
     console.log(error);
