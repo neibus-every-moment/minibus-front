@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { likePost } from '../apis/post';
 
@@ -10,8 +10,17 @@ interface LikeProps {
 }
 
 function Like({ postId, count, isLikeActive, setIsLikeActive }: LikeProps) {
+  const [tempCount, setTempCount] = useState(count);
+
   const handleToggleLike = () => {
     likePost(postId, 1); // TODO: 두 번째 인자는 userId
+    setIsLikeActive(prev => !prev);
+
+    if (isLikeActive) {
+      setTempCount(count => count - 1);
+      return;
+    }
+    setTempCount(count => count + 1);
   };
 
   return (
@@ -21,11 +30,14 @@ function Like({ postId, count, isLikeActive, setIsLikeActive }: LikeProps) {
         onClick={handleToggleLike}
       >
         <div className="post-like-btn">
-          <img src="..\static\icons\icon_like_empty.svg" alt="추천 버튼" />
+          {isLikeActive
+            ? <img src="..\static\icons\icon_like_pressed.svg" alt="추천 버튼" />
+            : <img src="..\static\icons\icon_like_unpressed.svg" alt="추천 버튼" />
+          }
         </div>
       </button>
       <div className="post-like-count">
-        {count}
+        {tempCount}
       </div>
     </>
   );

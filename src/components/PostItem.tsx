@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { PostProps } from '../routes/Home';
 import CommentsWrapper from './CommentsWrapper';
@@ -32,6 +32,13 @@ function PostItem({ post }: { post: PostProps }) {
   const handleOptionsView = () => {
     setOptionsView(prev => !prev);
   };
+
+  useEffect(() => {
+    // TODO: 파라미터는 userId
+    if (like.users.includes(1)) {
+      setIsLikeActive(prev => !prev);
+    }
+  }, []);
 
   return (
     <>
