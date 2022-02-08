@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { PostProps } from '../routes/Home';
 import Comments from './Comments';
 import ImageSwiper from './ImageSwiper';
+import PostContent from './PostContent';
 import PostOptions from './PostOptions';
 
 function PostItem({ post }: { post: PostProps }) {
@@ -61,12 +62,10 @@ function PostItem({ post }: { post: PostProps }) {
             {optionsView && <PostOptions id={id} />}
           </button>
         </div>
-        <div className="post-content">
-          <p className="post-content-text">
-            {text}
-          </p>
-          <ImageSwiper images={images} />
-        </div>
+        <PostContent
+          text={text}
+          images={images}
+        />
         <div className="post-bottom">
           <button className="post-like">
             <div className="post-like-btn">
