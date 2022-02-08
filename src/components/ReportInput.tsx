@@ -2,12 +2,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 import { getReportReasonsApi } from '../apis/report';
-interface reportInputProps {
+interface ReportInputProps {
     combindedSelectedReason: string;
     handleChangeCombindedSelectedReason: (e:any) => void;
     handleChangeDetailReason: (e:any) => void;
 }
-interface reportReasons {
+interface ReportReasons {
     id: number;
     reportReason: string;
 }
@@ -15,8 +15,8 @@ interface reportReasons {
 function ReportInput({
   combindedSelectedReason,
   handleChangeCombindedSelectedReason,
-  handleChangeDetailReason }:reportInputProps) {
-  const [reportReasons, setReportReasons] = useState<reportReasons[]>([]);
+  handleChangeDetailReason }:ReportInputProps) {
+  const [reportReasons, setReportReasons] = useState<ReportReasons[]>([]);
   const isView = combindedSelectedReason.split(',')[1] === '기타';
 
   useEffect(() => {
