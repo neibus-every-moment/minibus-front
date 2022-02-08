@@ -30,7 +30,6 @@ function SelectorGroup ({
         </div>
       </div>
     </>
-
   );
 }
 

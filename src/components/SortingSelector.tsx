@@ -15,8 +15,8 @@ function SortingSelector({ setSelectdSorting }: SortingSelectorProps) {
         <option value="createdAt">최신순</option>
         <option value="likeCount">공감순</option>
       </select>
-    </div>);
-
+    </div>
+  );
 }
 
 export default React.memo(SortingSelector);
