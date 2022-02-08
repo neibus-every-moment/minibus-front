@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { postComment } from '../apis/comment';
 import useInput from '../hooks/useInput';
 
 function CommentCreate() {

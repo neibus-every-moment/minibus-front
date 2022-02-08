@@ -75,7 +75,12 @@ function PostItem({ post }: { post: PostProps }) {
             {comments.count}
           </div>
         </div>
-        {commentsView && <CommentsWrapper comments={comments} />}
+        {commentsView &&
+        <CommentsWrapper
+          postId={id}
+          comments={comments}
+        />
+        }
       </div>
     </>
   );
