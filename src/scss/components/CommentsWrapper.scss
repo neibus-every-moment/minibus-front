@@ -1,0 +1,39 @@
+.comment {
+  display: flex;
+  flex-direction: column;
+
+  &-create {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    img {
+      // TODO: 댓글 유저 아바타
+    }
+
+    form {
+      display: flex;
+      flex-grow: 1;
+      gap: 8px;
+    }
+
+    input {
+      @include text-style-body2;
+      flex-grow: 1;
+      height: 28px;
+      padding: 4px 0 4px 8px;
+      background-color: #f5f5f5;
+      border: 0;
+      border-radius: 4px;
+    }
+
+    button {
+      @include text-style-flag;
+      flex-grow: 0;
+      padding: 4px 12px;
+      color: #fff;
+      background-color: $neibus01;
+      border-radius: 4px;
+    }
+  }
+}
