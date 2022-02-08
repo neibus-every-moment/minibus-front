@@ -4,6 +4,7 @@ import { PostProps } from '../routes/Home';
 import CommentsWrapper from './CommentsWrapper';
 import PostContent from './PostContent';
 import PostOptions from './PostOptions';
+import WriteMetaInfo from './WriteMetaInfo';
 
 function PostItem({ post }: { post: PostProps }) {
   const {
@@ -39,20 +40,10 @@ function PostItem({ post }: { post: PostProps }) {
           ))}
         </ul>
         <div className="post-top">
-          <div className="post-info">
-            <div className="post-info-emotion">
-              <img src="..\static\dummy\avatar-empty.png" alt="아바타" />
-            </div>
-            <div className="post-info-user">
-              {user.nickname}
-            </div>
-            <time
-              className="post-info-date"
-              dateTime={String(createdAt)}
-            >
-              {String(createdAt)}
-            </time>
-          </div>
+          <WriteMetaInfo
+            user={user}
+            createdAt={createdAt}
+          />
           <button
             className="post-options"
             onClick={handleOptionsView}

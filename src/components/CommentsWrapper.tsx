@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { CommentsProps } from '../routes/Home';
+import WriteMetaInfo from './WriteMetaInfo';
 
 function CommentsWrapper({ comments }: {comments: CommentsProps}) {
   return (
@@ -10,9 +11,10 @@ function CommentsWrapper({ comments }: {comments: CommentsProps}) {
       <ul>
         {comments.contents.map(({ id, user, text, createdAt }) => (
           <li key={id}>
-            <div>{user.avatar}</div>
-            <div>{user.nickname}</div>
-            <div>{createdAt}</div>
+            <WriteMetaInfo
+              user={user}
+              createdAt={createdAt}
+            />
             <div>{text}</div>
             <div>점 세 개 버튼</div>
           </li>
