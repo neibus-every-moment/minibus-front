@@ -13,7 +13,9 @@ function CommentList({ comments }: {comments: CommentsProps}) {
             user={user}
             createdAt={createdAt}
           />
-          <div>{text}</div>
+          <div className="comment-text">
+            {text}
+          </div>
         </li>
       ))}
     </ul>

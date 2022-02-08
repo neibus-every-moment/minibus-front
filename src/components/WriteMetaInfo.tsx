@@ -32,14 +32,14 @@ function WriteMetaInfo({ id, user, createdAt }: {
         >
           {String(createdAt)}
         </time>
+        <button
+          className="post-options"
+          onClick={handleOptionsView}
+        >
+          <img src="..\static\icons\icon_options.svg" alt="옵션 버튼" />
+          {optionsView && <PostOptions id={id} />}
+        </button>
       </div>
-      <button
-        className="post-options"
-        onClick={handleOptionsView}
-      >
-        <img src="..\static\icons\icon_options.svg" alt="옵션 버튼" />
-        {optionsView && <PostOptions id={id} />}
-      </button>
     </>
   );
 }

@@ -36,4 +36,19 @@
       border-radius: 4px;
     }
   }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      height: 82px;
+    }
+  }
+
+  &-text {
+    margin-top: 4px;
+  }
 }
