@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { deletePost } from '../apis/post';
 
-function Options({ id }: {id: number}) {
+function Options({ id }: { id: number }) {
   const editUri = `/write/${id}`;
   const reportUri = `/report/post/${id}`;
 
@@ -15,28 +15,23 @@ function Options({ id }: {id: number}) {
   };
 
   return (
-    <ul>
+    <div className="options">
       {/* TODO: 로그인되면 회원 여부에 따라 다르게 보여주기 */}
-      <li>
-        <button>
-          <Link to={reportUri} className="post-options-report">
+      {/* TODO: post -> 삭제, 수정, 신고 / comment -> 삭제, 신고 */}
+      <button>
+        <Link to={reportUri}>
             신고하기
-          </Link>
-        </button>
-      </li>
-      <li>
-        <button onClick={() => handleDeletePost(id)}>
+        </Link>
+      </button>
+      <button onClick={() => handleDeletePost(id)}>
           삭제하기
-        </button>
-      </li>
-      <li>
-        <button>
-          <Link to={editUri}>
+      </button>
+      <button>
+        <Link to={editUri}>
             수정하기
-          </Link>
-        </button>
-      </li>
-    </ul>
+        </Link>
+      </button>
+    </div>
   );
 }
 
