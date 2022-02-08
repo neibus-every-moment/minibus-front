@@ -37,6 +37,18 @@ export const getPosts = async (params: {
 export const deletePost = async (id: number) => {
   try {
     const { data } = await axios.delete(`${baseUrl}/post/${id}`);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const likePost = async (postId: number, userId: number) => {
+  try {
+    const { data } = await axios.put(`${baseUrl}/post/like/${postId}`, {
+      userId,
+    });
     console.log(data);
     return data;
   } catch (error) {
