@@ -50,7 +50,7 @@ function PostItem({ post }: { post: PostProps }) {
             </time>
           </div>
           <Link to={reportUri} className="post-report">
-            <img src="..\static\icons\icon_report.svg" alt="신고 버튼" />
+            <img src="..\static\icons\icon_options.svg" alt="신고 버튼" />
           </Link>
         </div>
         <div className="post-content">
