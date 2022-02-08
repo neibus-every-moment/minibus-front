@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 import {
-  getRegionTagArray,
-  getTransportationTagArray } from '../../apis/tags';
+  getRegionsApi,
+  getTransportationsApi } from '../../apis/tags';
 import SingleChoiceTagList from './SingleChoiceTagList';
 
 interface SingleChoiceTagSeletorProps {
@@ -19,7 +19,7 @@ function SingleChoiceTagSeletor({
 
   useEffect(() => {
     async function getTransportations () {
-      const tags = await getTransportationTagArray();
+      const tags = await getTransportationsApi();
 
       if (tags) {
         setTransportationTags(tags);
@@ -30,7 +30,7 @@ function SingleChoiceTagSeletor({
 
   useEffect(() => {
     async function getRegions () {
-      const tags = await getRegionTagArray();
+      const tags = await getRegionsApi();
 
       if (tags) {
         setRegionTags(tags);

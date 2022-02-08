@@ -3,24 +3,23 @@ import React from 'react';
 import MultipleChoiceTagSelector
   from './MultipleChoiceTags/MultipleChoiceTagSelector';
 import SortingSelector from './SortingSelector';
-
 interface SelectorGroupProps {
     setSelectdSorting: React.Dispatch<React.SetStateAction<string>>;
-    handleChangeSelectedRegionTags: (e:any) => void;
-    handleChangeselectedTransportationTags: (e:any)=>void;
+    handleChangeSelectedRegions: (e:any) => void;
+    handleChangeselectedTransportations: (e:any)=>void;
 }
 
 function SelectorGroup ({
   setSelectdSorting,
-  handleChangeSelectedRegionTags,
-  handleChangeselectedTransportationTags,
+  handleChangeSelectedRegions,
+  handleChangeselectedTransportations,
 }:SelectorGroupProps) {
   return (
     <>
       <MultipleChoiceTagSelector
-        handleChangeselectedRegionTags={handleChangeSelectedRegionTags}
-        handleChangeselectedTransportationTags
-          ={handleChangeselectedTransportationTags}
+        handleChangeselectedRegions={handleChangeSelectedRegions}
+        handleChangeselectedTransportations
+          ={handleChangeselectedTransportations}
       />
       <div className="row">
         <div className="col-sm-4">

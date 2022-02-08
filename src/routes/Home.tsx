@@ -11,15 +11,15 @@ function Home() {
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedSorting, setSelectdSorting] = useState('createdAt');
   const [
-    selectedRegionTags,
-    handleChangeSelectedRegionTags,
+    selectedRegions,
+    handleChangeSelectedRegions,
   ] = useInputArray<string>([]);
   const [
-    selectedTransportationTags,
-    handleChangeSelectedTransportationTags,
+    selectedTransportations,
+    handleChangeSelectedTransportations,
   ] = useInputArray<string>([]);
 
-  console.log(selectedRegionTags, selectedTransportationTags);
+  console.log(selectedRegions, selectedTransportations);
 
   return (
     <div className="container">
@@ -31,9 +31,9 @@ function Home() {
         </div>
         <SelectorGroup
           setSelectdSorting={setSelectdSorting}
-          handleChangeSelectedRegionTags={handleChangeSelectedRegionTags}
-          handleChangeselectedTransportationTags
-            ={handleChangeSelectedTransportationTags}
+          handleChangeSelectedRegions={handleChangeSelectedRegions}
+          handleChangeselectedTransportations
+            ={handleChangeSelectedTransportations}
         />
         <PostList />
       </div>

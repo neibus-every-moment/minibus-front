@@ -4,13 +4,13 @@ import { getRegionsApi,
   getTransportationsApi } from '../../apis/tags';
 import MultipleChoiceTagList from './MultipleChoiceTagList';
 interface MultipleChoiceTagSelectorProps {
-  handleChangeselectedRegionTags: (e:any)=> void,
-  handleChangeselectedTransportationTags: (e:any)=> void,
+  handleChangeselectedRegions: (e:any)=> void,
+  handleChangeselectedTransportations: (e:any)=> void,
 }
 
 function MultipleChoiceTagSelector ({
-  handleChangeselectedRegionTags,
-  handleChangeselectedTransportationTags,
+  handleChangeselectedRegions,
+  handleChangeselectedTransportations,
 }:MultipleChoiceTagSelectorProps) {
   const [transportationTags, setTransportationTags] = useState<string[]>([]);
   const [regionTags, setRegionTags] = useState<string[]>([]);
@@ -44,7 +44,7 @@ function MultipleChoiceTagSelector ({
           <MultipleChoiceTagList
             tags={transportationTags}
             name="transportations"
-            handler={handleChangeselectedTransportationTags}
+            handler={handleChangeselectedTransportations}
           />
         </div>
       </div>
@@ -54,7 +54,7 @@ function MultipleChoiceTagSelector ({
           <MultipleChoiceTagList
             tags={regionTags}
             name="regions"
-            handler={handleChangeselectedRegionTags} />
+            handler={handleChangeselectedRegions} />
         </div>
       </div>
     </>
