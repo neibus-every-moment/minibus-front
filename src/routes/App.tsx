@@ -14,7 +14,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/write" element={<PostCreate />} />
+        <Route path="/write/*" element={<PostCreate />} />
         <Route path="/bingo" element={<Bingo />} />
         <Route path="/report/*" element={<Report />} />
       </Routes>

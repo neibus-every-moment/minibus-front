@@ -3,17 +3,23 @@ import React, { useState } from 'react';
 import Banner from '../components/Banner';
 import PostList from '../components/PostList';
 import SelectorGroup from '../components/SelectorGroup';
+import useInputArray from '../hooks/useInputArray';
 
 function Home() {
   const pageSize = 10;
 
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedSorting, setSelectdSorting] = useState('createdAt');
-  const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
+  const [
+    selectedRegions,
+    handleChangeSelectedRegions,
+  ] = useInputArray<string>([]);
   const [
     selectedTransportations,
-    setSelectedTransportations,
-  ] = useState<string[]>([]);
+    handleChangeSelectedTransportations,
+  ] = useInputArray<string>([]);
+
+  console.log(selectedRegions, selectedTransportations);
 
   return (
     <div className="container">
@@ -24,11 +30,10 @@ function Home() {
           </div>
         </div>
         <SelectorGroup
-          selectedRegions={selectedRegions}
-          selectedTransportations={selectedTransportations}
           setSelectdSorting={setSelectdSorting}
-          setSelectedRegions={setSelectedRegions}
-          setSelectedTransportations={setSelectedTransportations}
+          handleChangeSelectedRegions={handleChangeSelectedRegions}
+          handleChangeselectedTransportations
+            ={handleChangeSelectedTransportations}
         />
         <PostList />
       </div>

@@ -15,25 +15,22 @@ function Report () {
   ] = useInput('');
   const [detailReason, handleChangeDetailReason] = useInput('');
 
-  const handleSubmitReport = (e:React.ChangeEvent<HTMLFormElement>) => {
+  const handleSubmitReport = async(e:React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (selectedReportReason !== '기타') {
-      postReportApi({
-        postId: parseInt(postId),
-        reportReason: selectedReportReason,
-      });
+    const response = await postReportApi({
+      postId,
+      reportReason: selectedReportReason,
+      detail: detailReason,
+    });
+
+    if (response) {
+      alert('신고가 접수되었습니다!');
+      navigate(-1);
+      return;
     }
 
-    if (selectedReportReason === '기타' && detailReason) {
-      postReportApi({
-        postId: parseInt(postId),
-        reportReason: selectedReportReason,
-        detail: detailReason,
-      });
-    }
-
-    navigate(-1);
+    alert('다시 시도해주세요');
   };
 
   return (
