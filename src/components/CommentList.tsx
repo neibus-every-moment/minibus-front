@@ -9,6 +9,7 @@ function CommentList({ comments }: {comments: CommentsProps}) {
       {comments.contents.map(({ id, user, text, createdAt }) => (
         <li key={id}>
           <WriteMetaInfo
+            isPost={false}
             id={id}
             user={user}
             createdAt={createdAt}

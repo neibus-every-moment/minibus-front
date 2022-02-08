@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 import Options from './Options';
 
-function WriteMetaInfo({ id, user, createdAt }: {
+function WriteMetaInfo({ isPost, id, user, createdAt }: {
+  isPost: boolean,
   id: number,
   user: {
     nickname: string,
@@ -36,7 +37,7 @@ function WriteMetaInfo({ id, user, createdAt }: {
           onClick={handleOptionsView}
         >
           <img src="..\static\icons\icon_options.svg" alt="옵션 버튼" />
-          {optionsView && <Options id={id} />}
+          {optionsView && <Options isPost={isPost} id={id} />}
         </button>
       </div>
     </>

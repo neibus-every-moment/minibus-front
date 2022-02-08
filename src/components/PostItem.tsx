@@ -44,6 +44,7 @@ function PostItem({ post }: { post: PostProps }) {
         </ul>
         <div className="post-top">
           <WriteMetaInfo
+            isPost={true}
             id={id}
             user={user}
             createdAt={createdAt}
