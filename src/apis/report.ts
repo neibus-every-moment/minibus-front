@@ -2,7 +2,7 @@ import axios from 'axios';
 
 interface reportApiBody {
     postId: number,
-    reportReasonId: number,
+    reportReason: string,
     detail?: string
 }
 

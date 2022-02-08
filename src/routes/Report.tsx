@@ -10,15 +10,10 @@ function Report () {
   const postId = getParamId();
   const navigate = useNavigate();
   const [
-    combindedSelectedReason,
-    handleChangeCombindedSelectedReason,
+    selectedReportReason,
+    handleChangeSelectedReportReason,
   ] = useInput('');
   const [detailReason, handleChangeDetailReason] = useInput('');
-
-  const [
-    selectedReasonId,
-    selectedReportReason,
-  ] = combindedSelectedReason.split(',');
 
   const handleSubmitReport = (e:React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,14 +21,14 @@ function Report () {
     if (selectedReportReason !== '기타') {
       postReportApi({
         postId: parseInt(postId),
-        reportReasonId: parseInt(selectedReasonId),
+        reportReason: selectedReportReason,
       });
     }
 
     if (selectedReportReason === '기타' && detailReason) {
       postReportApi({
         postId: parseInt(postId),
-        reportReasonId: parseInt(selectedReasonId),
+        reportReason: selectedReportReason,
         detail: detailReason,
       });
     }
@@ -58,9 +53,9 @@ function Report () {
         <div className="report_body">
           <form onSubmit={handleSubmitReport}>
             <ReportInput
-              combindedSelectedReason={combindedSelectedReason}
-              handleChangeCombindedSelectedReason=
-                {handleChangeCombindedSelectedReason}
+              selectedReportReason={selectedReportReason}
+              handleChangeSelectedReportReason=
+                {handleChangeSelectedReportReason}
               handleChangeDetailReason={handleChangeDetailReason}
             />
             <div className="row">
@@ -89,7 +84,6 @@ function Report () {
         </div>
       </div>
     </section>
-
   );
 }
 
