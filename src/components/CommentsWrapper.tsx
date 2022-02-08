@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CommentsProps } from '../routes/Home';
 
-function Comments({ comments }: {comments: CommentsProps}) {
+function CommentsWrapper({ comments }: {comments: CommentsProps}) {
   return (
     <>
       {/* TODO: 댓글 입력 컴포넌트 */}
@@ -22,4 +22,4 @@ function Comments({ comments }: {comments: CommentsProps}) {
   );
 }
 
-export default Comments;
+export default CommentsWrapper;

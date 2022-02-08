@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
 import { PostProps } from '../routes/Home';
-import Comments from './Comments';
-import ImageSwiper from './ImageSwiper';
+import CommentsWrapper from './CommentsWrapper';
 import PostContent from './PostContent';
 import PostOptions from './PostOptions';
 
@@ -85,7 +84,7 @@ function PostItem({ post }: { post: PostProps }) {
             {comments.count}
           </div>
         </div>
-        {commentsView && <Comments comments={comments} />}
+        {commentsView && <CommentsWrapper comments={comments} />}
       </div>
     </>
   );
