@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import {
-  getRegionTagArray,
-  getTransportationTagArray } from '../../apis/tags';
+import { getRegionsApi,
+  getTransportationsApi } from '../../apis/tags';
 import MultipleChoiceTagList from './MultipleChoiceTagList';
-
-
 interface MultipleChoiceTagSelectorProps {
   handleChangeselectedRegionTags: (e:any)=> void,
   handleChangeselectedTransportationTags: (e:any)=> void,
@@ -20,7 +17,7 @@ function MultipleChoiceTagSelector ({
 
   useEffect(() => {
     async function getTransportations () {
-      const tags = await getTransportationTagArray();
+      const tags = await getTransportationsApi();
 
       if (tags) {
         setTransportationTags(tags);
@@ -31,7 +28,7 @@ function MultipleChoiceTagSelector ({
 
   useEffect(() => {
     async function getRegions () {
-      const tags = await getRegionTagArray();
+      const tags = await getRegionsApi();
 
       if (tags) {
         setRegionTags(tags);

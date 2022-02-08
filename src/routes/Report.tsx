@@ -1,47 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router';
 
+import { postReportApi } from '../apis/report';
+import ReportInput from '../components/ReportInput';
+import useInput from '../hooks/useInput';
+import { getParamId } from '../utils/location';
+
 function Report () {
+  const postId = getParamId();
   const navigate = useNavigate();
-  const [reportReasons, setReportReasons] = useState(
-    [
-      '욕설이나 비속어',
-      '스팸메시지나 광고성 메시지',
-      '가학적이거나 혐오적인 콘텐츠',
-      '민감하거나 선정적인 컨텐츠',
-      '기타',
-    ]);
-  const [viewDetailReason, setViewDetailReason] = useState(false);
-  const [selectedReason, setSelectedReason]
-    = useState({ reason: '', detailReason: '' });
+  const [
+    selectedReportReason,
+    handleChangeSelectedReportReason,
+  ] = useInput('');
+  const [detailReason, handleChangeDetailReason] = useInput('');
 
   const handleSubmitReport = (e:React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { reason, detailReason } = selectedReason;
-
-    if (reason || detailReason) {
-      console.log(reason, detailReason);
-      alert('신고가 접수되었습니다');
-      navigate(-1);
-    }
-  };
-
-  const handleDetailReason = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
-    setSelectedReason(prev => ({ ...prev, detailReason: e.target.value }));
-  };
-
-  const handleChangeRadio = (e:React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value === '기타') {
-      setViewDetailReason(true);
-    } else {
-      setViewDetailReason(false);
-      setSelectedReason(prev => ({ ...prev, detailReason: '' }));
+    if (selectedReportReason !== '기타') {
+      postReportApi({
+        postId: parseInt(postId),
+        reportReason: selectedReportReason,
+      });
     }
 
-    setSelectedReason(prev => ({ ...prev, reason: e.target.value }));
-  };
+    if (selectedReportReason === '기타' && detailReason) {
+      postReportApi({
+        postId: parseInt(postId),
+        reportReason: selectedReportReason,
+        detail: detailReason,
+      });
+    }
 
+    navigate(-1);
+  };
 
   return (
     <section className="report">
@@ -59,51 +52,38 @@ function Report () {
 
         <div className="report_body">
           <form onSubmit={handleSubmitReport}>
-            {reportReasons.map(reason => (
-              <div className="row" key={reason}>
-                <div className="col-sm-4">
-                  <div className="input_group">
-                    <input
-                      type="radio"
-                      id={reason}
-                      name="reason"
-                      value={reason}
-                      onChange={handleChangeRadio}
-                    />
-                    <label htmlFor={reason}>{reason}</label>
-                  </div>
-                </div>
-              </div>
-            ))}
-
-            <div className="row">
-              <div className="col-sm-4">
-                {
-                  viewDetailReason
-              && <textarea onChange={handleDetailReason} />
-                }
-              </div>
-            </div>
-
-
+            <ReportInput
+              selectedReportReason={selectedReportReason}
+              handleChangeSelectedReportReason=
+                {handleChangeSelectedReportReason}
+              handleChangeDetailReason={handleChangeDetailReason}
+            />
             <div className="row">
               <div className="col-sm-4">
                 <button
                   type="submit"
                   className="submit_btn"
-                  disabled={!selectedReason.reason ||
-                    (selectedReason.reason === '기타' &&
-                    !selectedReason.detailReason)}
+                  disabled=
+                    {
+                      !selectedReportReason ||
+                    (selectedReportReason === '기타' && !detailReason)
+                    }
                 >
                   신고하기
                 </button>
               </div>
             </div>
           </form>
+          <div className="row">
+            <div className="col-sm-4">
+              <p>
+                *신고사유에 대한 해당 여부 검토 후 처리되며 허위 신고인 경우 서비스 이용에 제한 될수 있습니다.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-
   );
 }
 

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-export default (initialValue = '') => {
+export default <T>(initialValue: T) => {
   const [value, setValue] = useState(initialValue);
   const onChange = useCallback((e) => {
     setValue(e.target.value);
