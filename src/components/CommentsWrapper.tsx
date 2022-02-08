@@ -10,7 +10,7 @@ function CommentsWrapper({ postId, comments }: {
 }) {
   return (
     <>
-      <CommentCreate />
+      <CommentCreate postId={postId} />
       <CommentList comments={comments} />
     </>
   );

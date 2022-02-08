@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 
-import { postComment } from '../apis/comment';
+import { createComment } from '../apis/comment';
 import useInput from '../hooks/useInput';
 
-function CommentCreate() {
-  const [comment, handleChangecomment] = useInput('');
+function CommentCreate({ postId }: { postId: number }) {
+  const [comment, handleChangeComment, clearComment] = useInput('');
+
+  const handleSubmitComment = async (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    if (comment !== '') {
+      await createComment({
+        postId,
+        userId: 1, // TODO: 로그인 후 useSelctor로 받아오기
+        content: comment,
+      });
+      clearComment();
+    }
+  };
 
   return (
     <div>
@@ -14,9 +26,14 @@ function CommentCreate() {
           type="text"
           placeholder="댓글을 입력하세요"
           value={comment}
-          onChange={handleChangecomment}
+          onChange={handleChangeComment}
         />
-        <button type="submit">등록</button>
+        <button
+          type="submit"
+          onClick={handleSubmitComment}
+        >
+          등록
+        </button>
       </form>
     </div>
   );
