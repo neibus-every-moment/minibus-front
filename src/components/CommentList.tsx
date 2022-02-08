@@ -5,15 +5,15 @@ import WriteMetaInfo from './WriteMetaInfo';
 
 function CommentList({ comments }: {comments: CommentsProps}) {
   return (
-    <ul>
+    <ul className="comment-list">
       {comments.contents.map(({ id, user, text, createdAt }) => (
         <li key={id}>
           <WriteMetaInfo
+            id={id}
             user={user}
             createdAt={createdAt}
           />
           <div>{text}</div>
-          <div>점 세 개 버튼</div>
         </li>
       ))}
     </ul>

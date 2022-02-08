@@ -4,7 +4,6 @@ import { PostProps } from '../routes/Home';
 import CommentsWrapper from './CommentsWrapper';
 import Like from './Like';
 import PostContent from './PostContent';
-import PostOptions from './PostOptions';
 import WriteMetaInfo from './WriteMetaInfo';
 
 function PostItem({ post }: { post: PostProps }) {
@@ -21,16 +20,11 @@ function PostItem({ post }: { post: PostProps }) {
     comments,
   } = post;
   const tags = [transportation, region];
-  const [commentsView, setCommentsView] = useState(false);
-  const [optionsView, setOptionsView] = useState(false);
+  const [commentsView, setCommentsView] = useState(true);
   const [isLikeActive, setIsLikeActive] = useState(false);
 
   const handleCommentsView = () => {
     setCommentsView(prev => !prev);
-  };
-
-  const handleOptionsView = () => {
-    setOptionsView(prev => !prev);
   };
 
   useEffect(() => {
@@ -50,16 +44,10 @@ function PostItem({ post }: { post: PostProps }) {
         </ul>
         <div className="post-top">
           <WriteMetaInfo
+            id={id}
             user={user}
             createdAt={createdAt}
           />
-          <button
-            className="post-options"
-            onClick={handleOptionsView}
-          >
-            <img src="..\static\icons\icon_options.svg" alt="옵션 버튼" />
-            {optionsView && <PostOptions id={id} />}
-          </button>
         </div>
         <PostContent
           text={text}
