@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { getRegionTagArray,
-  getTransportationTagArray } from '../apis/tags';
+import { getRegionsApi,
+  getTransportationsApi } from '../apis/tags';
 import TagList from './TagList';
 
 interface TagSelectorProps {
@@ -22,7 +22,7 @@ function TagSelector ({
 
   useEffect(() => {
     async function getTransportations () {
-      const tags = await getTransportationTagArray();
+      const tags = await getTransportationsApi();
 
       if (tags) {
         setTransportationTags(tags);
@@ -33,7 +33,7 @@ function TagSelector ({
 
   useEffect(() => {
     async function getRegions () {
-      const tags = await getRegionTagArray();
+      const tags = await getRegionsApi();
 
       if (tags) {
         setRegionTags(tags);
