@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
-import { deletePost } from '../apis/post';
 import { PostProps } from '../routes/Home';
 import Comments from './Comments';
 import ImageSwiper from './ImageSwiper';
+import PostOptions from './PostOptions';
 
 function PostItem({ post }: { post: PostProps }) {
   const {
@@ -20,8 +19,6 @@ function PostItem({ post }: { post: PostProps }) {
     comments,
   } = post;
   const tags = [transportation, region];
-  const editUri = `/write/${id}`;
-  const reportUri = `/report/post/${id}`;
   const [commentsView, setCommentsView] = useState(false);
   const [optionsView, setOptionsView] = useState(false);
 
@@ -61,29 +58,7 @@ function PostItem({ post }: { post: PostProps }) {
             onClick={handleOptionsView}
           >
             <img src="..\static\icons\icon_options.svg" alt="옵션 버튼" />
-            {optionsView &&
-            <ul>
-              {/* TODO: 로그인되면 회원 여부에 따라 다르게 보여주기 */}
-              <li>
-                <button>
-                  <Link to={reportUri} className="post-options-report">
-                  신고하기
-                  </Link>
-                </button>
-              </li>
-              <li>
-                <button onClick={() => deletePost(id)}>
-                  삭제하기
-                </button>
-              </li>
-              <li>
-                <button>
-                  <Link to={editUri}>
-                    수정하기
-                  </Link>
-                </button>
-              </li>
-            </ul>}
+            {optionsView && <PostOptions id={id} />}
           </button>
         </div>
         <div className="post-content">
