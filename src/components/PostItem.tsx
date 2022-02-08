@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { deletePost } from '../apis/post';
 import { PostProps } from '../routes/Home';
 import Comments from './Comments';
 import ImageSwiper from './ImageSwiper';
@@ -19,11 +20,17 @@ function PostItem({ post }: { post: PostProps }) {
     comments,
   } = post;
   const tags = [transportation, region];
+  const editUri = `/write/${id}`;
   const reportUri = `/report/post/${id}`;
   const [commentsView, setCommentsView] = useState(false);
+  const [optionsView, setOptionsView] = useState(false);
 
   const handleCommentsView = () => {
     setCommentsView(prev => !prev);
+  };
+
+  const handleOptionsView = () => {
+    setOptionsView(prev => !prev);
   };
 
   return (
@@ -49,9 +56,35 @@ function PostItem({ post }: { post: PostProps }) {
               {String(createdAt)}
             </time>
           </div>
-          <Link to={reportUri} className="post-report">
-            <img src="..\static\icons\icon_options.svg" alt="신고 버튼" />
-          </Link>
+          <button
+            className="post-options"
+            onClick={handleOptionsView}
+          >
+            <img src="..\static\icons\icon_options.svg" alt="옵션 버튼" />
+            {optionsView &&
+            <ul>
+              {/* TODO: 로그인되면 회원 여부에 따라 다르게 보여주기 */}
+              <li>
+                <button>
+                  <Link to={reportUri} className="post-options-report">
+                  신고하기
+                  </Link>
+                </button>
+              </li>
+              <li>
+                <button onClick={() => deletePost(id)}>
+                  삭제하기
+                </button>
+              </li>
+              <li>
+                <button>
+                  <Link to={editUri}>
+                    수정하기
+                  </Link>
+                </button>
+              </li>
+            </ul>}
+          </button>
         </div>
         <div className="post-content">
           <p className="post-content-text">
