@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { getRegionsApi,
   getTransportationsApi } from '../apis/tags';
-import TagList from './TagList';
+import { RegionTagList, TransportationTagList } from './TagList';
 interface TagSelectorProps {
   type: string,
   handleChangeselectedRegions: (e:React.ChangeEvent<HTMLInputElement>)=> void,
@@ -44,10 +44,9 @@ function TagSelector ({
     <>
       <div className="row">
         <div className="col-sm-4 taglist_first">
-          <TagList
+          <TransportationTagList
             type={type}
             tags={transportationTags}
-            name="transportations"
             handler={handleChangeselectedTransportations}
           />
         </div>
@@ -55,7 +54,7 @@ function TagSelector ({
 
       <div className="row">
         <div className="col-sm-4">
-          <TagList
+          <RegionTagList
             type={type}
             tags={regionTags}
             name="regions"
