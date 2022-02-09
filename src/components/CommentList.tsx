@@ -23,4 +23,4 @@ function CommentList({ comments }: {comments: CommentsProps}) {
   );
 }
 
-export default CommentList;
+export default React.memo(CommentList);

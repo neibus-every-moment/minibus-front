@@ -40,4 +40,4 @@ function CommentCreate({ postId }: { postId: number }) {
   );
 }
 
-export default CommentCreate;
+export default React.memo(CommentCreate);
