@@ -21,19 +21,24 @@ function ImageInput({ imageFiles, setImageFiles }:ImageInputProps) {
     }
 
     if (e.target.files) {
-      const newImagesInfo:ImagesInfo = {};
-      const newImageFiles = [];
-      const submitImagesCount = e.target.files.length > 10 ?
-        10 : e.target.files.length;
+      const submitImagesCount
+        = e.target.files.length > 10 ? 10 : e.target.files.length;
       const submitableImageCount = 10 - imageFiles.length;
-      const limit = submitImagesCount > submitableImageCount ?
+
+      const limit
+      = submitImagesCount > submitableImageCount ?
         submitableImageCount : submitImagesCount;
 
+      const newImagesInfo:ImagesInfo = {}; //key는 파일 경로, value는 파일 이름으로 한다.
+      const newImageFiles = [];
+
+
       for (let i = 0;i < limit ;i++) {
-        const newImagePath = URL.createObjectURL(e.target.files[i]);
+        const file = e.target.files[i];
+        const newImagePath = URL.createObjectURL(file);
         if (!Object.keys(imagesInfo).includes(newImagePath)) {
-          newImagesInfo[newImagePath] = e.target.files[i].name;
-          newImageFiles.push(e.target.files[i]);
+          newImagesInfo[newImagePath] = file.name;
+          newImageFiles.push(file);
         }
       }
       setImagesInfo({ ...imagesInfo, ...newImagesInfo });
@@ -43,12 +48,14 @@ function ImageInput({ imageFiles, setImageFiles }:ImageInputProps) {
 
   const handleDeleteImages
     = useCallback((e:any) => {
-      if (Object.keys(imagesInfo).includes(e.target.id)) {
-        delete imagesInfo[e.target.id];
+      const filePath = e.target.id;
+      const fileName = e.target.value;
+      if (Object.keys(imagesInfo).includes(filePath)) {
+        delete imagesInfo[filePath];
         setImageFiles([
           ...imageFiles.filter(
             file => {
-              return file.name !== e.target.value;
+              return file.name !== fileName;
             }),
         ]);
       } //여기서 e:any는 e.target.id때문에 작성했습니다. 원래 Event객체에 id라는 값이 없지만 써야해서..
@@ -91,7 +98,6 @@ function ImageInput({ imageFiles, setImageFiles }:ImageInputProps) {
             width="100px" />
         </div>
       ))}
-
     </>
   );
 }
