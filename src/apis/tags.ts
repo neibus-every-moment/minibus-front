@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+import { baseUrl } from './baseUrl';
+
 export async function getTransportationsApi() {
   try {
     const { data: { data } } =
-        await axios.get('http://3.37.182.59:8080/api/transportations');
+        await axios.get(`${baseUrl}/transportations`);
 
     return data;
   } catch (e) {
@@ -15,7 +17,7 @@ export async function getTransportationsApi() {
 export async function getRegionsApi() {
   try {
     const { data: { data } } =
-        await axios.get('http://3.37.182.59:8080/api/regions');
+        await axios.get(`${baseUrl}/regions`);
 
     return data;
   } catch (e) {

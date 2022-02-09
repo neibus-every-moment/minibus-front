@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { baseUrl } from './baseUrl';
+
 interface reportApiBody {
     postId: string,
     reportReason: string,
@@ -9,7 +11,7 @@ interface reportApiBody {
 export async function getReportReasonsApi() {
   try {
     const { data: { data } }
-        = await axios.get('http://3.37.182.59:8080/api/reasons');
+        = await axios.get(`${baseUrl}/api/reasons`);
 
     return data;
   } catch (e) {
@@ -26,7 +28,7 @@ export async function postReportApi({
     console.log(postId, reportReason, detail);
     if (reportReason !== '기타') {
       const { data } = await axios.post(
-        'http://3.37.182.59:8080/api/report',
+        `${baseUrl}/report`,
         {
           postId: parseInt(postId),
           reportReason,
@@ -38,7 +40,7 @@ export async function postReportApi({
 
     if (reportReason === '기타' && detail) {
       const { data } = await axios.post(
-        'http://3.37.182.59:8080/api/report',
+        `${baseUrl}/report`,
         {
           postId: parseInt(postId),
           reportReason,
