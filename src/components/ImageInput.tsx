@@ -102,4 +102,4 @@ function ImageInput({ imageFiles, setImageFiles }:ImageInputProps) {
   );
 }
 
-export default ImageInput;
+export default React.memo(ImageInput);
