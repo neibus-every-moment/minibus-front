@@ -4,14 +4,11 @@ import { CommentsProps } from '../routes/Home';
 import CommentCreate from './CommentCreate';
 import CommentList from './CommentList';
 
-function CommentsWrapper({ postId, comments }: {
-  postId: number,
-  comments: CommentsProps,
-}) {
+function CommentsWrapper({ postId }: { postId: number}) {
   return (
     <div className="comment">
       <CommentCreate postId={postId} />
-      <CommentList comments={comments} />
+      <CommentList postId={postId} />
     </div>
   );
 }

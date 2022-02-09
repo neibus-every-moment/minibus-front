@@ -1,21 +1,28 @@
 import React from 'react';
+import useSWR from 'swr';
 
-import { CommentsProps } from '../routes/Home';
+import { fetcher } from '../utils/fetcher';
 import WriteMetaInfo from './WriteMetaInfo';
 
-function CommentList({ comments }: {comments: CommentsProps}) {
+function CommentList({ postId }: { postId: number }) {
+  const { data } = useSWR(
+    `http://3.37.182.59:8080/api/comments/${postId}`,
+    fetcher,
+    { refreshInterval: 1000 },
+  );
+
   return (
     <ul className="comment-list">
-      {comments.contents.map(({ id, user, text, createdAt }) => (
-        <li key={id}>
+      {data?.map((comment: any) => (
+        <li key={comment.id}>
           <WriteMetaInfo
             isPost={false}
-            id={id}
-            user={user}
-            createdAt={createdAt}
+            id={comment.id}
+            user={comment.user}
+            createdAt={comment.createdAt}
           />
           <div className="comment-text">
-            {text}
+            {comment.text}
           </div>
         </li>
       ))}

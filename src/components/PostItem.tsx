@@ -72,10 +72,7 @@ function PostItem({ post }: { post: PostProps }) {
           </div>
         </div>
         {commentsView &&
-        <CommentsWrapper
-          postId={id}
-          comments={comments}
-        />
+        <CommentsWrapper postId={id} />
         }
       </div>
     </>
