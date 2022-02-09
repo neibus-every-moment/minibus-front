@@ -44,4 +44,4 @@ function WriteMetaInfo({ isPost, id, user, createdAt }: {
   );
 }
 
-export default WriteMetaInfo;
+export default React.memo(WriteMetaInfo);

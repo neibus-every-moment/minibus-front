@@ -16,4 +16,4 @@ function CommentsWrapper({ postId, comments }: {
   );
 }
 
-export default CommentsWrapper;
+export default React.memo(CommentsWrapper);

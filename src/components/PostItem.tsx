@@ -20,7 +20,7 @@ function PostItem({ post }: { post: PostProps }) {
     comments,
   } = post;
   const tags = [transportation, region];
-  const [commentsView, setCommentsView] = useState(true);
+  const [commentsView, setCommentsView] = useState(false);
   const [isLikeActive, setIsLikeActive] = useState(false);
 
   const handleCommentsView = () => {
@@ -82,4 +82,4 @@ function PostItem({ post }: { post: PostProps }) {
   );
 }
 
-export default PostItem;
+export default React.memo(PostItem);
