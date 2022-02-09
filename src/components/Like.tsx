@@ -10,17 +10,17 @@ interface LikeProps {
 }
 
 function Like({ postId, count, isLikeActive, setIsLikeActive }: LikeProps) {
-  const [tempCount, setTempCount] = useState(count);
+  const [tempLikeCount, setTempLikeCount] = useState(count);
 
   const handleToggleLike = () => {
     likePost(postId, 1); // TODO: 두 번째 인자는 userId
     setIsLikeActive(prev => !prev);
 
     if (isLikeActive) {
-      setTempCount(count => count - 1);
+      setTempLikeCount(count => count - 1);
       return;
     }
-    setTempCount(count => count + 1);
+    setTempLikeCount(count => count + 1);
   };
 
   return (
@@ -37,7 +37,7 @@ function Like({ postId, count, isLikeActive, setIsLikeActive }: LikeProps) {
         </div>
       </button>
       <div className="post-like-count">
-        {tempCount}
+        {tempLikeCount}
       </div>
     </>
   );

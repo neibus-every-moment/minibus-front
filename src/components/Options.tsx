@@ -48,7 +48,6 @@ function Options({ isPost, id }: {
           <button onClick={() => handleDelete(id)}>
             삭제하기
           </button>
-          {/* TODO: 댓글 신고 버튼 */}
           <button onClick={() => handleDelete(id)}>
             <Link to={reportCommentUri}>
               신고하기
