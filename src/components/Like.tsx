@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
 
 import { baseUrl } from '../apis/baseUrl';
 import { likePost } from '../apis/post';
-import { fetcherWithParams } from '../utils/fetcher';
+import useDebounce from '../hooks/useDebounce';
+import { fetcher } from '../utils/fetcher';
 interface LikeProps {
   postId: number
   isLikeActive: boolean,
@@ -12,7 +13,16 @@ interface LikeProps {
 
 function Like({ postId, isLikeActive, setIsLikeActive }: LikeProps) {
   const { mutate } = useSWRConfig();
-  const { data } = useSWR(`${baseUrl}/post/${postId}`, fetcherWithParams);
+
+  const debouncedSearch = useDebounce(true, 1000);
+  const { data } = useSWR(
+    () => (
+      debouncedSearch
+        ? `${baseUrl}/post/${postId}`
+        : null
+    ),
+    fetcher,
+  );
 
   const handleToggleLike = async () => {
     mutate('/api/user', { ...data }, false);
