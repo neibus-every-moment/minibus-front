@@ -50,7 +50,7 @@ export const likePost = async (postId: number, userId: number) => {
       userId,
     });
 
-    return data;
+    return data.likeCount;
   } catch (error) {
     console.log(error);
   }
