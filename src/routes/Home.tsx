@@ -11,7 +11,7 @@ export interface ImageProps {
   url: string
 }
 
-interface CommentProps {
+export interface CommentProps {
   id: number,
   user: {
     id: number,

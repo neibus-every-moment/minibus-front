@@ -1,6 +1,7 @@
 import React from 'react';
 import useSWR from 'swr';
 
+import { CommentProps } from '../routes/Home';
 import { fetcher } from '../utils/fetcher';
 import WriteMetaInfo from './WriteMetaInfo';
 
@@ -13,7 +14,7 @@ function CommentList({ postId }: { postId: number }) {
 
   return (
     <ul className="comment-list">
-      {data?.map((comment: any) => (
+      {data?.map((comment: CommentProps) => (
         <li key={comment.id}>
           <WriteMetaInfo
             isPost={false}
