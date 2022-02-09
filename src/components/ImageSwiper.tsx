@@ -25,7 +25,7 @@ function ImageSwiper({ images }: { images: Array<ImageProps> }) {
           dynamicBullets: true,
         }}
       >
-        {images?.map(({ id, url }) => (
+        {images?.map(({ id, url }, index) => (
           <SwiperSlide key={id}>
             <img
               src={url}
@@ -33,7 +33,7 @@ function ImageSwiper({ images }: { images: Array<ImageProps> }) {
               onClick={() => setModalOpen(true)}
             />
             {images.length > 1 &&
-              <div className="page-number">{id}/{images.length}</div>
+              <div className="page-number">{index + 1}/{images.length}</div>
             }
           </SwiperSlide>
         ))}
