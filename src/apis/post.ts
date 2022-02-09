@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://3.37.182.59:8080/api';
+import { baseUrl } from './baseUrl';
 
 export const getPosts = async (params: {
   start: number,
@@ -50,7 +50,7 @@ export const likePost = async (postId: number, userId: number) => {
       userId,
     });
 
-    return data;
+    return data.likeCount;
   } catch (error) {
     console.log(error);
   }

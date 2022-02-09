@@ -21,7 +21,7 @@ function CommentCreate({ postId }: { postId: number }) {
   return (
     <div className="comment-create">
       {/* TODO: avatar 부분, 로그인 후 useSelector */}
-      <img src="user.avatar" alt="유저 사진" />
+      <img src="avatar" alt="유저 사진" />
       <form>
         <input
           type="text"
@@ -40,4 +40,4 @@ function CommentCreate({ postId }: { postId: number }) {
   );
 }
 
-export default CommentCreate;
+export default React.memo(CommentCreate);

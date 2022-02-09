@@ -20,7 +20,7 @@ function PostItem({ post }: { post: PostProps }) {
     comments,
   } = post;
   const tags = [transportation, region];
-  const [commentsView, setCommentsView] = useState(true);
+  const [commentsView, setCommentsView] = useState(false);
   const [isLikeActive, setIsLikeActive] = useState(false);
 
   const handleCommentsView = () => {
@@ -57,7 +57,6 @@ function PostItem({ post }: { post: PostProps }) {
         <div className="post-bottom">
           <Like
             postId={id}
-            count={like.count}
             isLikeActive={isLikeActive}
             setIsLikeActive={setIsLikeActive}
           />
@@ -72,14 +71,11 @@ function PostItem({ post }: { post: PostProps }) {
           </div>
         </div>
         {commentsView &&
-        <CommentsWrapper
-          postId={id}
-          comments={comments}
-        />
+        <CommentsWrapper postId={id} />
         }
       </div>
     </>
   );
 }
 
-export default PostItem;
+export default React.memo(PostItem);

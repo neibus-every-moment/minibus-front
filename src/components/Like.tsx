@@ -1,26 +1,34 @@
 import React, { useState } from 'react';
+import useSWR, { useSWRConfig } from 'swr';
 
+import { baseUrl } from '../apis/baseUrl';
 import { likePost } from '../apis/post';
-
+import useDebounce from '../hooks/useDebounce';
+import { fetcher } from '../utils/fetcher';
 interface LikeProps {
   postId: number
-  count: number,
   isLikeActive: boolean,
   setIsLikeActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function Like({ postId, count, isLikeActive, setIsLikeActive }: LikeProps) {
-  const [tempLikeCount, setTempLikeCount] = useState(count);
+function Like({ postId, isLikeActive, setIsLikeActive }: LikeProps) {
+  const { mutate } = useSWRConfig();
 
-  const handleToggleLike = () => {
-    likePost(postId, 1); // TODO: 두 번째 인자는 userId
+  const debouncedSearch = useDebounce(true, 1000);
+  const { data } = useSWR(
+    () => (
+      debouncedSearch
+        ? `${baseUrl}/post/${postId}`
+        : null
+    ),
+    fetcher,
+  );
+
+  const handleToggleLike = async () => {
+    mutate('/api/user', { ...data }, false);
     setIsLikeActive(prev => !prev);
-
-    if (isLikeActive) {
-      setTempLikeCount(count => count - 1);
-      return;
-    }
-    setTempLikeCount(count => count + 1);
+    await likePost(postId, 1); // TODO: 두 번째 인자는 userId
+    mutate(`${baseUrl}/post/${postId}`);
   };
 
   return (
@@ -37,10 +45,10 @@ function Like({ postId, count, isLikeActive, setIsLikeActive }: LikeProps) {
         </div>
       </button>
       <div className="post-like-count">
-        {tempLikeCount}
+        {data?.like.count}
       </div>
     </>
   );
 }
 
-export default Like;
+export default React.memo(Like);

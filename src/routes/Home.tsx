@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import useSWR from 'swr';
 
-import { getPosts } from '../apis/post';
 import Banner from '../components/Banner';
 import PostList from '../components/PostList';
 import SelectorGroup from '../components/SelectorGroup';
 import useInputArray from '../hooks/useInputArray';
-
+import { fetcherWithParams } from '../utils/fetcher';
 export interface ImageProps {
   id: number,
   url: string
 }
 
-interface CommentProps {
+export interface CommentProps {
   id: number,
   user: {
     id: number,
@@ -65,26 +65,20 @@ function Home() {
     selectedTransportations,
     handleChangeSelectedTransportations,
   ] = useInputArray<string>([]);
-  const [posts, setPosts] = useState<PostProps[]>([]);
 
-  useEffect(() => {
-    (async () => {
-      const newPosts = await getPosts({
+  const { data } = useSWR(
+    [
+      'http://3.37.182.59:8080/api/posts/', {
         start: currentPage,
         size: pageSize,
         sorting: selectedSorting,
         regions: selectedRegions,
         transportations: selectedTransportations,
-      });
-
-      setPosts(newPosts);
-    })();
-  }, [
-    currentPage,
-    selectedSorting,
-    selectedRegions,
-    selectedTransportations,
-  ]);
+      },
+    ],
+    fetcherWithParams,
+    { refreshInterval: 2000 },
+  );
 
   return (
     <div className="container">
@@ -100,7 +94,7 @@ function Home() {
           handleChangeselectedTransportations
             ={handleChangeSelectedTransportations}
         />
-        <PostList posts={posts} />
+        <PostList posts={data} />
       </div>
     </div>
   );
