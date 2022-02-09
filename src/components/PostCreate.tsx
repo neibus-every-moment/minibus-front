@@ -41,9 +41,9 @@ function PostCreate() {
             <TagSelector
               type="radio"
               handleChangeselectedRegions
-                ={handleChangeselectedTransportation}
-              handleChangeselectedTransportations
                 ={handleChangeselectedRegion}
+              handleChangeselectedTransportations
+                ={handleChangeselectedTransportation}
             />
             <button type="submit" className="post_create-submit">남기기</button>
           </form>
