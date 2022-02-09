@@ -43,4 +43,4 @@ function Like({ postId, count, isLikeActive, setIsLikeActive }: LikeProps) {
   );
 }
 
-export default Like;
+export default React.memo(Like);

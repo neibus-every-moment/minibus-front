@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://3.37.182.59:8080/api';
+import { baseUrl } from './baseUrl';
 
 export const getPosts = async (params: {
   start: number,
