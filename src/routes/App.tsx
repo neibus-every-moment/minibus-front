@@ -3,9 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 
 import Header from '../components/Header';
 import NavigationBar from '../components/NavigationBar';
-import PostCreate from '../components/PostCreate';
 import Bingo from './Bingo';
 import Home from './Home';
+import PostCreate from './PostCreate';
 import Report from './Report';
 
 function App() {
