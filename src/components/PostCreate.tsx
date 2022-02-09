@@ -13,8 +13,6 @@ function PostCreate() {
 
   const navigate = useNavigate();
 
-  console.log(selectedRegion, selectedTransportation);
-
   return (
     <div className="post_create-container">
       <header className="post_create-top">
