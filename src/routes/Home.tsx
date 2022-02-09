@@ -19,8 +19,6 @@ function Home() {
     handleChangeSelectedTransportations,
   ] = useInputArray<string>([]);
 
-  console.log(selectedRegions, selectedTransportations);
-
   return (
     <div className="container">
       <div className="background">

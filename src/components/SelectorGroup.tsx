@@ -1,8 +1,7 @@
 import React from 'react';
 
-import MultipleChoiceTagSelector
-  from './MultipleChoiceTags/MultipleChoiceTagSelector';
 import SortingSelector from './SortingSelector';
+import TagSelector from './TagSelector';
 interface SelectorGroupProps {
     setSelectdSorting: React.Dispatch<React.SetStateAction<string>>;
     handleChangeSelectedRegions: (e:any) => void;
@@ -16,7 +15,8 @@ function SelectorGroup ({
 }:SelectorGroupProps) {
   return (
     <>
-      <MultipleChoiceTagSelector
+      <TagSelector
+        type="checkbox"
         handleChangeselectedRegions={handleChangeSelectedRegions}
         handleChangeselectedTransportations
           ={handleChangeselectedTransportations}
