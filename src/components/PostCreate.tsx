@@ -2,14 +2,14 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useInput from '../hooks/useInput';
-import SingleChoiceTagSeletor from './SingleChoiceTag/SingleChoiceTagSeletor';
+import TagSelector from './TagSelector';
 
 function PostCreate() {
   const [
-    selectedTransportationTag,
-    handleChangeselectedTransportationTag,
+    selectedTransportation,
+    handleChangeselectedTransportation,
   ] = useInput('');
-  const [selectedRegionTag, handleChangeselectedRegionTag] = useInput('');
+  const [selectedRegion, handleChangeselectedRegion] = useInput('');
 
   const navigate = useNavigate();
 
@@ -38,10 +38,13 @@ function PostCreate() {
               className="post_create-write-attatchment"
             />
             <textarea placeholder="이동과 관련된 이야기를 나눠보세요." />
-            <SingleChoiceTagSeletor
-              handleChangeselectedTransportationTag
-                ={handleChangeselectedTransportationTag}
-              handleChangeselectedRegionTag={handleChangeselectedRegionTag} />
+            <TagSelector
+              type="radio"
+              handleChangeselectedRegions
+                ={handleChangeselectedTransportation}
+              handleChangeselectedTransportations
+                ={handleChangeselectedRegion}
+            />
             <button type="submit" className="post_create-submit">남기기</button>
           </form>
         </section>

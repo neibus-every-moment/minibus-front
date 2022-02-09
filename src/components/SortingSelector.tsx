@@ -5,9 +5,10 @@ interface SortingSelectorProps {
 }
 
 function SortingSelector({ setSelectdSorting }: SortingSelectorProps) {
-  const handleChangeSortingState = useCallback((e) => {
-    setSelectdSorting(e.target.value);
-  }, []);
+  const handleChangeSortingState
+    = useCallback((e:React.ChangeEvent<HTMLSelectElement>) => {
+      setSelectdSorting(e.target.value);
+    }, []);
 
   return (
     <div>

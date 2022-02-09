@@ -1,11 +1,12 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 import { getReportReasonsApi } from '../apis/report';
 interface ReportInputProps {
   selectedReportReason: string;
-  handleChangeSelectedReportReason: (e:any) => void;
-  handleChangeDetailReason: (e:any) => void;
+  handleChangeSelectedReportReason:
+   (e:React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeDetailReason:
+   (e:React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 function ReportInput({

@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
 import { getRegionsApi,
-  getTransportationsApi } from '../../apis/tags';
-import MultipleChoiceTagList from './MultipleChoiceTagList';
-interface MultipleChoiceTagSelectorProps {
-  handleChangeselectedRegions: (e:any)=> void,
-  handleChangeselectedTransportations: (e:any)=> void,
+  getTransportationsApi } from '../apis/tags';
+import { RegionTagList, TransportationTagList } from './TagList';
+interface TagSelectorProps {
+  type: string,
+  handleChangeselectedRegions: (e:React.ChangeEvent<HTMLInputElement>)=> void,
+  handleChangeselectedTransportations:
+  (e:React.ChangeEvent<HTMLInputElement>)=> void,
 }
 
-function MultipleChoiceTagSelector ({
+function TagSelector ({
+  type,
   handleChangeselectedRegions,
   handleChangeselectedTransportations,
-}:MultipleChoiceTagSelectorProps) {
+}:TagSelectorProps) {
   const [transportationTags, setTransportationTags] = useState<string[]>([]);
   const [regionTags, setRegionTags] = useState<string[]>([]);
 
@@ -41,9 +44,9 @@ function MultipleChoiceTagSelector ({
     <>
       <div className="row">
         <div className="col-sm-4 taglist_first">
-          <MultipleChoiceTagList
+          <TransportationTagList
+            type={type}
             tags={transportationTags}
-            name="transportations"
             handler={handleChangeselectedTransportations}
           />
         </div>
@@ -51,7 +54,8 @@ function MultipleChoiceTagSelector ({
 
       <div className="row">
         <div className="col-sm-4">
-          <MultipleChoiceTagList
+          <RegionTagList
+            type={type}
             tags={regionTags}
             name="regions"
             handler={handleChangeselectedRegions} />
@@ -61,4 +65,4 @@ function MultipleChoiceTagSelector ({
   );
 }
 
-export default React.memo(MultipleChoiceTagSelector);
+export default React.memo(TagSelector);
