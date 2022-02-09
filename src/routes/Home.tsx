@@ -80,8 +80,6 @@ function Home() {
     { refreshInterval: 10000 },
   );
 
-  console.log(data);
-
   return (
     <div className="container">
       <div className="background">
