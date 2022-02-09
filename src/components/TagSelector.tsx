@@ -5,8 +5,9 @@ import { getRegionsApi,
 import TagList from './TagList';
 interface TagSelectorProps {
   type: string,
-  handleChangeselectedRegions: (e:any)=> void,
-  handleChangeselectedTransportations: (e:any)=> void,
+  handleChangeselectedRegions: (e:React.ChangeEvent<HTMLInputElement>)=> void,
+  handleChangeselectedTransportations:
+  (e:React.ChangeEvent<HTMLInputElement>)=> void,
 }
 
 function TagSelector ({

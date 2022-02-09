@@ -4,7 +4,7 @@ interface TagListProps {
   type: string,
   tags: string[],
   name: string,
-  handler: (e:any)=>void
+  handler: (e:React.ChangeEvent<HTMLInputElement>)=>void
 }
 
 function TagList({
