@@ -57,7 +57,6 @@ function PostItem({ post }: { post: PostProps }) {
         <div className="post-bottom">
           <Like
             postId={id}
-            count={like.count}
             isLikeActive={isLikeActive}
             setIsLikeActive={setIsLikeActive}
           />
