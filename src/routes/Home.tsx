@@ -77,7 +77,7 @@ function Home() {
       },
     ],
     fetcherWithParams,
-    { refreshInterval: 10000 },
+    { refreshInterval: 2000 },
   );
 
   return (
