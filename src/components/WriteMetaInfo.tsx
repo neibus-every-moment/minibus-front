@@ -21,7 +21,7 @@ function WriteMetaInfo({ isPost, id, user, createdAt }: {
     <>
       <div className="write_meta_info">
         <div className="write_meta_info-avatar">
-          <img src="avatar" alt="아바타" />
+          <img src={user.avatar} alt="아바타" />
         </div>
         <div className="write_meta_info-user">
           {user.nickname}
