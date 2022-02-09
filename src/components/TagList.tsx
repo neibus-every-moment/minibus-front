@@ -1,23 +1,25 @@
 import React from 'react';
 
-interface MultipleChoiceTagListProps {
+interface TagListProps {
+  type: string,
   tags: string[],
   name: string,
   handler: (e:any)=>void
 }
 
-function MultipleChoiceTagList({
+function TagList({
+  type,
   tags,
   name,
   handler,
-}: MultipleChoiceTagListProps) {
+}: TagListProps) {
   return (
     <ul>
       {tags.map(tag => (
         <li key={tag}>
           <label htmlFor="tag">
             <input
-              type="checkbox"
+              type={type}
               value={tag}
               name={name}
               onChange={handler}
@@ -30,4 +32,4 @@ function MultipleChoiceTagList({
   );
 }
 
-export default React.memo(MultipleChoiceTagList);
+export default React.memo(TagList);
