@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
-import Comments from './Comments';
-import ImageSwiper from './ImageSwiper';
-import { PostProps } from './PostList';
+import { PostProps } from '../routes/Home';
+import CommentsWrapper from './CommentsWrapper';
+import Like from './Like';
+import PostContent from './PostContent';
+import WriteMetaInfo from './WriteMetaInfo';
 
 function PostItem({ post }: { post: PostProps }) {
   const {
@@ -11,19 +12,27 @@ function PostItem({ post }: { post: PostProps }) {
     user,
     createdAt,
     // updatedAt,
-    transportations,
-    regions,
-    contents,
+    transportation,
+    region,
+    text,
+    images,
     like,
     comments,
   } = post;
-  const tags = [...transportations, ...regions];
-  const reportUri = `/report/post/${id}`;
-  const [commentsView, setCommentsView] = useState(false);
+  const tags = [transportation, region];
+  const [commentsView, setCommentsView] = useState(true);
+  const [isLikeActive, setIsLikeActive] = useState(false);
 
   const handleCommentsView = () => {
     setCommentsView(prev => !prev);
   };
+
+  useEffect(() => {
+    // TODO: 파라미터는 userId
+    if (like.users.includes(1)) {
+      setIsLikeActive(prev => !prev);
+    }
+  }, []);
 
   return (
     <>
@@ -34,39 +43,24 @@ function PostItem({ post }: { post: PostProps }) {
           ))}
         </ul>
         <div className="post-top">
-          <div className="post-info">
-            <div className="post-info-emotion">
-              <img src="..\static\dummy\avatar-empty.png" alt="아바타" />
-            </div>
-            <div className="post-info-user">
-              {user.nickname}
-            </div>
-            <time
-              className="post-info-date"
-              dateTime={String(createdAt)}
-            >
-              {createdAt.toLocaleDateString()}
-            </time>
-          </div>
-          <Link to={reportUri} className="post-report">
-            <img src="..\static\icons\icon_report.svg" alt="신고 버튼" />
-          </Link>
+          <WriteMetaInfo
+            isPost={true}
+            id={id}
+            user={user}
+            createdAt={createdAt}
+          />
         </div>
-        <div className="post-content">
-          <p className="post-content-text">
-            {contents.text}
-          </p>
-          <ImageSwiper images={contents.images} />
-        </div>
+        <PostContent
+          text={text}
+          images={images}
+        />
         <div className="post-bottom">
-          <button className="post-like">
-            <div className="post-like-btn">
-              <img src="..\static\icons\icon_like_empty.svg" alt="추천 버튼" />
-            </div>
-          </button>
-          <div className="post-like-count">
-            {like.count}
-          </div>
+          <Like
+            postId={id}
+            count={like.count}
+            isLikeActive={isLikeActive}
+            setIsLikeActive={setIsLikeActive}
+          />
           <button
             className="post-comment"
             onClick={handleCommentsView}
@@ -77,7 +71,12 @@ function PostItem({ post }: { post: PostProps }) {
             {comments.count}
           </div>
         </div>
-        {commentsView && <Comments />}
+        {commentsView &&
+        <CommentsWrapper
+          postId={id}
+          comments={comments}
+        />
+        }
       </div>
     </>
   );
