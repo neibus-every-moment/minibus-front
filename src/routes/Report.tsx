@@ -1,13 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import { postReportApi } from '../apis/report';
+import { reportCommentApi, reportPostApi } from '../apis/report';
 import ReportInput from '../components/ReportInput';
 import useInput from '../hooks/useInput';
-import { getParamId } from '../utils/location';
+import { getParamId, getRequestedPage } from '../utils/location';
 
 function Report () {
-  const postId = getParamId();
+  const id = getParamId();
+  const requestedPage = getRequestedPage();
+
   const navigate = useNavigate();
   const [
     selectedReportReason,
@@ -18,11 +20,23 @@ function Report () {
   const handleSubmitReport = async(e:React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const response = await postReportApi({
-      postId,
-      reportReason: selectedReportReason,
-      detail: detailReason,
-    });
+    let response = '';
+
+    if (requestedPage === 'post') {
+      response = await reportPostApi({
+        id,
+        reportReason: selectedReportReason,
+        detail: detailReason,
+      });
+    }
+
+    if (requestedPage === 'comment') {
+      response = await reportCommentApi({
+        id,
+        reportReason: selectedReportReason,
+        detail: detailReason,
+      });
+    }
 
     if (response) {
       alert('신고가 접수되었습니다!');
