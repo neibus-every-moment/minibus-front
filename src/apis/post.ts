@@ -55,3 +55,38 @@ export const likePost = async (postId: number, userId: number) => {
     console.log(error);
   }
 };
+
+export const createPost = async(
+  userId: number,
+  content: string,
+  region: string,
+  transportation:string,
+  imageFiles:File[]
+) => {
+  try {
+    const formData = new FormData();
+
+    formData.append('request', new Blob([
+      JSON.stringify({
+        userId,
+        content,
+        region,
+        transportation,
+      }),
+    ],
+    { type: 'application/json' }));
+
+    if (imageFiles.length) {
+      imageFiles.forEach(file => formData.append('img', file));
+    }
+
+    const { data: { data } } = await axios.post(
+      `${baseUrl}/post`
+      , formData
+    );
+
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+};
