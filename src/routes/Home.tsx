@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import useSWR from 'swr';
+import React, { useRef, useState } from 'react';
 import useSWRInfinite from 'swr/infinite';
 
 import { baseUrl } from '../apis/baseUrl';
@@ -57,7 +56,6 @@ export interface PostProps {
 
 function Home() {
   const pageSize = 10;
-
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedSorting, setSelectdSorting] = useState('createdAt');
   const [
@@ -68,6 +66,7 @@ function Home() {
     selectedTransportations,
     handleChangeSelectedTransportations,
   ] = useInputArray<string>([]);
+  const scrollRef = useRef(null);
 
   const getKey =
   (pageNumber: number, previousPageData: PostProps[]) => {
@@ -85,13 +84,6 @@ function Home() {
       },
     ]; // SWR 키
   };
-
-  // useSWR 기존 버전
-  // const { data } = useSWR(
-  //   [`${baseUrl}/posts/`, fetchParams],
-  //   fetcherWithParams,
-  //   { refreshInterval: 2000 },
-  // );
 
   const {
     data,
@@ -125,10 +117,12 @@ function Home() {
             ={handleChangeSelectedTransportations}
         />
         <button onClick={() => setSize(size + 1)}>더불러오기</button>
-        <PostList
-          posts={datas}
-          setCurrentPage={setSize}
-        />
+        <div ref={scrollRef}>
+          <PostList
+            posts={datas}
+            setCurrentPage={setSize}
+          />
+        </div>
       </div>
     </div>
   );
