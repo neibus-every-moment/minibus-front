@@ -1,5 +1,8 @@
 @mixin no-scrollbar() {
   &::-webkit-scrollbar {
-    display: none !important;
+    display: none !important; //chrome,safaru,opera
   }
+
+  -ms-overflow-style: none; //ie,edge
+  scrollbar-width: none; //firefox
 }
