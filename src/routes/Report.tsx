@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import { commentReportApi, postReportApi } from '../apis/report';
+import { reportCommentApi, reportPostApi } from '../apis/report';
 import ReportInput from '../components/ReportInput';
 import useInput from '../hooks/useInput';
 import { getParamId, getRequestedPage } from '../utils/location';
@@ -23,7 +23,7 @@ function Report () {
     let response = '';
 
     if (requestedPage === 'post') {
-      response = await postReportApi({
+      response = await reportPostApi({
         id,
         reportReason: selectedReportReason,
         detail: detailReason,
@@ -31,7 +31,7 @@ function Report () {
     }
 
     if (requestedPage === 'comment') {
-      response = await commentReportApi({
+      response = await reportCommentApi({
         id,
         reportReason: selectedReportReason,
         detail: detailReason,
