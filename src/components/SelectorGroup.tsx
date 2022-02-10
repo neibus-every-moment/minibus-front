@@ -15,17 +15,19 @@ function SelectorGroup ({
 }:SelectorGroupProps) {
   return (
     <>
-      <TagSelector
-        type="checkbox"
-        handleChangeselectedRegions={handleChangeSelectedRegions}
-        handleChangeselectedTransportations
-          ={handleChangeselectedTransportations}
-      />
-      <div className="row">
-        <div className="col-sm-4">
-          <SortingSelector
-            setSelectdSorting={setSelectdSorting}
-          />
+      <div className="selector-group">
+        <TagSelector
+          type="checkbox"
+          handleChangeselectedRegions={handleChangeSelectedRegions}
+          handleChangeselectedTransportations
+            ={handleChangeselectedTransportations}
+        />
+        <div className="row">
+          <div className="col-sm-4">
+            <SortingSelector
+              setSelectdSorting={setSelectdSorting}
+            />
+          </div>
         </div>
       </div>
     </>

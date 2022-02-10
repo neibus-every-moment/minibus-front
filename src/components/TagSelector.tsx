@@ -42,23 +42,25 @@ function TagSelector ({
 
   return (
     <>
-      <div className="row">
-        <div className="col-sm-4 taglist_first">
-          <TransportationTagList
-            type={type}
-            tags={transportationTags}
-            handler={handleChangeselectedTransportations}
-          />
+      <div className="tag-selector">
+        <div className="row">
+          <div className="col-sm-4 taglist_first">
+            <TransportationTagList
+              type={type}
+              tags={transportationTags}
+              handler={handleChangeselectedTransportations}
+            />
+          </div>
         </div>
-      </div>
 
-      <div className="row">
-        <div className="col-sm-4">
-          <RegionTagList
-            type={type}
-            tags={regionTags}
-            name="regions"
-            handler={handleChangeselectedRegions} />
+        <div className="row">
+          <div className="col-sm-4">
+            <RegionTagList
+              type={type}
+              tags={regionTags}
+              name="regions"
+              handler={handleChangeselectedRegions} />
+          </div>
         </div>
       </div>
     </>
