@@ -1,0 +1,38 @@
+.navigation {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  background-color: $background;
+  box-shadow: 0px -4px 20px 0px #0000001a;
+
+  &-list {
+    @include flexbox;
+  }
+
+  a {
+    display: block;
+    padding: 10px 20px;
+    cursor: pointer;
+
+    &.isActive {
+      img {
+        color: aqua;
+      }
+    }
+
+    img {
+      display: block;
+    }
+  }
+
+  .write {
+    @include flexbox;
+    position: relative;
+    bottom: 10px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: $neibus03;
+  }
+}
