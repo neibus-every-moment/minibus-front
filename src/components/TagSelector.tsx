@@ -44,7 +44,7 @@ function TagSelector ({
     <>
       <div className="tag-selector">
         <div className="row">
-          <div className="col-sm-4 taglist_first">
+          <div className="col-sm-4">
             <TransportationTagList
               type={type}
               tags={transportationTags}

@@ -99,17 +99,13 @@ function PostCreate() {
                   onChange={handleChangeText} />
               </div>
             </div>
-            <div className="row">
-              <div className="col-sm-4">
-                <TagSelector
-                  type="radio"
-                  handleChangeselectedRegions
-                    ={handleChangeSelectedRegion}
-                  handleChangeselectedTransportations
-                    ={handleChangeSelectedTransportation}
-                />
-              </div>
-            </div>
+            <TagSelector
+              type="radio"
+              handleChangeselectedRegions
+                ={handleChangeSelectedRegion}
+              handleChangeselectedTransportations
+                ={handleChangeSelectedTransportation}
+            />
           </form>
         </div>
       </div>
