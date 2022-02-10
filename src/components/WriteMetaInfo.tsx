@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Options from './Options';
 
-function WriteMetaInfo({ isPost, id, user, createdAt }: {
+function WriteMetaInfo({ isPost, id, user, createdAt, updatedAt }: {
   isPost: boolean,
   id: number,
   user: {
@@ -10,6 +10,7 @@ function WriteMetaInfo({ isPost, id, user, createdAt }: {
     avatar: string,
   },
   createdAt: Date,
+  updatedAt: Date,
 }) {
   const [optionsView, setOptionsView] = useState(false);
 
@@ -18,14 +19,35 @@ function WriteMetaInfo({ isPost, id, user, createdAt }: {
   };
 
   createdAt = new Date(createdAt);
-  const year = String(createdAt.getFullYear()).slice(2, 4);
-  const month = createdAt.getMonth() > 10
-    ? createdAt.getMonth()
-    : `0${createdAt.getMonth()}`;
-  const date = createdAt.getDate() > 10
-    ? createdAt.getDate()
-    : `0${createdAt.getDate()}`;
-  const createdAtString = `${year}.${month}.${date}`;
+
+  const formatTime = (time: Date) => {
+    const now = new Date().getTime();
+    time = new Date(time);
+    const timeGap = (now - time.getTime()) / 1000 / 60;
+
+    if (timeGap < 1) {
+      return '방금 전';
+    }
+
+    if (timeGap < 60) {
+      return `${Math.floor(timeGap)}분 전`;
+    }
+
+    if (timeGap < 60 * 24) {
+      return `${Math.floor(timeGap / 60)}시간 전`;
+    }
+
+    const year = String(time.getFullYear()).slice(2, 4);
+    const month = time.getMonth() + 1 > 10
+      ? time.getMonth() + 1
+      : `0${time.getMonth() + 1}`;
+    const date = time.getDate() > 10
+      ? time.getDate()
+      : `0${time.getDate()}`;
+    const stringTime = `${year}.${month}.${date}`;
+
+    return stringTime;
+  };
 
   return (
     <>
@@ -40,7 +62,8 @@ function WriteMetaInfo({ isPost, id, user, createdAt }: {
           className="write_meta_info-date"
           dateTime={String(createdAt)}
         >
-          {createdAtString}
+          {/* {createdAtString} */}
+          {formatTime(createdAt)}
         </time>
         <button
           className="write_meta_info-options"

@@ -11,7 +11,7 @@ function PostItem({ post }: { post: PostProps }) {
     id,
     user,
     createdAt,
-    // updatedAt,
+    updatedAt,
     transportation,
     region,
     text,
@@ -48,6 +48,7 @@ function PostItem({ post }: { post: PostProps }) {
             id={id}
             user={user}
             createdAt={createdAt}
+            updatedAt={updatedAt}
           />
         </div>
         <PostContent
