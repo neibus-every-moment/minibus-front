@@ -4,6 +4,7 @@ import useSWRInfinite from 'swr/infinite';
 
 import { baseUrl } from '../apis/baseUrl';
 import Banner from '../components/Banner';
+import Loading from '../components/Loading';
 import PostList from '../components/PostList';
 import SelectorGroup from '../components/SelectorGroup';
 import useInputArray from '../hooks/useInputArray';
@@ -103,11 +104,9 @@ function Home() {
     }
   }, [isInView, isValidating]);
 
-  if (!data) { return (<div>loading</div>); }
+  if (!data) { return (<Loading />); }
 
   const datas = data ? [].concat(...data) : [];
-
-  console.log(datas);
 
   return (
     <div className="container">
@@ -123,20 +122,10 @@ function Home() {
           handleChangeselectedTransportations
             ={handleChangeSelectedTransportations}
         />
-        {
-          isValidating
-            ? <div style={{
-              position: 'fixed',
-              top: 200,
-              right: 100,
-              color: 'red',
-            }}
-            >
-              LOADING
-            </div>
-            : null
-        }
         <PostList posts={datas} />
+        {isValidating
+          ? <Loading />
+          : null}
         <div ref={endPointRef}>
           loading...
         </div>
