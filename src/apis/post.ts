@@ -81,7 +81,7 @@ export const createPost = async(
     }
 
     const { data: { data } } = await axios.post(
-      'http://3.37.182.59:8080/api/post'
+      `${baseUrl}/post`
       , formData
     );
 
