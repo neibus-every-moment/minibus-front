@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import useSWR from 'swr';
+import useSWRInfinite from 'swr/infinite';
 
+import { baseUrl } from '../apis/baseUrl';
 import Banner from '../components/Banner';
 import PostList from '../components/PostList';
 import SelectorGroup from '../components/SelectorGroup';
 import useInputArray from '../hooks/useInputArray';
 import { fetcherWithParams } from '../utils/fetcher';
+
 export interface ImageProps {
   id: number,
   url: string
@@ -66,19 +69,46 @@ function Home() {
     handleChangeSelectedTransportations,
   ] = useInputArray<string>([]);
 
-  const { data } = useSWR(
-    [
-      'http://3.37.182.59:8080/api/posts/', {
-        start: currentPage,
+  const getKey =
+  (pageNumber: number, previousPageData: PostProps[]) => {
+    if (previousPageData && !previousPageData.length) {
+      return null;
+    } // 끝에 도달
+
+    return [
+      `${baseUrl}/posts`, {
+        start: pageNumber,
         size: pageSize,
         sorting: selectedSorting,
-        regions: selectedRegions,
-        transportations: selectedTransportations,
+        regions: selectedRegions?.join(','),
+        transportations: selectedTransportations?.join(','),
       },
-    ],
+    ]; // SWR 키
+  };
+
+  // useSWR 기존 버전
+  // const { data } = useSWR(
+  //   [`${baseUrl}/posts/`, fetchParams],
+  //   fetcherWithParams,
+  //   { refreshInterval: 2000 },
+  // );
+
+  const {
+    data,
+    isValidating, // 요청이나 갱신 로딩의 여부
+    size,
+    setSize,
+  } = useSWRInfinite(
+    getKey,
     fetcherWithParams,
-    { refreshInterval: 2000 },
+    // { refreshInterval: 2000 },
   );
+
+  if (!data) { return (<div>loading</div>); }
+
+  const datas = data ? [].concat(...data) : [];
+
+  console.log(datas);
 
   return (
     <div className="container">
@@ -94,7 +124,11 @@ function Home() {
           handleChangeselectedTransportations
             ={handleChangeSelectedTransportations}
         />
-        <PostList posts={data} />
+        <button onClick={() => setSize(size + 1)}>더불러오기</button>
+        <PostList
+          posts={datas}
+          setCurrentPage={setSize}
+        />
       </div>
     </div>
   );
