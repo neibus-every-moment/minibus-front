@@ -25,7 +25,7 @@ function ImageInput({ imageFiles, setImageFiles }:ImageInputProps) {
         = e.target.files.length > 10 ? 10 : e.target.files.length;
       const submitableImageCount = 10 - imageFiles.length;
 
-      const limit
+      const submitableImageCountLimit
       = submitImagesCount > submitableImageCount ?
         submitableImageCount : submitImagesCount;
 
@@ -33,7 +33,7 @@ function ImageInput({ imageFiles, setImageFiles }:ImageInputProps) {
       const newImageFiles = [];
 
 
-      for (let i = 0;i < limit ;i++) {
+      for (let i = 0;i < submitableImageCountLimit ;i++) {
         const file = e.target.files[i];
         const newImagePath = URL.createObjectURL(file);
         if (!Object.keys(imagesInfo).includes(newImagePath)) {
