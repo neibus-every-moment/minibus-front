@@ -1,3 +1,14 @@
 .background {
-  background-color: $surface;
+  background-color: $background;
+}
+
+.banner {
+  margin: 0 calc(-1 *$sm-margin);
+  padding-bottom: 20px;
+  border-bottom: 1px solid $surface;
+
+  img {
+    display: block;
+    width: 100%;
+  }
 }
