@@ -1,19 +1,12 @@
 .report {
-  @include no-scrollbar;
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: $report;
-  width: 100vw;
-  height: 100vh;
-  overflow-y: auto;
+  padding: 0 4px;
   background-color: $background;
-  overscroll-behavior: contain;
 
   &_header {
     @include flexbox(between);
     @include text-style(headline4, $title01);
     height: 60px;
+    margin-bottom: 30px;
 
     h2 {
       position: relative;
@@ -31,8 +24,6 @@
   }
 
   &_body {
-    margin-top: 30px;
-
     .input_group {
       @include flexbox(start);
       margin-bottom: 24px;
@@ -46,7 +37,7 @@
       }
 
       label {
-        @include text-style(body1, #5e5e5e);
+        @include text-style(body1, #666);
       }
     }
   }
@@ -55,7 +46,7 @@
     @include text-style(body3, $background);
     width: 100%;
     height: 40px;
-    margin-bottom: 24px;
+    margin-bottom: 10px;
     background-color: #1cd9d9;
     border-radius: 4px;
 
@@ -71,5 +62,11 @@
     padding: 16px 20px;
     border: 3px solid $line01;
     border-radius: 4px;
+    margin-bottom: 10px;
+    resize: none;
+  }
+
+  &-notice {
+    @include text-style(body4,$neibus01)
   }
 }

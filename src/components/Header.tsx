@@ -31,11 +31,11 @@ function Header() {
     }
   }, [pathname]);
 
-  if (pathname === '/write') {
+  if (pathname.includes('/write')) {
     return null;
   }
 
-  if (pathname === '/report') {
+  if (pathname.includes('/report')) {
     return null;
   }
 

@@ -87,7 +87,7 @@ function Report () {
           </form>
           <div className="row">
             <div className="col-sm-4">
-              <p>
+              <p className="report-notice">
                 *신고사유에 대한 해당 여부 검토 후 처리되며 허위 신고인 경우 서비스 이용에 제한 될수 있습니다.
               </p>
             </div>
