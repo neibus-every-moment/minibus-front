@@ -11,7 +11,7 @@ function SortingSelector({ setSelectdSorting }: SortingSelectorProps) {
     }, []);
 
   return (
-    <div>
+    <div className="sorting-selector">
       <select name="Sorting" id="Sorting" onChange={handleChangeSortingState}>
         <option value="createdAt">최신순</option>
         <option value="likeCount">공감순</option>
