@@ -3,10 +3,7 @@ import React from 'react';
 import { PostProps } from '../routes/Home';
 import PostItem from './PostItem';
 
-function PostList({ posts, setCurrentPage }: {
-    posts: PostProps[],
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>,
-  }) {
+function PostList({ posts }: { posts: PostProps[] }) {
   return (
     <>
       {

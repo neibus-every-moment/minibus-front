@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import useSWRInfinite from 'swr/infinite';
 
 import { baseUrl } from '../apis/baseUrl';
@@ -55,8 +56,8 @@ export interface PostProps {
 }
 
 function Home() {
-  const pageSize = 10;
-  const [currentPage, setCurrentPage] = useState(0);
+  const pageSize = 5;
+  const [endPointRef, isInView] = useInView();
   const [selectedSorting, setSelectdSorting] = useState('createdAt');
   const [
     selectedRegions,
@@ -66,7 +67,6 @@ function Home() {
     selectedTransportations,
     handleChangeSelectedTransportations,
   ] = useInputArray<string>([]);
-  const scrollRef = useRef(null);
 
   const getKey =
   (pageNumber: number, previousPageData: PostProps[]) => {
@@ -93,8 +93,15 @@ function Home() {
   } = useSWRInfinite(
     getKey,
     fetcherWithParams,
-    // { refreshInterval: 2000 },
+    { refreshInterval: 60000 },
   );
+
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (isInView && !isValidating) {
+      setSize(prevState => prevState + 1);
+    }
+  }, [isInView, isValidating]);
 
   if (!data) { return (<div>loading</div>); }
 
@@ -116,12 +123,22 @@ function Home() {
           handleChangeselectedTransportations
             ={handleChangeSelectedTransportations}
         />
-        <button onClick={() => setSize(size + 1)}>더불러오기</button>
-        <div ref={scrollRef}>
-          <PostList
-            posts={datas}
-            setCurrentPage={setSize}
-          />
+        {
+          isValidating
+            ? <div style={{
+              position: 'fixed',
+              top: 200,
+              right: 100,
+              color: 'red',
+            }}
+            >
+              LOADING
+            </div>
+            : null
+        }
+        <PostList posts={datas} />
+        <div ref={endPointRef}>
+          loading...
         </div>
       </div>
     </div>
