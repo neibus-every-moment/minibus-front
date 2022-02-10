@@ -17,6 +17,16 @@ function WriteMetaInfo({ isPost, id, user, createdAt }: {
     setOptionsView(prev => !prev);
   };
 
+  createdAt = new Date(createdAt);
+  const year = String(createdAt.getFullYear()).slice(2, 4);
+  const month = createdAt.getMonth() > 10
+    ? createdAt.getMonth()
+    : `0${createdAt.getMonth()}`;
+  const date = createdAt.getDate() > 10
+    ? createdAt.getDate()
+    : `0${createdAt.getDate()}`;
+  const createdAtString = `${year}.${month}.${date}`;
+
   return (
     <>
       <div className="write_meta_info">
@@ -30,7 +40,7 @@ function WriteMetaInfo({ isPost, id, user, createdAt }: {
           className="write_meta_info-date"
           dateTime={String(createdAt)}
         >
-          {String(createdAt)}
+          {createdAtString}
         </time>
         <button
           className="write_meta_info-options"
