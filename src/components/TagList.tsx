@@ -14,18 +14,19 @@ function TagList({
   handler,
 }: TagListProps) {
   return (
-    <ul>
+    <ul className="tag-list">
       {tags.map(tag => (
-        <li key={tag}>
-          <label htmlFor="tag">
-            <input
-              type={type}
-              value={tag}
-              name={name}
-              onChange={handler}
-            />
+        <li key={tag} className="tag-item">
+          <label htmlFor={tag}>
             {tag}
           </label>
+          <input
+            id={tag}
+            type={type}
+            value={tag}
+            name={name}
+            onChange={handler}
+          />
         </li>
       ))}
     </ul>

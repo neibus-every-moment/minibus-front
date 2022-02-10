@@ -1,0 +1,38 @@
+.tag-list {
+  @include flexbox(start);
+
+  .tag-item {
+    @include text-style(body4, $neibus02);
+    display: inline-block;
+    margin-right: 8px;
+    overflow: hidden;
+    border-radius: 42px;
+
+    &:hover {
+      color: $neibus02;
+      background-color: $surface;
+    }
+
+    label {
+      @include flexbox;
+      position: relative;
+      padding: 4px 12px;
+      cursor: pointer;
+      border: 1px solid $neibus01;
+      border-radius: 42px;
+    }
+
+    input {
+      display: block;
+      width: 0;
+      height: 0;
+      border-radius: 42px;
+      appearance: none;
+    }
+
+    input:checked {
+      box-shadow: 0 0 0 100px $neibus01;
+    }
+  }
+}
+

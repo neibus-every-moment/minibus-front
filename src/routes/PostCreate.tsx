@@ -22,7 +22,10 @@ function PostCreate() {
   const navigate = useNavigate();
 
   const handleSubmitPost
-    = useCallback(async(e:React.FormEvent<HTMLFormElement>) => {
+    = useCallback(async(
+      e:
+      React.FormEvent<HTMLFormElement>|
+      React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
 
       if (!selectedRegion) {
@@ -56,27 +59,46 @@ function PostCreate() {
     }, [imageFiles, text, selectedRegion, selectedTransportation]);
 
   return (
-    <div className="post_create-container">
-      <header className="post_create-top">
-        <button
-          className="post_create-back"
-          onClick={() => navigate(-1)}
-        >
-          <img src="../static/icons/arrow-left.svg" alt="뒤로가기" />
-        </button>
-        <div>의견</div>
-      </header>
-      <main>
-        <section className="post_create-write">
+    <>
+      <div className="post_create">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-4">
+              <header className="post_create-header">
+                <button
+                  className="post_create-back"
+                  onClick={() => navigate(-1)}
+                >
+                  <img src="../static/icons/arrow-left.svg" alt="뒤로가기" />
+                </button>
+                <h1>의견</h1>
+                <button
+                  type="submit"
+                  className="post_create-submit"
+                  onClick={handleSubmitPost}
+                >
+                  남기기
+                </button>
+              </header>
+            </div>
+          </div>
           <form onSubmit={handleSubmitPost} encType="multipart/form-data">
-            <ImageInput
-              imageFiles={imageFiles}
-              setImageFiles={setImageFiles}
-            />
-            <textarea
-              placeholder="이동과 관련된 이야기를 나눠보세요."
-              value={text}
-              onChange={handleChangeText} />
+            <div className="row">
+              <div className="col-sm-4">
+                <ImageInput
+                  imageFiles={imageFiles}
+                  setImageFiles={setImageFiles}
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-sm-4">
+                <textarea
+                  placeholder="이동과 관련된 이야기를 나눠보세요."
+                  value={text}
+                  onChange={handleChangeText} />
+              </div>
+            </div>
             <TagSelector
               type="radio"
               handleChangeselectedRegions
@@ -84,11 +106,10 @@ function PostCreate() {
               handleChangeselectedTransportations
                 ={handleChangeSelectedTransportation}
             />
-            <button type="submit" className="post_create-submit">남기기</button>
           </form>
-        </section>
-      </main>
-    </div>
+        </div>
+      </div>
+    </>
   );
 }
 

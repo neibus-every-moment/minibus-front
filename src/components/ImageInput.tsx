@@ -70,34 +70,45 @@ function ImageInput({ imageFiles, setImageFiles }:ImageInputProps) {
 
   return (
     <>
-      <label htmlFor="images" onClick={handleClickUploadButton}>
-        <img src="../static/icons/icon-camera.svg" alt="사진 첨부" />
-      </label>
-      <input
-        type="file"
-        id="images"
-        accept="image/*"
-        multiple
-        hidden
-        ref={imageInputRef}
-        onChange={handleUploadImages}
-      />
-      <p>게시글 등록 시 파일명에 한글이 포함되면 안됩니다.</p>
-      {Object.entries(imagesInfo).map(image => (
-        <div key={image[0]} >
-          <button
-            type="button"
-            onClick={handleDeleteImages}
-            id={image[0]}
-            value={image[1]}>
-                  삭제
-          </button>
-          <img
-            src={image[0]}
-            alt="유저 등록 이미지"
-            width="100px" />
+      <div className="image-input">
+        <label
+          htmlFor="images"
+          onClick={handleClickUploadButton}
+          className="image-upload-btn">
+          <img src="../static/icons/icon-camera.svg" alt="사진 첨부" />
+          <span>{imageFiles.length}/10</span>
+        </label>
+        <input
+          type="file"
+          id="images"
+          accept="image/*"
+          multiple
+          hidden
+          ref={imageInputRef}
+          onChange={handleUploadImages}
+        />
+
+        <div className="preview-list">
+          {Object.entries(imagesInfo).map(image => (
+            <div key={image[0]} className="preview-item">
+              <button
+                type="button"
+                onClick={handleDeleteImages}
+                id={image[0]}
+                value={image[1]}
+                className="preview-delete-btn"
+              >
+                <img src="/static/icons/icon_cancel.svg" alt="선택한 이미지 삭제" />
+              </button>
+              <div className="preview-image">
+                <img
+                  src={image[0]}
+                  alt="유저 등록 이미지" />
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </>
   );
 }
