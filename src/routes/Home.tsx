@@ -126,9 +126,11 @@ function Home() {
         {isValidating
           ? <Loading />
           : null}
-        <div ref={endPointRef}>
-          loading...
-        </div>
+        {!isValidating
+          ? <div ref={endPointRef}>
+          load more posts...
+          </div>
+          : null}
       </div>
     </div>
   );
