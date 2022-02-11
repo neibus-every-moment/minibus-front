@@ -7,7 +7,7 @@ import Banner from '../components/Banner';
 import Loading from '../components/Loading';
 import PostList from '../components/PostList';
 import SelectorGroup from '../components/SelectorGroup';
-import useInputArray from '../hooks/useInputArray';
+import { useSelectIdArray } from '../hooks/useSelectId';
 import { fetcherWithParams } from '../utils/fetcher';
 
 export interface ImageProps {
@@ -63,11 +63,11 @@ function Home() {
   const [
     selectedRegions,
     handleChangeSelectedRegions,
-  ] = useInputArray<string>([]);
+  ] = useSelectIdArray<string>([]);
   const [
     selectedTransportations,
     handleChangeSelectedTransportations,
-  ] = useInputArray<string>([]);
+  ] = useSelectIdArray<string>([]);
 
   const getKey =
   (pageNumber: number, previousPageData: PostProps[]) => {
@@ -85,6 +85,8 @@ function Home() {
       },
     ]; // SWR 키
   };
+
+  console.log(selectedRegions);
 
   const {
     data,
@@ -117,9 +119,11 @@ function Home() {
           </div>
         </div>
         <SelectorGroup
+          selectedRegions={selectedRegions}
+          selectedTransportations={selectedTransportations}
           setSelectdSorting={setSelectdSorting}
           handleChangeSelectedRegions={handleChangeSelectedRegions}
-          handleChangeselectedTransportations
+          handleChangeSelectedTransportations
             ={handleChangeSelectedTransportations}
         />
         <PostList posts={datas} />

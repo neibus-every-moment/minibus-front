@@ -5,16 +5,17 @@ import { createPost } from '../apis/post';
 import ImageInput from '../components/ImageInput';
 import TagSelector from '../components/TagSelector';
 import useInput from '../hooks/useInput';
+import { useSelectId } from '../hooks/useSelectId';
 
 function PostCreate() {
   const [
     selectedTransportation,
     handleChangeSelectedTransportation,
-  ] = useInput('');
+  ] = useSelectId<string>('');
   const [
     selectedRegion,
     handleChangeSelectedRegion,
-  ] = useInput('');
+  ] = useSelectId<string>('');
 
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [text, handleChangeText] = useInput('');
@@ -100,10 +101,10 @@ function PostCreate() {
               </div>
             </div>
             <TagSelector
-              type="radio"
-              handleChangeselectedRegions
-                ={handleChangeSelectedRegion}
-              handleChangeselectedTransportations
+              selectedTransportationInfo={selectedTransportation}
+              selectedRegionInfo={selectedRegion}
+              handleChangeSelectedRegionInfo={handleChangeSelectedRegion}
+              handleChangeSelectedTransportationInfo
                 ={handleChangeSelectedTransportation}
             />
           </form>
