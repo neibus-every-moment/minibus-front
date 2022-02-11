@@ -86,8 +86,6 @@ function Home() {
     ]; // SWR 키
   };
 
-  console.log(selectedRegions);
-
   const {
     data,
     isValidating, // 요청이나 갱신 로딩의 여부
