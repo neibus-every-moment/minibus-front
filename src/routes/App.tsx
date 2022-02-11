@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import NavigationBar from '../components/NavigationBar';
 import Bingo from './Bingo';
 import Home from './Home';
+import MyPage from './MyPage';
 import PostCreate from './PostCreate';
 import Report from './Report';
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/write/*" element={<PostCreate />} />
         <Route path="/bingo" element={<Bingo />} />
         <Route path="/report/*" element={<Report />} />
+        <Route path="/mypage/" element={<MyPage />} />
       </Routes>
       <NavigationBar />
     </>
