@@ -20,8 +20,6 @@ function WriteMetaInfo({ isPost, id, user, createdAt, updatedAt }: {
 
   createdAt = new Date(createdAt);
   updatedAt = new Date(updatedAt);
-  console.log(createdAt);
-  console.log(`U: ${updatedAt}`);
 
   const formatTime = (time: Date) => {
     const now = new Date().getTime();
