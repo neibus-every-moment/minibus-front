@@ -2,18 +2,21 @@ import React, { useEffect, useState } from 'react';
 
 import { getRegionsApi,
   getTransportationsApi } from '../apis/tags';
-import { RegionTagList, TransportationTagList } from './TagList';
+import TagList from './TagList';
+
 interface TagSelectorProps {
-  type: string,
-  handleChangeselectedRegions: (e:React.ChangeEvent<HTMLInputElement>)=> void,
-  handleChangeselectedTransportations:
-  (e:React.ChangeEvent<HTMLInputElement>)=> void,
+    handleChangeSelectedRegionInfo: (e:any) => void;
+    handleChangeSelectedTransportationInfo: (e:any) => void;
+    selectedTransportationInfo:string[]|string;
+    selectedRegionInfo:string[]|string;
 }
 
+
 function TagSelector ({
-  type,
-  handleChangeselectedRegions,
-  handleChangeselectedTransportations,
+  handleChangeSelectedRegionInfo,
+  handleChangeSelectedTransportationInfo,
+  selectedTransportationInfo,
+  selectedRegionInfo,
 }:TagSelectorProps) {
   const [transportationTags, setTransportationTags] = useState<string[]>([]);
   const [regionTags, setRegionTags] = useState<string[]>([]);
@@ -41,29 +44,26 @@ function TagSelector ({
   }, []);
 
   return (
-    <>
-      <div className="tag-selector">
-        <div className="row">
-          <div className="col-sm-4">
-            <TransportationTagList
-              type={type}
-              tags={transportationTags}
-              handler={handleChangeselectedTransportations}
-            />
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-sm-4">
-            <RegionTagList
-              type={type}
-              tags={regionTags}
-              name="regions"
-              handler={handleChangeselectedRegions} />
-          </div>
+    <div className="tag-selector">
+      <div className="row">
+        <div className="col-sm-4">
+          <TagList
+            tags={transportationTags}
+            selectedTagInfo={selectedTransportationInfo}
+            handler={handleChangeSelectedTransportationInfo}
+          />
         </div>
       </div>
-    </>
+
+      <div className="row">
+        <div className="col-sm-4">
+          <TagList
+            tags={regionTags}
+            selectedTagInfo={selectedRegionInfo}
+            handler={handleChangeSelectedRegionInfo} />
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -3,25 +3,31 @@ import React from 'react';
 import SortingSelector from './SortingSelector';
 import TagSelector from './TagSelector';
 interface SelectorGroupProps {
-    setSelectdSorting: React.Dispatch<React.SetStateAction<string>>;
-    handleChangeSelectedRegions: (e:any) => void;
-    handleChangeselectedTransportations: (e:any)=>void;
+  selectedRegions:string[];
+  selectedTransportations:string[];
+  setSelectdSorting: React.Dispatch<React.SetStateAction<string>>;
+  handleChangeSelectedRegions: (e:any) => void;
+  handleChangeSelectedTransportations: (e:any)=>void;
 }
 
 function SelectorGroup ({
+  selectedRegions,
+  selectedTransportations,
   setSelectdSorting,
   handleChangeSelectedRegions,
-  handleChangeselectedTransportations,
+  handleChangeSelectedTransportations,
 }:SelectorGroupProps) {
   return (
     <>
       <div className="selector-group">
         <TagSelector
-          type="checkbox"
-          handleChangeselectedRegions={handleChangeSelectedRegions}
-          handleChangeselectedTransportations
-            ={handleChangeselectedTransportations}
+          selectedTransportationInfo={selectedTransportations}
+          selectedRegionInfo={selectedRegions}
+          handleChangeSelectedRegionInfo={handleChangeSelectedRegions}
+          handleChangeSelectedTransportationInfo
+            ={handleChangeSelectedTransportations}
         />
+
         <div className="row">
           <div className="col-sm-4">
             <SortingSelector
