@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { CommentsProps } from '../routes/Home';
 import CommentCreate from './CommentCreate';
 import CommentList from './CommentList';
 
