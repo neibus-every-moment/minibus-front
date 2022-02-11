@@ -28,7 +28,6 @@ function Options({ isPost, id, userId }: {
 
   return (
     <div className="options">
-      {/* TODO: 로그인되면 회원 여부에 따라 다르게 보여주기 */}
       {isPost && (
         <>
           {userId !== myUserId
