@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
-import useSWR from 'swr';
+import React, { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import useSWRInfinite from 'swr/infinite';
 
+import { baseUrl } from '../apis/baseUrl';
 import Banner from '../components/Banner';
+import Loading from '../components/Loading';
 import PostList from '../components/PostList';
 import SelectorGroup from '../components/SelectorGroup';
 import useInputArray from '../hooks/useInputArray';
 import { fetcherWithParams } from '../utils/fetcher';
+
 export interface ImageProps {
   id: number,
   url: string
@@ -53,9 +57,8 @@ export interface PostProps {
 }
 
 function Home() {
-  const pageSize = 10;
-
-  const [currentPage, setCurrentPage] = useState(0);
+  const pageSize = 5;
+  const [endPointRef, isInView] = useInView();
   const [selectedSorting, setSelectdSorting] = useState('createdAt');
   const [
     selectedRegions,
@@ -66,19 +69,44 @@ function Home() {
     handleChangeSelectedTransportations,
   ] = useInputArray<string>([]);
 
-  const { data } = useSWR(
-    [
-      'http://3.37.182.59:8080/api/posts/', {
-        start: currentPage,
+  const getKey =
+  (pageNumber: number, previousPageData: PostProps[]) => {
+    if (previousPageData && !previousPageData.length) {
+      return null;
+    } // 끝에 도달
+
+    return [
+      `${baseUrl}/posts`, {
+        start: pageNumber,
         size: pageSize,
         sorting: selectedSorting,
-        regions: selectedRegions,
-        transportations: selectedTransportations,
+        regions: selectedRegions?.join(','),
+        transportations: selectedTransportations?.join(','),
       },
-    ],
+    ]; // SWR 키
+  };
+
+  const {
+    data,
+    isValidating, // 요청이나 갱신 로딩의 여부
+    size,
+    setSize,
+  } = useSWRInfinite(
+    getKey,
     fetcherWithParams,
-    { refreshInterval: 2000 },
+    { refreshInterval: 60000 },
   );
+
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (isInView && !isValidating) {
+      setSize(prevState => prevState + 1);
+    }
+  }, [isInView, isValidating]);
+
+  if (!data) { return (<Loading />); }
+
+  const datas = data ? [].concat(...data) : [];
 
   return (
     <div className="container">
@@ -94,7 +122,13 @@ function Home() {
           handleChangeselectedTransportations
             ={handleChangeSelectedTransportations}
         />
-        <PostList posts={data} />
+        <PostList posts={datas} />
+        {isValidating
+          ? <Loading />
+          : null}
+        <div ref={endPointRef}>
+          loading...
+        </div>
       </div>
     </div>
   );

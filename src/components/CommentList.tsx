@@ -21,6 +21,7 @@ function CommentList({ postId }: { postId: number }) {
             id={comment.id}
             user={comment.user}
             createdAt={comment.createdAt}
+            updatedAt={comment.updatedAt}
           />
           <div className="comment-text">
             {comment.text}
