@@ -1,11 +1,10 @@
 import axios from 'axios';
 import React from 'react';
-import { useNavigate } from 'react-router';
+import { Navigate } from 'react-router';
 
 import { baseUrl } from '../apis/baseUrl';
 
 function Login() {
-  const navigate = useNavigate();
   const handleLogin = async() => {
     try {
       const resToken = await axios.post(`${baseUrl}/auth/login`, {
@@ -18,13 +17,17 @@ function Login() {
       localStorage.setItem('Auth', ACCESS_TOKEN);
 
       if (localStorage.getItem('Auth')) {
-        navigate('/mypage');
+        <Navigate replace to="/mypage" />;
       }
 
     } catch (e) {
       console.error(e);
     }
   };
+
+  if (localStorage.getItem('Auth')) {
+    return <Navigate replace to="/mypage" />;
+  }
 
   return (
     <>
