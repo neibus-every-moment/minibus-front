@@ -86,8 +86,6 @@ function Home() {
     ]; // SWR 키
   };
 
-  console.log(selectedRegions);
-
   const {
     data,
     isValidating, // 요청이나 갱신 로딩의 여부
@@ -105,8 +103,6 @@ function Home() {
       setSize(prevState => prevState + 1);
     }
   }, [isInView, isValidating]);
-
-  if (!data) { return (<Loading />); }
 
   const datas = data ? [].concat(...data) : [];
 
@@ -126,7 +122,7 @@ function Home() {
           handleChangeSelectedTransportations
             ={handleChangeSelectedTransportations}
         />
-        <PostList posts={datas} />
+        {!data ? <Loading /> : <PostList posts={datas} />}
         {isValidating
           ? <Loading />
           : null}
