@@ -6,9 +6,11 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-bottom: 16px;
 
     img {
-      // TODO: 댓글 유저 아바타
+      width: 28px;
+      height: 28px;
     }
 
     form {
@@ -44,12 +46,13 @@
     > li {
       display: flex;
       flex-direction: column;
-      height: 82px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #f4f6fb;
     }
   }
 
   &-text {
     @include text-style-body8;
-    margin-top: 4px;
+    margin: 4px 0;
   }
 }

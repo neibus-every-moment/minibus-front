@@ -20,8 +20,6 @@ function WriteMetaInfo({ isPost, id, user, createdAt, updatedAt }: {
 
   createdAt = new Date(createdAt);
   updatedAt = new Date(updatedAt);
-  console.log(createdAt);
-  console.log(`U: ${updatedAt}`);
 
   const formatTime = (time: Date) => {
     const now = new Date().getTime();
@@ -58,26 +56,27 @@ function WriteMetaInfo({ isPost, id, user, createdAt, updatedAt }: {
         <div className="write_meta_info-avatar">
           <img src={user.avatar} alt="아바타" />
         </div>
-        <div className="write_meta_info-user">
-          {user.nickname}
+        <div>
+          <div className="write_meta_info-user">
+            {user.nickname}
+          </div>
+          <time
+            className="write_meta_info-date"
+            dateTime={String(createdAt)}
+          >
+            {formatTime(createdAt)}
+            {JSON.stringify(createdAt) === JSON.stringify(updatedAt)
+              ? null
+              : '수정됨'
+            }
+          </time>
         </div>
-        <time
-          className="write_meta_info-date"
-          dateTime={String(createdAt)}
-        >
-          {formatTime(createdAt)}
-          {JSON.stringify(createdAt) === JSON.stringify(updatedAt)
-            ? null
-            : '수정됨'
-          }
-        </time>
-        <button
-          className="write_meta_info-options"
-          onClick={handleOptionsView}
-        >
-          <img src="..\static\icons\icon_options.svg" alt="옵션 버튼" />
-          {optionsView && <Options isPost={isPost} id={id} />}
-        </button>
+        <div className="write_meta_info-options">
+          <button onClick={handleOptionsView} >
+            <img src="..\static\icons\icon_options.svg" alt="옵션 버튼" />
+            {optionsView && <Options isPost={isPost} id={id} />}
+          </button>
+        </div>
       </div>
     </>
   );

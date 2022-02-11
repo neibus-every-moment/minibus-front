@@ -157,7 +157,6 @@ function Bingo() {
   };
 
   const handleClickShare = () => {
-    console.log('share!');
     setShareView(view => !view);
   };
 
