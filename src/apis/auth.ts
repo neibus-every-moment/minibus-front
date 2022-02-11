@@ -22,8 +22,6 @@ export async function getUserInfo(userId: number) {
   try {
     const { data } = await axios.get(`${baseUrl}/auth/login/${userId}`);
 
-    console.log(data);
-    console.log(data.token);
     return data;
   } catch (e) {
     console.error(e);
