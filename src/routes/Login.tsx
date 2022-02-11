@@ -1,28 +1,19 @@
-import axios from 'axios';
 import React from 'react';
 import { Navigate, useNavigate } from 'react-router';
 
-import { baseUrl } from '../apis/baseUrl';
+import { saveAuth } from '../apis/auth';
 
 function Login() {
   const navigate = useNavigate();
-  const handleSignin = async() => {
+  const handleSignin = async () => {
     try {
-      const resToken = await axios.post(`${baseUrl}/auth/login`, {
-        email: 'test@test.com',
-        nickname: 'test계정입니다',
-        profileImage: 'test',
-      });
-
-      const ACCESS_TOKEN = resToken.data.token;
-      localStorage.setItem('Auth', ACCESS_TOKEN);
-
-      if (localStorage.getItem('Auth')) {
-        navigate('/mypage');
-      }
-
+      await saveAuth();
     } catch (e) {
       console.error(e);
+    }
+
+    if (localStorage.getItem('Auth')) {
+      navigate('/mypage');
     }
   };
 
