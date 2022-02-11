@@ -19,6 +19,9 @@ function WriteMetaInfo({ isPost, id, user, createdAt, updatedAt }: {
   };
 
   createdAt = new Date(createdAt);
+  updatedAt = new Date(updatedAt);
+  console.log(createdAt);
+  console.log(`U: ${updatedAt}`);
 
   const formatTime = (time: Date) => {
     const now = new Date().getTime();
@@ -62,8 +65,11 @@ function WriteMetaInfo({ isPost, id, user, createdAt, updatedAt }: {
           className="write_meta_info-date"
           dateTime={String(createdAt)}
         >
-          {/* {createdAtString} */}
           {formatTime(createdAt)}
+          {JSON.stringify(createdAt) === JSON.stringify(updatedAt)
+            ? null
+            : '수정됨'
+          }
         </time>
         <button
           className="write_meta_info-options"
