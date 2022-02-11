@@ -2,37 +2,25 @@
   @include flexbox(start);
 
   .tag-item {
-    @include text-style(body4, $neibus02);
+    @include text-style(body4, $body01);
     display: inline-block;
+    padding: 4px 12px;
     margin-right: 8px;
     overflow: hidden;
+    cursor: pointer;
+    border: 1px solid $body03;
     border-radius: 42px;
 
     &:hover {
       color: $neibus02;
       background-color: $surface;
-    }
-
-    label {
-      @include flexbox;
-      position: relative;
-      padding: 4px 12px;
-      cursor: pointer;
       border: 1px solid $neibus01;
-      border-radius: 42px;
     }
 
-    input {
-      display: block;
-      width: 0;
-      height: 0;
-      border-radius: 42px;
-      appearance: none;
-    }
-
-    input:checked {
-      box-shadow: 0 0 0 100px $neibus01;
+    &.isActive {
+      color: $background;
+      background-color: $neibus01;
+      border: 1px solid $neibus01;
     }
   }
 }
-
