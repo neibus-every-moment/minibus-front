@@ -1,0 +1,117 @@
+.leaflet {
+  @include column-flexbox;
+
+   .logo {
+     display: block;
+     margin: 60px 0 50px;
+
+     img {
+       display: block;
+     }
+   }
+
+   .slogan {
+     margin-bottom: 70px;
+     img {
+       display: block;
+       margin-bottom: 10px;
+     }
+
+     .slogan-point {
+        display: flex;
+
+        img {
+          margin-right: 6px;
+        }
+     }
+   }
+
+   .promotion-list {
+     margin-bottom: 40px;
+   }
+
+   .promotion-item {
+     @include flexbox(start);
+      width: 430px;
+      height: 116px;
+      background-color: $background;
+      border-radius: 12px;
+      margin-bottom: 28px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+     img {
+       display: block;
+       width: 68px;
+       height: 68px;
+       margin: 0 10px;
+     }
+
+     .question {
+       @include text-style(headline4, #000);
+       margin-bottom: 20px;
+       line-height: 30px;
+       
+       &.question1 {
+        box-shadow: inset 0 -15px 0 rgb(176, 255, 201);
+       }
+
+       &.question2 {
+        box-shadow: inset 0 -15px 0 rgb(216, 202, 255);
+       }
+
+       &.question3 {
+        box-shadow: inset 0 -15px 0 rgb(255, 215, 203);
+       }
+     }
+
+     .answer {
+        @include text-style(body5, $body01)
+     }
+   }
+
+   .external-link-list {
+     @include flexbox;
+     margin-bottom: 22px;
+   }
+
+   .external-link-item {
+     @include flexbox;
+     width: 40px;
+     height: 40px;
+     margin-right: 30px;
+     background-color: $neibus01;
+     border-radius: 12px;
+     overflow: hidden;
+
+     &:last-child {
+       margin-right: 0;
+     }
+
+     li {
+       display: block;
+     }
+
+     img {
+       display: block;
+      }
+   }
+
+   .download-link-list {
+     @include flexbox;
+   }
+
+   .download-link-item {
+     a {
+       display: block;
+       margin-right: 10px;
+     }
+   }
+
+   .lists {
+     @include column-flexbox;
+     padding-bottom: 12px;
+   }
+}

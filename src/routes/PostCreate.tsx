@@ -62,8 +62,8 @@ function PostCreate() {
 
   return (
     <>
-      <div className="post_create">
-        <div className="container">
+      <div className="container">
+        <div className="post_create">
           <div className="row">
             <div className="col-sm-4">
               <header className="post_create-header">
@@ -84,31 +84,27 @@ function PostCreate() {
               </header>
             </div>
           </div>
-          <form onSubmit={handleSubmitPost} encType="multipart/form-data">
-            <div className="row">
-              <div className="col-sm-4">
+          <div className="row">
+            <div className="col-sm-4">
+              <form onSubmit={handleSubmitPost} encType="multipart/form-data">
                 <ImageInput
                   imageFiles={imageFiles}
                   setImageFiles={setImageFiles}
                 />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-sm-4">
                 <textarea
                   placeholder="이동과 관련된 이야기를 나눠보세요."
                   value={text}
                   onChange={handleChangeText} />
-              </div>
+              </form>
             </div>
-            <TagSelector
-              selectedTransportationInfo={selectedTransportation}
-              selectedRegionInfo={selectedRegion}
-              handleChangeSelectedRegionInfo={handleChangeSelectedRegion}
-              handleChangeSelectedTransportationInfo
-                ={handleChangeSelectedTransportation}
-            />
-          </form>
+          </div>
+          <TagSelector
+            selectedTransportationInfo={selectedTransportation}
+            selectedRegionInfo={selectedRegion}
+            handleChangeSelectedRegionInfo={handleChangeSelectedRegion}
+            handleChangeSelectedTransportationInfo
+              ={handleChangeSelectedTransportation}
+          />
         </div>
       </div>
     </>

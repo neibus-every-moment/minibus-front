@@ -1,6 +1,7 @@
 .report {
   padding: 0 4px;
   background-color: $background;
+  height: 100vh;
 
   &_header {
     @include flexbox(between);
