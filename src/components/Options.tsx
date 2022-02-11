@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 
 import { deleteComment } from '../apis/comment';
 import { deletePost } from '../apis/post';
+import { myUserId } from '../utils/hasAuth';
 
-function Options({ isPost, id }: {
+function Options({ isPost, id, userId }: {
   isPost: boolean,
   id: number,
+  userId: number,
 }) {
   const editPostUri = `/write/${id}`;
   const reportPostUri = `/report/post/${id}`;
@@ -23,36 +25,41 @@ function Options({ isPost, id }: {
     }
   };
 
+
   return (
     <div className="options">
-      {/* TODO: 로그인되면 회원 여부에 따라 다르게 보여주기 */}
       {isPost && (
         <>
-          <button>
-            <Link to={reportPostUri}>
+          {userId !== myUserId
+            ? <button>
+              <Link to={reportPostUri}>
               신고하기
-            </Link>
-          </button>
-          <button onClick={() => handleDelete(id)}>
-            삭제하기
-          </button>
-          <button>
-            <Link to={editPostUri}>
-              수정하기
-            </Link>
-          </button>
+              </Link>
+            </button>
+            : <>
+              <button onClick={() => handleDelete(id)}>
+                삭제하기
+              </button>
+              <button>
+                <Link to={editPostUri}>
+                  수정하기
+                </Link>
+              </button></>
+          }
         </>
       )}
       {!isPost && (
         <>
-          <button onClick={() => handleDelete(id)}>
-            삭제하기
-          </button>
-          <button onClick={() => handleDelete(id)}>
-            <Link to={reportCommentUri}>
+          {userId !== myUserId
+            ? <button onClick={() => handleDelete(id)}>
+              <Link to={reportCommentUri}>
               신고하기
-            </Link>
-          </button>
+              </Link>
+            </button>
+            : <button onClick={() => handleDelete(id)}>
+          삭제하기
+            </button>
+          }
         </>
       )}
     </div>

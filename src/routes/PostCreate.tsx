@@ -6,6 +6,7 @@ import ImageInput from '../components/ImageInput';
 import TagSelector from '../components/TagSelector';
 import useInput from '../hooks/useInput';
 import { useSelectId } from '../hooks/useSelectId';
+import { myUserId } from '../utils/hasAuth';
 
 function PostCreate() {
   const [
@@ -45,7 +46,7 @@ function PostCreate() {
       }
 
       const response = await createPost(
-        1,
+        myUserId,
         text,
         selectedRegion,
         selectedTransportation,

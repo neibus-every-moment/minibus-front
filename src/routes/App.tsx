@@ -8,6 +8,7 @@ import Home from './Home';
 import Login from './Login';
 import MyPage from './MyPage';
 import PostCreate from './PostCreate';
+import PrivateRoute from './PrivateRoute';
 import Report from './Report';
 
 function App() {
@@ -16,7 +17,14 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/write/*" element={<PostCreate />} />
+        <Route
+          path="/write/*"
+          element={
+            <PrivateRoute>
+              <PostCreate />
+            </PrivateRoute>
+          }
+        />
         <Route path="/bingo" element={<Bingo />} />
         <Route path="/report/*" element={<Report />} />
         <Route path="/mypage" element={<MyPage />} />

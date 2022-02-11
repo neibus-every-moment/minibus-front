@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { PostProps } from '../routes/Home';
+import { myUserId } from '../utils/hasAuth';
 import CommentsWrapper from './CommentsWrapper';
 import Like from './Like';
 import PostContent from './PostContent';
@@ -28,8 +29,7 @@ function PostItem({ post }: { post: PostProps }) {
   };
 
   useEffect(() => {
-    // TODO: 파라미터는 userId
-    if (like.users.includes(1)) {
+    if (like.users.includes(myUserId)) {
       setIsLikeActive(prev => !prev);
     }
   }, []);
