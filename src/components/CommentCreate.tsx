@@ -3,7 +3,7 @@ import React, { MouseEvent, useEffect, useState } from 'react';
 import { getUserInfo } from '../apis/auth';
 import { createComment } from '../apis/comment';
 import useInput from '../hooks/useInput';
-import { getAuthState } from '../utils/hasAuth';
+import { getAuthState, myUserId } from '../utils/hasAuth';
 
 function CommentCreate({ postId }: { postId: number }) {
   const auth = getAuthState();
@@ -15,7 +15,7 @@ function CommentCreate({ postId }: { postId: number }) {
     if (comment !== '') {
       await createComment({
         postId,
-        userId: 10, // TODO: 로그인 후 useSelctor로 받아오기
+        userId: myUserId,
         content: comment,
       });
       clearComment();
@@ -24,9 +24,8 @@ function CommentCreate({ postId }: { postId: number }) {
 
   useEffect(() => {
     (async () => {
-      const { user: { avatar } } = await getUserInfo(10); // 임시 더미 유저 데이터 1 ~ 10
+      const { user: { avatar } } = await getUserInfo(myUserId);
       setAvatar(avatar);
-      console.log(avatar);
     })();
   }, []);
 

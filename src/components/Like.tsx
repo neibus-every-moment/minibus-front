@@ -5,6 +5,8 @@ import { baseUrl } from '../apis/baseUrl';
 import { likePost } from '../apis/post';
 import useDebounce from '../hooks/useDebounce';
 import { fetcher } from '../utils/fetcher';
+import { myUserId } from '../utils/hasAuth';
+
 interface LikeProps {
   postId: number
   isLikeActive: boolean,
@@ -27,7 +29,7 @@ function Like({ postId, isLikeActive, setIsLikeActive }: LikeProps) {
   const handleToggleLike = async () => {
     mutate('/api/user', { ...data }, false);
     setIsLikeActive(prev => !prev);
-    await likePost(postId, 1); // TODO: 두 번째 인자는 userId
+    await likePost(postId, myUserId);
     mutate(`${baseUrl}/post/${postId}`);
   };
 
