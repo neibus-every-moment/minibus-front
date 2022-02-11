@@ -10,7 +10,6 @@ function Banner () {
       </Link>
     </aside>
   );
-
 }
 
 export default React.memo(Banner);

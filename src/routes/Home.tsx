@@ -104,8 +104,6 @@ function Home() {
     }
   }, [isInView, isValidating]);
 
-  if (!data) { return (<Loading />); }
-
   const datas = data ? [].concat(...data) : [];
 
   return (
@@ -124,7 +122,7 @@ function Home() {
           handleChangeSelectedTransportations
             ={handleChangeSelectedTransportations}
         />
-        <PostList posts={datas} />
+        {!data ? <Loading /> : <PostList posts={datas} />}
         {isValidating
           ? <Loading />
           : null}
