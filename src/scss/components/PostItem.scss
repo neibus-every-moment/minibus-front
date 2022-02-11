@@ -6,12 +6,12 @@ button {
 }
 
 .post-container {
+  @include text-style-body7;
   padding: 16px 20px;
   margin-bottom: 10px;
   color: #000;
   background-color: #fff;
-  border-radius: 12px;
-  @include text-style-body7;
+  border-bottom: 10px solid #f4f6fb;
 }
 
 .post-tag_list {
