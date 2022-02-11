@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 
 function NavigationBar () {
-  const [me, setMe] = useState(true);
   const location = useLocation();
   const { pathname } = location;
 
@@ -56,7 +55,7 @@ function NavigationBar () {
             </Link>
           </li>
           <li className="navigation-item">
-            {me ? <Link to="/mypage">
+            {localStorage.getItem('Auth') ? <Link to="/mypage">
               {pathname === '/mypage' ?
                 <img
                   src="/static/icons/icon-active-user.svg"

@@ -1,28 +1,31 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React from 'react';
+import { Navigate, useNavigate } from 'react-router';
+
+import { baseUrl } from '../apis/baseUrl';
 
 function MyPage() {
-  const [hasAuth, setHasAuth] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSignOut = async() => {
+    try {
+      const res = await axios.post(`${baseUrl}/auth/logoutUser`);
+
+      if (res.data) {
+        localStorage.removeItem('Auth');
+        navigate('/');
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  if (!localStorage.getItem('Auth')) {
+    return <Navigate replace to="/login" />;
+  }
 
   return (
-    // 로그인 전
-    <div className="login-container">
-      <img
-        src="static/images/logo_bus.png"
-        alt="버스 로고"
-        className="logo-bus"
-      />
-      <img
-        src="static/images/logo.png"
-        alt="네이버스"
-        className="logo"
-      />
-      <button className="login-kakao">
-        <img
-          src="static/images/login_kakao.png"
-          alt="카카오 로그인"
-        />
-      </button>
-    </div>
+    <button onClick={handleSignOut}>로그아웃</button>
   );
 }
 
