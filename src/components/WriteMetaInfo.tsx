@@ -6,6 +6,7 @@ function WriteMetaInfo({ isPost, id, user, createdAt, updatedAt }: {
   isPost: boolean,
   id: number,
   user: {
+    id: number,
     nickname: string,
     avatar: string,
   },
@@ -72,10 +73,15 @@ function WriteMetaInfo({ isPost, id, user, createdAt, updatedAt }: {
           </time>
         </div>
         <div className="write_meta_info-options">
-          <button onClick={handleOptionsView} >
+          <div onClick={handleOptionsView} >
             <img src="..\static\icons\icon_options.svg" alt="옵션 버튼" />
-            {optionsView && <Options isPost={isPost} id={id} />}
-          </button>
+            {optionsView &&
+            <Options
+              isPost={isPost}
+              id={id}
+              userId={user.id}
+            />}
+          </div>
         </div>
       </div>
     </>
