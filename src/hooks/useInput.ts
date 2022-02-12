@@ -8,5 +8,5 @@ export default <T>(initialValue: T) => {
   }, []);
 
   const clearInput = useCallback(() => setValue(initialValue), []);
-  return [value, onChange, clearInput] as const;
+  return [value, onChange, clearInput, setValue] as const;
 };

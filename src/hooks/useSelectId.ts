@@ -20,5 +20,5 @@ export const useSelectId = <T>(initialId: T) => {
     setId(e.target.id);
   }, []);
 
-  return [id, handler] as const;
+  return [id, setId, handler] as const;
 };
