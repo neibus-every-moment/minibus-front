@@ -14,6 +14,8 @@ function MyPage() {
     posts: [],
     comments: [],
   });
+  const [isPostsView, setIsPostsView] = useState(false);
+  const [isCommentsView, setIsCommentsView] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -33,6 +35,17 @@ function MyPage() {
       });
     })();
   }, []);
+
+  const handleToggleContentsView = (type: string) => {
+    if (type === 'posts') {
+      setIsCommentsView(false);
+      setIsPostsView(prev => !prev);
+    }
+    if (type === 'comments') {
+      setIsPostsView(false);
+      setIsCommentsView(prev => !prev);
+    }
+  };
 
   const handleSignOut = async () => {
     try {
@@ -57,6 +70,7 @@ function MyPage() {
         <div className="mypage">
           <div className="row">
             <div className="col-sm-4">
+              {!isPostsView && !isCommentsView &&
               <section className="mypage-profile">
                 <div className="mypage-profile-avatar">
                   <div>
@@ -75,17 +89,29 @@ function MyPage() {
                 <div className="mypage-profile-nickname">
                   {userInfo.nickname}
                 </div>
-              </section>
+              </section>}
               <section className="mypage-contents">
-                <div>
+                <div onClick={() => handleToggleContentsView('posts')}>
                   <div>{userInfo.posts.length}</div>
                   <div>내가 쓴 글</div>
                 </div>
-                <div>
+                <div onClick={() => handleToggleContentsView('comments')}>
                   <div>{userInfo.comments.length}</div>
                   <div>내가 쓴 댓글</div>
                 </div>
               </section>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm-4">
+              {isPostsView &&
+              <section className="mypage-contents-posts">
+              내가 쓴 글들
+              </section>}
+              {isCommentsView &&
+              <section className="mypage-contents-comments">
+              내가 쓴 댓글들
+              </section>}
             </div>
           </div>
           <div className="row">
