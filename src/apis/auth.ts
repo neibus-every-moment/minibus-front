@@ -27,3 +27,13 @@ export async function getUserInfo(userId: number) {
     console.error(e);
   }
 }
+
+export async function signOut() {
+  try {
+    const { data } = await axios.post(`${baseUrl}/auth/logoutUser`);
+
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+}

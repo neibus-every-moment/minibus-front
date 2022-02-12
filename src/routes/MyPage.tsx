@@ -1,17 +1,16 @@
-import axios from 'axios';
 import React from 'react';
 import { Navigate, useNavigate } from 'react-router';
 
-import { baseUrl } from '../apis/baseUrl';
+import { signOut } from '../apis/auth';
 
 function MyPage() {
   const navigate = useNavigate();
 
-  const handleSignOut = async() => {
+  const handleSignOut = async () => {
     try {
-      const res = await axios.post(`${baseUrl}/auth/logoutUser`);
+      const res = await signOut();
 
-      if (res.data) {
+      if (res) {
         localStorage.removeItem('Auth');
         navigate('/');
       }
