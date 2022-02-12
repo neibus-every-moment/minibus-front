@@ -31,6 +31,7 @@
         position: relative;
         width: 68px;
         margin: 0 auto;
+        border-radius: 50px;
       }
 
       &-image {
@@ -47,6 +48,27 @@
     &-nickname {
       @include text-style-body3;
       margin-top: 8px;
+    }
+  }
+
+  &-contents {
+    @include text-style-body8;
+    display: flex;
+    justify-content: center;
+    margin: 20px 48px 40px;
+    background-color: #f8f9fb;
+
+    > div {
+      @include text-style-body8;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px 28px 10px;
+      gap: 4px;
+
+      &:first-child {
+        border-right: 1px solid #dfe3eb;
+      }
     }
   }
 }

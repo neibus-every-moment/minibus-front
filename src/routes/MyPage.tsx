@@ -76,16 +76,14 @@ function MyPage() {
                   {userInfo.nickname}
                 </div>
               </section>
-              <section>
+              <section className="mypage-contents">
                 <div>
-                  <div>
-                    <div>{userInfo.posts.length}</div>
-                    <div>내가 쓴 글</div>
-                  </div>
-                  <div>
-                    <div>{userInfo.comments.length}</div>
-                    <div>내가 쓴 댓글</div>
-                  </div>
+                  <div>{userInfo.posts.length}</div>
+                  <div>내가 쓴 글</div>
+                </div>
+                <div>
+                  <div>{userInfo.comments.length}</div>
+                  <div>내가 쓴 댓글</div>
                 </div>
               </section>
             </div>
