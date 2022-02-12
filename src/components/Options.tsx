@@ -10,7 +10,7 @@ function Options({ isPost, id, userId }: {
   id: number,
   userId: number,
 }) {
-  const editPostUri = `/write/${id}`;
+  const editPostUri = `/write/edit/${id}`;
   const reportPostUri = `/report/post/${id}`;
   const reportCommentUri = `/report/comment/${id}`;
 

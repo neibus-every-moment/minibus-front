@@ -90,3 +90,24 @@ export const createPost = async(
     console.error(e);
   }
 };
+
+export const getPostApi = async(postId:string) => {
+  try {
+    const { data: { data } } = await axios.get(`${baseUrl}/post/${postId}`);
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const editPost = async (postId:string, content:string) => {
+  try {
+    const { data: { data } } = await axios.put(`${baseUrl}/post/${postId}`, {
+      content,
+    });
+
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+};
