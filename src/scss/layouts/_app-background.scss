@@ -1,0 +1,67 @@
+body {
+  width: 100%;
+  background-color: $app-background;
+
+  .app-leaflet {
+    display: none;
+	}
+
+  .app-service {
+    position: relative;
+    
+
+      .navigation {
+				position: fixed;
+				bottom: 0;
+				left: 50%;
+				z-index: $navigation;
+				transform: translateX(-50%); //미묘함을 위해.. -1%와 -1px사용..
+        //네비게이션이 밖에 있어서 이렇습니다. 컴포넌트 내부에 넣었으면 안해도 되는데..
+      }
+		}
+}
+
+@media screen and (min-width: $lg-breakpoint) {
+  body {
+    background-image: url('/static/images/background-figure.svg');
+    background-position: center;
+    background-size: cover;
+
+    $leaflet-width: 550px;
+    .app {
+      @include flexbox;
+      align-items: flex-start;
+
+      .app-service {
+        height: 120vh;
+        overflow-y: auto;
+      }
+
+        .app-leaflet {
+			  display: block;
+			  width:  $leaflet-width;
+        height: 100vh;
+		  }
+
+		  .navigation {
+			  left: calc(50% + ( $leaflet-width) /2); //리플렛에 밀려난만큼 더했습니다.
+        transform: translateX(-50%);
+		  }
+	  }	
+	}
+
+  .post_create,
+  .login-container {
+    width: 420px;
+  }
+
+  .report,
+  .login-container,
+  .bingo {
+    height: 120vh;
+  }
+
+}
+
+
+

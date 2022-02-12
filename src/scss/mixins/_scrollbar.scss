@@ -6,3 +6,19 @@
   -ms-overflow-style: none; //ie,edge
   scrollbar-width: none; //firefox
 }
+
+@mixin neibus-scrollbar() {
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+   
+  &::-webkit-scrollbar-track {
+    background-color: $surface;
+  }
+   
+  &::-webkit-scrollbar-thumb {
+    width: 10px;
+    background-color: $neibus01;
+    border-radius: 12px;
+  }
+}

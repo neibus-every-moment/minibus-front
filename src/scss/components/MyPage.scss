@@ -1,4 +1,8 @@
 .login-container {
+  margin: 0 auto;
+  background-color: $background;
+  height: 100vh;
+
   img,
   button {
     display: block;
@@ -6,7 +10,7 @@
   }
 
   .logo-bus {
-    margin-top: 40px;
+    margin-top: 120px;
     margin-bottom: 16px;
   }
 

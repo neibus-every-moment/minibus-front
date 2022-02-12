@@ -1,27 +1,43 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { createPost } from '../apis/post';
+import { createPost, editPost, getPostApi } from '../apis/post';
 import ImageInput from '../components/ImageInput';
 import TagSelector from '../components/TagSelector';
 import useInput from '../hooks/useInput';
 import { useSelectId } from '../hooks/useSelectId';
 import { myUserId } from '../utils/hasAuth';
+import { getParamId, getRequestedPage } from '../utils/location';
 
 function PostCreate() {
   const [
     selectedTransportation,
+    setSelectedTransportation,
     handleChangeSelectedTransportation,
   ] = useSelectId<string>('');
   const [
     selectedRegion,
+    setSelectedRegion,
     handleChangeSelectedRegion,
   ] = useSelectId<string>('');
 
   const [imageFiles, setImageFiles] = useState<File[]>([]);
-  const [text, handleChangeText] = useInput('');
+  const [text, handleChangeText, clear, setText] = useInput('');
 
   const navigate = useNavigate();
+
+  const getPost = async() => {
+    const data = await getPostApi(getParamId());
+    setSelectedRegion(data.region);
+    setSelectedTransportation(data.transportation);
+    setText(data.text);
+  };
+
+  useEffect(() => {
+    if (getRequestedPage() === 'edit') {
+      getPost();
+    }
+  }, []);
 
   const handleSubmitPost
     = useCallback(async(
@@ -45,6 +61,16 @@ function PostCreate() {
         return;
       }
 
+      if (getRequestedPage() === 'edit') {
+        const response = await editPost(getParamId(), text);
+
+        if (typeof response === 'number') {
+          alert('글 수정이 완료되었습니다!');
+          navigate(-1);
+          return;
+        }
+      }
+
       const response = await createPost(
         myUserId,
         text,
@@ -62,8 +88,8 @@ function PostCreate() {
 
   return (
     <>
-      <div className="post_create">
-        <div className="container">
+      <div className="container">
+        <div className="post_create">
           <div className="row">
             <div className="col-sm-4">
               <header className="post_create-header">
@@ -79,36 +105,34 @@ function PostCreate() {
                   className="post_create-submit"
                   onClick={handleSubmitPost}
                 >
-                  남기기
+                  {getRequestedPage() === 'edit' ? '수정' : '남기기' }
                 </button>
               </header>
             </div>
           </div>
-          <form onSubmit={handleSubmitPost} encType="multipart/form-data">
-            <div className="row">
-              <div className="col-sm-4">
-                <ImageInput
-                  imageFiles={imageFiles}
-                  setImageFiles={setImageFiles}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-sm-4">
+          <div className="row">
+            <div className="col-sm-4">
+              <form onSubmit={handleSubmitPost} encType="multipart/form-data">
+                {getRequestedPage() === 'edit' ? null :
+                  <ImageInput
+                    imageFiles={imageFiles}
+                    setImageFiles={setImageFiles}
+                  />}
+
                 <textarea
                   placeholder="이동과 관련된 이야기를 나눠보세요."
                   value={text}
                   onChange={handleChangeText} />
-              </div>
+              </form>
             </div>
-            <TagSelector
-              selectedTransportationInfo={selectedTransportation}
-              selectedRegionInfo={selectedRegion}
-              handleChangeSelectedRegionInfo={handleChangeSelectedRegion}
-              handleChangeSelectedTransportationInfo
-                ={handleChangeSelectedTransportation}
-            />
-          </form>
+          </div>
+          <TagSelector
+            selectedTransportationInfo={selectedTransportation}
+            selectedRegionInfo={selectedRegion}
+            handleChangeSelectedRegionInfo={handleChangeSelectedRegion}
+            handleChangeSelectedTransportationInfo
+              ={handleChangeSelectedTransportation}
+          />
         </div>
       </div>
     </>
