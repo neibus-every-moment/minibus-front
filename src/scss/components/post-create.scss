@@ -45,9 +45,9 @@ $preview-interval: 12px;
   }
 
   .preview-list {
-    @include no-scrollbar(); //TODO: 손가락 스크롤이라도 되게 구현하기
+    @include neibus-scrollbar(); //TODO: 손가락 스크롤이라도 되게 구현하기
     @include flexbox(start);
-    height: $btn-size + $preview-size;
+    height: $btn-size + $preview-size + 4px;
     overflow-x: auto;
 
     .preview-item {

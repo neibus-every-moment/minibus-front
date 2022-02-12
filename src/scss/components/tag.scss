@@ -1,5 +1,7 @@
 .tag-list {
+  @include neibus-scrollbar;
   @include flexbox(start);
+  overflow-x: auto;
 
   .tag-item {
     @include text-style(body4, $body01);
