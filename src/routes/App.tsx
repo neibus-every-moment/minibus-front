@@ -10,6 +10,7 @@ import Login from './Login';
 import MyPage from './MyPage';
 import PostCreate from './PostCreate';
 import PrivateRoute from './PrivateRoute';
+import Quiz from './Quiz';
 import Report from './Report';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/report/*" element={<Report />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/quiz" element={<Quiz />} />
         </Routes>
         <NavigationBar />
       </div>

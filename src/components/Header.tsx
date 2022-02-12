@@ -45,7 +45,7 @@ function Header() {
 
   return (
     <>
-      <header className="container">
+      <header className="container header-container">
         <div className="row">
           <div className="col-sm-4">
             <div className="header">

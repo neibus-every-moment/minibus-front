@@ -198,11 +198,19 @@ function Bingo() {
             </button>
           </div>
         </div>
-        {shareView && <BingoShare
-          onClickShare={handleClickShare}
-          bingoBoard={bingoBoard}
-          bingoCount={bingoCount}
-        />}
+        {shareView &&
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-4">
+              <BingoShare
+                onClickShare={handleClickShare}
+                bingoBoard={bingoBoard}
+                bingoCount={bingoCount}
+              />
+            </div>
+          </div>
+        </div>
+        }
       </div>
     </div>
   );
