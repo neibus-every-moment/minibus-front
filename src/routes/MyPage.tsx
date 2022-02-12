@@ -1,18 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router';
 
-import { getUserInfo, signOut } from '../apis/auth';
+import { getMyComments, getMyPosts, getUserInfo, signOut } from '../apis/auth';
+import CommentItem from '../components/CommentItem';
+import PostList from '../components/PostList';
 import { myUserId } from '../utils/hasAuth';
+import { CommentProps, PostProps } from './Home';
 
+interface UserInfoProps {
+  nickname: string,
+  email: string,
+  avatar: string,
+  posts: PostProps[],
+  postsCount: number,
+  comments: CommentProps[],
+  commentsCount: number,
+}
 
 function MyPage() {
   const navigate = useNavigate();
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<UserInfoProps>({
     nickname: '',
     email: '',
     avatar: '',
     posts: [],
+    postsCount: 0,
     comments: [],
+    commentsCount: 0,
   });
   const [isPostsView, setIsPostsView] = useState(false);
   const [isCommentsView, setIsCommentsView] = useState(false);
@@ -27,21 +41,31 @@ function MyPage() {
       } = res;
 
       setUserInfo({
+        ...userInfo,
         nickname,
         email,
         avatar,
-        posts,
-        comments,
+        // TODO: 현재 api에 오류가 있어서 임시로 주석 처리
+        // posts,
+        // comments,
+        postsCount: posts.length,
+        commentsCount: comments.length,
       });
     })();
   }, []);
 
-  const handleToggleContentsView = (type: string) => {
+  const handleToggleContentsView = async (type: string) => {
     if (type === 'posts') {
+      if (userInfo.posts === []) {
+        await getMyPosts();
+      }
       setIsCommentsView(false);
       setIsPostsView(prev => !prev);
     }
     if (type === 'comments') {
+      if (userInfo.comments === []) {
+        await getMyComments();
+      }
       setIsPostsView(false);
       setIsCommentsView(prev => !prev);
     }
@@ -92,11 +116,11 @@ function MyPage() {
               </section>}
               <section className="mypage-contents">
                 <div onClick={() => handleToggleContentsView('posts')}>
-                  <div>{userInfo.posts.length}</div>
+                  <div>{userInfo.postsCount}</div>
                   <div>내가 쓴 글</div>
                 </div>
                 <div onClick={() => handleToggleContentsView('comments')}>
-                  <div>{userInfo.comments.length}</div>
+                  <div>{userInfo.commentsCount}</div>
                   <div>내가 쓴 댓글</div>
                 </div>
               </section>
@@ -106,12 +130,18 @@ function MyPage() {
             <div className="col-sm-4">
               {isPostsView &&
               <section className="mypage-contents-posts">
-              내가 쓴 글들
-              </section>}
+                <PostList posts={userInfo.posts} />
+              </section>
+              }
               {isCommentsView &&
-              <section className="mypage-contents-comments">
-              내가 쓴 댓글들
-              </section>}
+          <section className="mypage-contents-comments">
+            {userInfo.comments.map((comment) => (
+              <CommentItem
+                key={comment.id}
+                comment={comment}
+              />
+            ))}
+          </section>}
             </div>
           </div>
           <div className="row">
