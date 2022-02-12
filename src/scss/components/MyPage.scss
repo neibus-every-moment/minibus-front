@@ -1,7 +1,8 @@
+// Login
 .login-container {
+  height: 100vh;
   margin: 0 auto;
   background-color: $background;
-  height: 100vh;
 
   img,
   button {
@@ -16,5 +17,36 @@
 
   .logo {
     margin-bottom: 100px;
+  }
+}
+
+// MyPage
+.mypage {
+  &-profile {
+    margin-top: 42px;
+    text-align: center;
+
+    &-avatar {
+      div {
+        position: relative;
+        width: 68px;
+        margin: 0 auto;
+      }
+
+      &-image {
+        width: 100%;
+      }
+
+      &-edit {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+    }
+
+    &-nickname {
+      @include text-style-body3;
+      margin-top: 8px;
+    }
   }
 }

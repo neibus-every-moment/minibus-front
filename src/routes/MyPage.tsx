@@ -57,9 +57,24 @@ function MyPage() {
         <div className="mypage">
           <div className="row">
             <div className="col-sm-4">
-              <section>
-                <img src={userInfo.avatar} alt="유저 사진" width={68} />
-                <div>{userInfo.nickname}</div>
+              <section className="mypage-profile">
+                <div className="mypage-profile-avatar">
+                  <div>
+                    <img
+                      src={userInfo.avatar}
+                      alt="유저 사진"
+                      className="mypage-profile-avatar-image"
+                    />
+                    <img
+                      src="static/icons/icon-settings.svg"
+                      alt="프로필 이미지 변경"
+                      className="mypage-profile-avatar-edit"
+                    />
+                  </div>
+                </div>
+                <div className="mypage-profile-nickname">
+                  {userInfo.nickname}
+                </div>
               </section>
               <section>
                 <div>
