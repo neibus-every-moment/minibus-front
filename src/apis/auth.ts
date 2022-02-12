@@ -37,3 +37,23 @@ export async function signOut() {
     console.error(e);
   }
 }
+
+export async function getMyPosts() {
+  try {
+    const { data } = await axios.get(`${baseUrl}/auth/my-posts`);
+
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export async function getmyCommnets() {
+  try {
+    const { data } = await axios.get(`${baseUrl}/auth/my-comments`);
+
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+}
