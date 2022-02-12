@@ -69,12 +69,14 @@ const config: Configuration = {
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
-    new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: isDevelopment ? 'development' : 'production' }),
     new CleanWebpackPlugin(),
   ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
+    publicPath: '/dist/',
   },
   devServer: {
     historyApiFallback: true,
