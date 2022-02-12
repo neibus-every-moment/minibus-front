@@ -90,14 +90,23 @@ function MyPage() {
           </div>
           <div className="row">
             <div className="col-sm-4">
-              <section>
+              <section className="mypage-info">
                 <h6>내 정보</h6>
-                <div>
+                <div className="mypage-info-item mypage-info-account">
                   <div>계정정보</div>
-                  <div>{userInfo.email}</div>
+                  <div className="mypage-info-account-email">
+                    <div>
+                      <img src="static/icons/icon_kakao_simple.svg" alt="카카오" />
+                    </div>
+                    {userInfo.email}
+                  </div>
                 </div>
-                <button onClick={handleSignOut}>로그아웃</button>
-                <div>회원탈퇴</div>
+                <div className="mypage-info-item">
+                  <button onClick={handleSignOut}>로그아웃</button>
+                </div>
+                <div className="mypage-info-item">
+                  <button>회원탈퇴</button>
+                </div>
               </section>
             </div>
           </div>

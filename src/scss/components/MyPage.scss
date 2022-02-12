@@ -71,4 +71,31 @@
       }
     }
   }
+
+  &-info {
+    @include text-style-body8;
+
+    h6 {
+      @include text-style-flag;
+      padding: 8px 0;
+      color: $title02;
+      background-color: #f8f9fb;
+    }
+
+    &-item {
+      height: 54px;
+      padding: 18px 0;
+      border-bottom: 1px solid #f8f9fb;
+    }
+
+    &-account {
+      display: flex;
+      justify-content: space-between;
+
+      &-email {
+        display: flex;
+        gap: 8px;
+      }
+    }
+  }
 }
