@@ -34,10 +34,14 @@ function PostCreate() {
   };
 
   useEffect(() => {
+    setSelectedTransportation('');
+    setSelectedTransportation('');
+    setText('');
+
     if (getRequestedPage() === 'edit') {
       getPost();
     }
-  }, []);
+  }, [getRequestedPage()]);
 
   const handleSubmitPost
     = useCallback(async(
@@ -97,7 +101,7 @@ function PostCreate() {
                   className="post_create-back"
                   onClick={() => navigate(-1)}
                 >
-                  <img src="../static/icons/arrow-left.svg" alt="뒤로가기" />
+                  <img src="/static/icons/arrow-left.svg" alt="뒤로가기" />
                 </button>
                 <h1>의견</h1>
                 <button
