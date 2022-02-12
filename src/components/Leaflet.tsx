@@ -11,9 +11,11 @@ function Leaflet() {
           <p className="slogan">
             <span className="sr-only">지루한 이동 시간을 힙하게</span>
             <img
+              className="slogan1"
               src="/static/images/slogan1.svg"
               alt="지루한" />
             <img
+              className="slogan2"
               src="/static/images/slogan2.svg"
               alt="이동시간을" />
             <span className="slogan-point">
@@ -21,7 +23,9 @@ function Leaflet() {
                 src="/static/images/slogan-point.svg"
                 alt="힙"
                 className="slogan-hip" />
-              <img src="/static/images/slogan3.svg"
+              <img
+                className="slogan3"
+                src="/static/images/slogan3.svg"
                 alt="하게" />
             </span>
           </p>
