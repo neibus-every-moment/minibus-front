@@ -48,7 +48,7 @@ export async function getMyPosts() {
   }
 }
 
-export async function getmyCommnets() {
+export async function getMyComments() {
   try {
     const { data } = await axios.get(`${baseUrl}/auth/my-comments`);
 
