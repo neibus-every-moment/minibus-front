@@ -23,8 +23,8 @@ export interface CommentProps {
     nickname: string
   },
   text: string,
-  createdAt: Date,
-  updatedAt: Date
+  createdAt: Date | string,
+  updatedAt: Date | string,
 }
 
 export interface CommentsProps {
@@ -40,8 +40,8 @@ export interface PostProps {
     avatar: string,
     nickname: string,
   },
-  createdAt: Date,
-  updatedAt: Date,
+  createdAt: Date | string,
+  updatedAt: Date | string,
   transportation: string,
   region: string,
   text: string,

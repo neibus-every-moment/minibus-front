@@ -10,8 +10,8 @@ function WriteMetaInfo({ isPost, id, user, createdAt, updatedAt }: {
     nickname: string,
     avatar: string,
   },
-  createdAt: Date,
-  updatedAt: Date,
+  createdAt: Date | string,
+  updatedAt: Date | string,
 }) {
   const [optionsView, setOptionsView] = useState(false);
 

@@ -27,3 +27,33 @@ export async function getUserInfo(userId: number) {
     console.error(e);
   }
 }
+
+export async function signOut() {
+  try {
+    const { data } = await axios.post(`${baseUrl}/auth/logoutUser`);
+
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export async function getMyPosts() {
+  try {
+    const { data } = await axios.get(`${baseUrl}/auth/my-posts`);
+
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export async function getMyComments() {
+  try {
+    const { data } = await axios.get(`${baseUrl}/auth/my-comments`);
+
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+}
