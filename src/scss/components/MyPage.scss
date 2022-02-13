@@ -24,6 +24,8 @@
 
 // MyPage
 .mypage {
+  height: calc(100vh - 60px);
+
   &-profile {
     margin-top: 42px;
     text-align: center;
@@ -57,8 +59,11 @@
     @include text-style-body8;
     display: flex;
     justify-content: center;
-    margin: 20px 48px 40px;
+    padding: 10px 0;
+    margin: 20px 70px 40px;
     background-color: #f8f9fb;
+    border-radius: 12px;
+    cursor: pointer;
 
     > div {
       @include text-style-body8;
@@ -72,14 +77,27 @@
         border-right: 1px solid #dfe3eb;
       }
     }
+
+    &-posts {
+      margin: 0 -20px;
+    }
+
+    &-comments {
+      li {
+        padding: 14px 0;
+        border-bottom: 1px solid #f8f9fb;
+      }
+    }
   }
 
   &-info {
     @include text-style-body8;
+    margin-bottom: 60px;
 
     h6 {
       @include text-style-flag;
-      padding: 8px 0;
+      padding: 8px 20px;
+      margin: 0 -20px;
       color: $title02;
       background-color: #f8f9fb;
     }
