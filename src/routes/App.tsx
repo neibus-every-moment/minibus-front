@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Leaflet from '../components/Leaflet';
 import NavigationBar from '../components/NavigationBar';
 import Bingo from './Bingo';
+import Error from './Error';
 import Home from './Home';
 import Login from './Login';
 import MyPage from './MyPage';
@@ -36,6 +37,7 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/quiz" element={<Quiz />} />
+          <Route path="/error" element={<Error />} />
         </Routes>
         <NavigationBar />
       </div>

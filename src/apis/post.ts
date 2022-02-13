@@ -88,6 +88,7 @@ export const createPost = async(
     return data;
   } catch (e) {
     console.error(e);
+    location.href = 'error';
   }
 };
 
@@ -97,6 +98,7 @@ export const getPostApi = async(postId:string) => {
     return data;
   } catch (e) {
     console.error(e);
+    location.href = 'error';
   }
 };
 
@@ -109,5 +111,6 @@ export const editPost = async (postId:string, content:string) => {
     return data;
   } catch (e) {
     console.error(e);
+    location.href = 'error';
   }
 };

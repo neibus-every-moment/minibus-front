@@ -10,6 +10,7 @@ export async function getTransportationsApi() {
     return data;
   } catch (e) {
     console.error(e);
+    location.href = 'error';
   }
 
 }
@@ -22,5 +23,6 @@ export async function getRegionsApi() {
     return data;
   } catch (e) {
     console.error(e);
+    location.href = 'error';
   }
 }
