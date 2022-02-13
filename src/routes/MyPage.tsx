@@ -34,7 +34,7 @@ function MyPage() {
     comments: [],
     commentsCount: 0,
   });
-  const [profileImage, setProfileImage] = useState<File | any>(null);
+  const [profileImage, setProfileImage] = useState<File | null>(null);
   const [isPostsView, setIsPostsView] = useState(false);
   const [isCommentsView, setIsCommentsView] = useState(false);
 
@@ -58,30 +58,26 @@ function MyPage() {
     })();
   }, []);
 
-  useEffect(() => {
-    console.log('changed');
-  }, [profileImage]);
-
   const handleChangeProfileImage = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    e.preventDefault();
     const { target: { files } } = e;
     if (files) {
-      const file = files[0];
-
-      setProfileImage(file);
-      console.log(file);
-      console.log(files[0]);
-      console.log(profileImage);
+      setProfileImage(files[0]);
     }
-    console.log(profileImage);
   };
 
   const handleSubmitProfileImage = async (
-    e: React.FormEvent<HTMLFormElement>
+    e: React.FormEvent<HTMLFormElement | HTMLButtonElement>
   ) => {
-    await editProfileImage(myUserId, profileImage);
+    e.preventDefault();
+    // TODO: 매우 이해가지 않는 상황
+    // - useEffect로 상태에 파일이 들어간 걸 확인함,
+    // - 변경 버튼은 상태가 truthy일 때만 렌더링됨,
+    // 하지만 제출을 누를 땐 state(profileImage)가 null이라고 인식됨
+    if (profileImage) {
+      await editProfileImage(myUserId, profileImage);
+    }
   };
 
   const handleToggleContentsView = async (type: string) => {
@@ -159,7 +155,13 @@ function MyPage() {
                         hidden
                         onChange={handleChangeProfileImage}
                       />
-                      {/* TODO: 제출 버튼 */}
+                      {profileImage && <button
+                        type="submit"
+                        onClick={handleSubmitProfileImage}
+                        className="mypage-profile-btn"
+                      >
+                        변경
+                      </button>}
                     </form>
                   </div>
                 </div>
