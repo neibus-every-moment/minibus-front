@@ -24,24 +24,30 @@ function Login() {
   return (
     <>
       <div className="container">
-        <div className="row">
-          <div className="login-container">
-            <img
-              src="static/images/logo_bus.png"
-              alt="버스 로고"
-              className="logo-bus"
-            />
-            <img
-              src="static/images/logo.png"
-              alt="네이버스"
-              className="logo"
-            />
-            <button className="login-kakao" onClick={handleSignin}>
+        <div className="login-container">
+          <div className="row">
+            <div className="col-sm-4">
               <img
-                src="static/images/login_kakao.png"
-                alt="카카오 로그인"
+                src="static/images/logo_bus.png"
+                alt="버스 로고"
+                className="logo-bus"
               />
-            </button>
+            </div>
+            <div className="col-sm-4">
+              <img
+                src="static/images/logo.png"
+                alt="네이버스"
+                className="logo"
+              />
+            </div>
+            <div className="col-sm-4">
+              <button className="login-kakao" onClick={handleSignin}>
+                <img
+                  src="static/images/login_kakao.png"
+                  alt="카카오 로그인"
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>
