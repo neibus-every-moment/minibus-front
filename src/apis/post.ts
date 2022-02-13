@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router';
 
 import { baseUrl } from './baseUrl';
 
@@ -16,7 +17,7 @@ export const getPosts = async (params: {
     regions,
     transportations,
   } = params;
-
+  const navigate = useNavigate();
   try {
     const { data: { data } } = await axios.get(`${baseUrl}/posts`, {
       params: {
@@ -31,20 +32,24 @@ export const getPosts = async (params: {
     return data;
   } catch (error) {
     console.log(error);
+    navigate('/error');
   }
 };
 
 export const deletePost = async (id: number) => {
+  const navigate = useNavigate();
   try {
     const { data } = await axios.delete(`${baseUrl}/post/${id}`);
 
     return data;
   } catch (error) {
     console.log(error);
+    navigate('/error');
   }
 };
 
 export const likePost = async (postId: number, userId: number) => {
+  const navigate = useNavigate();
   try {
     const { data } = await axios.put(`${baseUrl}/post/like/${postId}`, {
       userId,
@@ -53,6 +58,7 @@ export const likePost = async (postId: number, userId: number) => {
     return data.likeCount;
   } catch (error) {
     console.log(error);
+    navigate('/error');
   }
 };
 
@@ -63,6 +69,7 @@ export const createPost = async(
   transportation:string,
   imageFiles:File[]
 ) => {
+  const navigate = useNavigate();
   try {
     const formData = new FormData();
 
@@ -88,19 +95,23 @@ export const createPost = async(
     return data;
   } catch (e) {
     console.error(e);
+    navigate('/error');
   }
 };
 
 export const getPostApi = async(postId:string) => {
+  const navigate = useNavigate();
   try {
     const { data: { data } } = await axios.get(`${baseUrl}/post/${postId}`);
     return data;
   } catch (e) {
     console.error(e);
+    navigate('/error');
   }
 };
 
 export const editPost = async (postId:string, content:string) => {
+  const navigate = useNavigate();
   try {
     const { data: { data } } = await axios.put(`${baseUrl}/post/${postId}`, {
       content,
@@ -109,5 +120,6 @@ export const editPost = async (postId:string, content:string) => {
     return data;
   } catch (e) {
     console.error(e);
+    navigate('/error');
   }
 };

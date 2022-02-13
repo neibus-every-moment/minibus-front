@@ -1,10 +1,12 @@
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 import { baseUrl } from './baseUrl';
 
 export async function saveAuth() {
+  const navigate = useNavigate();
   try {
-    const resToken = await axios.post(`${baseUrl}/auth/login`, {
+    const resToken = await axios.post(`${baseUrl}/auth/loginadad`, {
       email: 'test@test.com',
       nickname: 'test계정입니다',
       profileImage: 'test',
@@ -15,30 +17,36 @@ export async function saveAuth() {
 
   } catch (e) {
     console.error(e);
+    return navigate('/error');
   }
 }
 
 export async function getUserInfo(userId: number) {
+  const navigate = useNavigate();
   try {
     const { data } = await axios.get(`${baseUrl}/auth/login/${userId}`);
 
     return data;
   } catch (e) {
     console.error(e);
+    return navigate('/error');
   }
 }
 
 export async function signOut() {
+  const navigate = useNavigate();
   try {
     const { data } = await axios.post(`${baseUrl}/auth/logoutUser`);
 
     return data;
   } catch (e) {
     console.error(e);
+    return navigate('/error');
   }
 }
 
 export async function getMyPosts(id: number) {
+  const navigate = useNavigate();
   try {
     const { data: { data } }
     = await axios.get(`${baseUrl}/auth/my-posts/${id}`);
@@ -46,10 +54,12 @@ export async function getMyPosts(id: number) {
     return data;
   } catch (e) {
     console.error(e);
+    return navigate('/error');
   }
 }
 
 export async function getMyComments(id: number) {
+  const navigate = useNavigate();
   try {
     const { data: { data } }
     = await axios.get(`${baseUrl}/auth/my-comments/${id}`);
@@ -57,10 +67,12 @@ export async function getMyComments(id: number) {
     return data;
   } catch (e) {
     console.error(e);
+    return navigate('/error');
   }
 }
 
 export async function editProfileImage(userId: number, avatar: File) {
+  const navigate = useNavigate();
   try {
     const formData = new FormData();
 
@@ -82,5 +94,6 @@ export async function editProfileImage(userId: number, avatar: File) {
 
   } catch (e) {
     console.log(e);
+    return navigate('/error');
   }
 }

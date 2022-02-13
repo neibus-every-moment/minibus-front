@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 import { baseUrl } from './baseUrl';
 
@@ -9,6 +10,7 @@ interface reportApiBody {
 }
 
 export async function getReportReasonsApi() {
+  const navigate = useNavigate();
   try {
     const { data: { data } }
         = await axios.get(`${baseUrl}/reasons`);
@@ -16,6 +18,7 @@ export async function getReportReasonsApi() {
     return data;
   } catch (e) {
     console.error(e);
+    navigate('/error');
   }
 }
 
@@ -24,6 +27,7 @@ export async function reportPostApi({
   reportReason,
   detail,
 }:reportApiBody) {
+  const navigate = useNavigate();
   try {
     if (reportReason === '기타' && detail) {
       const { data } = await axios.post(
@@ -50,6 +54,7 @@ export async function reportPostApi({
     }
   } catch (e) {
     console.error(e);
+    navigate('/error');
   }
 }
 
@@ -58,6 +63,7 @@ export async function reportCommentApi({
   reportReason,
   detail,
 }:reportApiBody) {
+  const navigate = useNavigate();
   try {
     if (reportReason === '기타' && detail) {
       const { data } = await axios.post(
@@ -85,5 +91,6 @@ export async function reportCommentApi({
     }
   } catch (e) {
     console.error(e);
+    navigate('/error');
   }
 }
