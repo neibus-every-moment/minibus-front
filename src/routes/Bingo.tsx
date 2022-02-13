@@ -169,7 +169,6 @@ function Bingo() {
       <div className="bingo">
         <div className="row">
           <div className="col-sm-4 bingo-info">
-            <h5 className="bingo-info-title">도전! 일상 빙고</h5>
             <p>
                 이동 중 마주친<br />
                 일상 속 소소한 순간들을<br />
