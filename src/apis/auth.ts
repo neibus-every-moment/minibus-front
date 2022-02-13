@@ -67,7 +67,6 @@ export async function getMyComments(id: number) {
 
 export async function editProfileImage(userId: number, avatar: File) {
   try {
-    console.log(avatar);
     const formData = new FormData();
 
     formData.append('request', new Blob([
