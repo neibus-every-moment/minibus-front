@@ -5,7 +5,7 @@ import { baseUrl } from './baseUrl';
 export async function getTransportationsApi() {
   try {
     const { data: { data } } =
-        await axios.get(`${baseUrl}/transportation`);
+        await axios.get(`${baseUrl}/transportations`);
 
     return data;
   } catch (e) {
