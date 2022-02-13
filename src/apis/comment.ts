@@ -25,6 +25,7 @@ export const createComment = async (body: CommentBodyProps) => {
     return data;
   } catch (error) {
     console.log(error);
+    location.href = '/error';
   }
 };
 
@@ -35,5 +36,6 @@ export const deleteComment = async (id: number) => {
     return data;
   } catch (error) {
     console.log(error);
+    location.href = '/error';
   }
 };

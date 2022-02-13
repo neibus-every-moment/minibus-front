@@ -15,6 +15,7 @@ export async function saveAuth() {
 
   } catch (e) {
     console.error(e);
+    location.href = '/error';
   }
 }
 
@@ -25,6 +26,7 @@ export async function getUserInfo(userId: number) {
     return data;
   } catch (e) {
     console.error(e);
+    location.href = '/error';
   }
 }
 
@@ -35,6 +37,7 @@ export async function signOut() {
     return data;
   } catch (e) {
     console.error(e);
+    location.href = '/error';
   }
 }
 
@@ -46,6 +49,7 @@ export async function getMyPosts(id: number) {
     return data;
   } catch (e) {
     console.error(e);
+    location.href = '/error';
   }
 }
 
@@ -57,6 +61,7 @@ export async function getMyComments(id: number) {
     return data;
   } catch (e) {
     console.error(e);
+    location.href = '/error';
   }
 }
 
@@ -82,5 +87,6 @@ export async function editProfileImage(userId: number, avatar: File) {
 
   } catch (e) {
     console.log(e);
+    location.href = '/error';
   }
 }

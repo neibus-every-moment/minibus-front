@@ -5,11 +5,12 @@ import { baseUrl } from './baseUrl';
 export async function getTransportationsApi() {
   try {
     const { data: { data } } =
-        await axios.get(`${baseUrl}/transportations`);
+        await axios.get(`${baseUrl}/transportation`);
 
     return data;
   } catch (e) {
     console.error(e);
+    location.href = '/error';
   }
 }
 
@@ -21,5 +22,6 @@ export async function getRegionsApi() {
     return data;
   } catch (e) {
     console.error(e);
+    location.href = '/error';
   }
 }

@@ -30,6 +30,7 @@ export const getPosts = async (params: {
     return data;
   } catch (error) {
     console.log(error);
+    location.href = '/error';
   }
 };
 
@@ -40,6 +41,7 @@ export const deletePost = async (id: number) => {
     return data;
   } catch (error) {
     console.log(error);
+    location.href = '/error';
   }
 };
 
@@ -52,6 +54,7 @@ export const likePost = async (postId: number, userId: number) => {
     return data.likeCount;
   } catch (error) {
     console.log(error);
+    location.href = '/error';
   }
 };
 
@@ -87,6 +90,7 @@ export const createPost = async(
     return data;
   } catch (e) {
     console.error(e);
+    location.href = '/error';
   }
 };
 
@@ -96,6 +100,7 @@ export const getPostApi = async(postId:string) => {
     return data;
   } catch (e) {
     console.error(e);
+    location.href = '/error';
   }
 };
 
@@ -108,5 +113,6 @@ export const editPost = async (postId:string, content:string) => {
     return data;
   } catch (e) {
     console.error(e);
+    location.href = '/error';
   }
 };

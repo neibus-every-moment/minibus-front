@@ -16,6 +16,7 @@ export async function getReportReasonsApi() {
     return data;
   } catch (e) {
     console.error(e);
+    location.href = '/error';
   }
 }
 
@@ -50,6 +51,7 @@ export async function reportPostApi({
     }
   } catch (e) {
     console.error(e);
+    location.href = '/error';
   }
 }
 
@@ -85,5 +87,6 @@ export async function reportCommentApi({
     }
   } catch (e) {
     console.error(e);
+    location.href = '/error';
   }
 }
