@@ -45,9 +45,6 @@ function MyPage() {
         nickname,
         email,
         avatar,
-        // TODO: 현재 api에 오류가 있어서 임시로 주석 처리
-        // posts,
-        // comments,
         postsCount: posts.length,
         commentsCount: comments.length,
       });
@@ -56,15 +53,25 @@ function MyPage() {
 
   const handleToggleContentsView = async (type: string) => {
     if (type === 'posts') {
-      if (userInfo.posts === []) {
-        await getMyPosts();
+      if (userInfo.posts.length === 0) {
+        const posts = await getMyPosts(myUserId);
+        setUserInfo({
+          ...userInfo,
+          posts,
+        });
       }
       setIsCommentsView(false);
       setIsPostsView(prev => !prev);
     }
+
     if (type === 'comments') {
-      if (userInfo.comments === []) {
-        await getMyComments();
+      if (userInfo.comments.length === 0) {
+        const comments = await getMyComments(myUserId);
+        console.log(comments);
+        setUserInfo({
+          ...userInfo,
+          comments,
+        });
       }
       setIsPostsView(false);
       setIsCommentsView(prev => !prev);
