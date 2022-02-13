@@ -59,3 +59,29 @@ export async function getMyComments(id: number) {
     console.error(e);
   }
 }
+
+export async function editProfileImage(userId: number, avatar: File) {
+  try {
+    console.log(avatar);
+    const formData = new FormData();
+
+    formData.append('request', new Blob([
+      JSON.stringify({
+        avatar,
+      }),
+    ],
+    { type: 'application/json' }));
+
+    formData.append('img', avatar);
+
+    const { data: { data } } = await axios.put(
+      `${baseUrl}/auth/user/${userId}`,
+      formData,
+    );
+
+    return data;
+
+  } catch (e) {
+    console.log(e);
+  }
+}
