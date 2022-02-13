@@ -1,16 +1,11 @@
 .bingo {
   position: relative;
-  height: calc(100vh - 76px); // Header가 차지하는 부분 제외
+  height: calc(100vh - 60px); // Header가 차지하는 부분 제외
   text-align: center;
   background-color: $surface;
+  padding-top: 30px;
 
   &-info {
-    &-title {
-      @include text-style-heading5;
-      margin-top: 40px;
-      margin-bottom: 20px;
-    }
-
     p {
       @include text-style-body6;
       margin-bottom: 32px;

@@ -19,16 +19,17 @@
   }
 
   &-user {
-    @include text-style-body3;
+    @include text-style(body3, #000);
   }
 
   &-date {
-    @include text-style-body8;
+    @include text-style(body8, $body02);
   }
 
   &-options {
     position: absolute;
     top: 12px;
     right: 0;
+    cursor: pointer;
   }
 }
