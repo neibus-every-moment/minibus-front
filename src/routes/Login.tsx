@@ -13,12 +13,12 @@ function Login() {
     }
 
     if (localStorage.getItem('Auth')) {
-      navigate('/mypage');
+      navigate('/#/mypage');
     }
   };
 
   if (localStorage.getItem('Auth')) {
-    return <Navigate replace to="/mypage" />;
+    return <Navigate replace to="/#/mypage" />;
   }
 
   return (
