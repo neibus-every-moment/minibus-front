@@ -8,7 +8,7 @@ function PostList({ posts }: { posts: PostProps[] }) {
     <>
       {
         posts?.map(post => (
-          <div className="row" key={post.id}>
+          <div className="row post-item" key={post.id}>
             <div className="col-sm-4">
               <PostItem post={post} />
             </div>
