@@ -68,7 +68,7 @@ function WriteMetaInfo({ isPost, id, user, createdAt, updatedAt }: {
             {formatTime(createdAt)}
             {JSON.stringify(createdAt) === JSON.stringify(updatedAt)
               ? null
-              : '수정됨'
+              : ' (수정됨)'
             }
           </time>
         </div>
