@@ -6,7 +6,7 @@ import { baseUrl } from './baseUrl';
 export async function saveAuth() {
   const navigate = useNavigate();
   try {
-    const resToken = await axios.post(`${baseUrl}/auth/loginadad`, {
+    const resToken = await axios.post(`${baseUrl}/auth/login`, {
       email: 'test@test.com',
       nickname: 'test계정입니다',
       profileImage: 'test',
