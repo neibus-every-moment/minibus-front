@@ -38,9 +38,10 @@ export async function signOut() {
   }
 }
 
-export async function getMyPosts() {
+export async function getMyPosts(id: number) {
   try {
-    const { data } = await axios.get(`${baseUrl}/auth/my-posts`);
+    const { data: { data } }
+    = await axios.get(`${baseUrl}/auth/my-posts/${id}`);
 
     return data;
   } catch (e) {
@@ -48,9 +49,10 @@ export async function getMyPosts() {
   }
 }
 
-export async function getMyComments() {
+export async function getMyComments(id: number) {
   try {
-    const { data } = await axios.get(`${baseUrl}/auth/my-comments`);
+    const { data: { data } }
+    = await axios.get(`${baseUrl}/auth/my-comments/${id}`);
 
     return data;
   } catch (e) {
