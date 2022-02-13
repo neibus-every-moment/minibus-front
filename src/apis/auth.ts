@@ -17,7 +17,7 @@ export async function saveAuth() {
 
   } catch (e) {
     console.error(e);
-    return navigate('/error');
+    navigate('error');
   }
 }
 
