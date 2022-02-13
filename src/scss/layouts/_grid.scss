@@ -1,1 +1,24 @@
 //부트스트랩의 container와 같은 역할입니다.
+.container {
+  width: 100%;
+  max-width: $md-breakpoint;
+  margin: 0 auto;
+  background-color: $background;
+
+  .row {
+    background-color: $background;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 $sm-margin - $gutter / 2;
+  }
+
+  [class^='col-'] {
+    padding: 0 $gutter / 2;
+  }
+
+  @for $i from 1 through $sm-columns {
+    .col-sm-#{$i} {
+      width: percentage($i / $sm-columns);
+    }
+  }
+}

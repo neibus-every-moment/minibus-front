@@ -1,0 +1,28 @@
+.tag-list {
+  @include neibus-scrollbar;
+  @include flexbox(start);
+  overflow-x: auto;
+
+  .tag-item {
+    @include text-style(body4, $body01);
+    display: inline-block;
+    padding: 4px 12px;
+    margin-right: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid $body03;
+    border-radius: 42px;
+
+    &:hover {
+      color: $neibus02;
+      background-color: $surface;
+      border: 1px solid $neibus01;
+    }
+
+    &.isActive {
+      color: $background;
+      background-color: $neibus01;
+      border: 1px solid $neibus01;
+    }
+  }
+}

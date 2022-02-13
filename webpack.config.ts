@@ -12,7 +12,7 @@ interface Configuration extends WebpackConfiguration {
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const config: Configuration = {
-  name: 'boilerplate',
+  name: 'minibus',
   mode: isDevelopment ? 'development' : 'production',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
@@ -27,6 +27,7 @@ const config: Configuration = {
         test: /\.tsx?$/,
         loader: 'babel-loader',
         options: {
+          plugins: ['@babel/plugin-transform-runtime'],
           presets: [
             [
               '@babel/preset-env',
@@ -74,7 +75,6 @@ const config: Configuration = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/dist/',
   },
   devServer: {
     historyApiFallback: true,

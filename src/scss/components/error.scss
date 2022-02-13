@@ -1,0 +1,50 @@
+.error {
+    @include column-flexbox;
+    width: 100%;
+    height: calc(100vh - 60px);
+    box-sizing: border-box;
+
+
+    &-message {
+        @include column-flexbox;
+        margin-bottom: 130px;
+        span {
+            @include text-style(headline2,$body01);
+            margin: 40px;
+        }
+
+        p{
+            @include text-style(body6,$body01);
+            text-align: center;
+            white-space: nowrap;
+        }
+    }
+
+    &-route {
+        @include flexbox;
+
+        .link {
+            @include text-style(body3,$background);
+            display: block;
+            padding: 8px 20px;
+            border-radius: 8px;
+            margin-right: 16px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        a {
+            background-color: $neibus05;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            display: block;
+            background-color: $neibus01;
+            color: inherit;
+        }
+    }
+}

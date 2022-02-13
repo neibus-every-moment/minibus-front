@@ -1,0 +1,35 @@
+.write_meta_info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  width: 100%;
+
+  &-avatar {
+    width: 36px;
+    height: 36px;
+    margin-right: 8px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+    }
+  }
+
+  &-user {
+    @include text-style(body3, #000);
+  }
+
+  &-date {
+    @include text-style(body8, $body02);
+  }
+
+  &-options {
+    position: absolute;
+    top: 12px;
+    right: 0;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,47 @@
+.swiper {
+  margin-bottom: 16px;
+}
+
+.swiper-slide {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .page-number {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    z-index: 1;
+    padding: 4px 8px;
+    @include text-style-body8;
+    font-style: $font-en;
+    color: #fff;
+    background-color: #000;
+    border-radius: 20px;
+    opacity: 0.5;
+  }
+}
+
+.swiper-button {
+  &-prev::after,
+  &-next::after {
+    color: #fff;
+    visibility: hidden;
+  }
+}
+
+.swiper-pagination-bullet {
+  background-color: #000;
+}
