@@ -37,6 +37,8 @@ function MyPage() {
   const [profileImage, setProfileImage] = useState<File | any>(null);
   const [isPostsView, setIsPostsView] = useState(false);
   const [isCommentsView, setIsCommentsView] = useState(false);
+  const [isActivePost, setIsActivePost] = useState(false);
+  const [isActiveComment, setIsActiveComment] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -76,6 +78,16 @@ function MyPage() {
       console.log(profileImage);
     }
     console.log(profileImage);
+  };
+
+  const handleActivePostList = () => {
+    setIsActivePost(true);
+    setIsActiveComment(false);
+  };
+
+  const handleActiveCommentList = () => {
+    setIsActivePost(false);
+    setIsActiveComment(true);
   };
 
   const handleSubmitProfileImage = async (
@@ -168,11 +180,20 @@ function MyPage() {
                 </div>
               </section>}
               <section className="mypage-contents">
-                <div onClick={() => handleToggleContentsView('posts')}>
+                <div onClick={
+                  () => {
+                    handleToggleContentsView('posts');
+                    handleActivePostList();
+                  }}
+                className={isActivePost ? 'isActive' : undefined}>
                   <div>{userInfo.postsCount}</div>
                   <div>내가 쓴 글</div>
                 </div>
-                <div onClick={() => handleToggleContentsView('comments')}>
+                <div onClick={() => {
+                  handleToggleContentsView('comments');
+                  handleActiveCommentList();
+                }}
+                className={isActiveComment ? 'isActive' : undefined}>
                   <div>{userInfo.commentsCount}</div>
                   <div>내가 쓴 댓글</div>
                 </div>

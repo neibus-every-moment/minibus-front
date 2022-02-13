@@ -77,6 +77,10 @@
       &:first-child {
         border-right: 1px solid #dfe3eb;
       }
+
+      &.isActive {
+        color: $neibus01;
+      }
     }
 
     &-posts {
