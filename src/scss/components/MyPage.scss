@@ -46,6 +46,7 @@
         position: absolute;
         right: 0;
         bottom: 0;
+        cursor: pointer;
       }
     }
 
@@ -102,10 +103,19 @@
       background-color: #f8f9fb;
     }
 
+    &-account {
+      padding: 18px 0;
+    }
+
     &-item {
       height: 54px;
-      padding: 18px 0;
       border-bottom: 1px solid #f8f9fb;
+
+      button {
+        text-align: left;
+        width: 100%;
+        padding: 18px 0;
+      }
     }
 
     &-account {
