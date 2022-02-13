@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router';
 
-import { getMyComments, getMyPosts, getUserInfo, signOut } from '../apis/auth';
+import {
+  editProfileImage,
+  getMyComments,
+  getMyPosts,
+  getUserInfo,
+  signOut,
+} from '../apis/auth';
 import CommentItem from '../components/CommentItem';
 import PostList from '../components/PostList';
 import { myUserId } from '../utils/hasAuth';
@@ -28,6 +34,7 @@ function MyPage() {
     comments: [],
     commentsCount: 0,
   });
+  const [profileImage, setProfileImage] = useState<File | any>(null);
   const [isPostsView, setIsPostsView] = useState(false);
   const [isCommentsView, setIsCommentsView] = useState(false);
 
@@ -45,26 +52,58 @@ function MyPage() {
         nickname,
         email,
         avatar,
-        // TODO: 현재 api에 오류가 있어서 임시로 주석 처리
-        // posts,
-        // comments,
         postsCount: posts.length,
         commentsCount: comments.length,
       });
     })();
   }, []);
 
+  useEffect(() => {
+    console.log('changed');
+  }, [profileImage]);
+
+  const handleChangeProfileImage = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    e.preventDefault();
+    const { target: { files } } = e;
+    if (files) {
+      const file = files[0];
+
+      setProfileImage(file);
+      console.log(file);
+      console.log(files[0]);
+      console.log(profileImage);
+    }
+    console.log(profileImage);
+  };
+
+  const handleSubmitProfileImage = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    await editProfileImage(myUserId, profileImage);
+  };
+
   const handleToggleContentsView = async (type: string) => {
     if (type === 'posts') {
-      if (userInfo.posts === []) {
-        await getMyPosts();
+      if (userInfo.posts.length === 0) {
+        const posts = await getMyPosts(myUserId);
+        setUserInfo({
+          ...userInfo,
+          posts,
+        });
       }
       setIsCommentsView(false);
       setIsPostsView(prev => !prev);
     }
+
     if (type === 'comments') {
-      if (userInfo.comments === []) {
-        await getMyComments();
+      if (userInfo.comments.length === 0) {
+        const comments = await getMyComments(myUserId);
+        setUserInfo({
+          ...userInfo,
+          comments,
+        });
       }
       setIsPostsView(false);
       setIsCommentsView(prev => !prev);
@@ -98,16 +137,30 @@ function MyPage() {
               <section className="mypage-profile">
                 <div className="mypage-profile-avatar">
                   <div>
-                    <img
-                      src={userInfo.avatar}
-                      alt="유저 사진"
-                      className="mypage-profile-avatar-image"
-                    />
-                    <img
-                      src="static/icons/icon-settings.svg"
-                      alt="프로필 이미지 변경"
-                      className="mypage-profile-avatar-edit"
-                    />
+                    <form
+                      onSubmit={handleSubmitProfileImage}
+                      encType="multipart/form-data">
+                      <label htmlFor="profileImage">
+                        <img
+                          src={userInfo.avatar}
+                          alt="유저 사진"
+                          className="mypage-profile-avatar-image"
+                        />
+                        <img
+                          src="static/icons/icon-settings.svg"
+                          alt="프로필 이미지 변경"
+                          className="mypage-profile-avatar-edit"
+                        />
+                      </label>
+                      <input
+                        type="file"
+                        id="profileImage"
+                        accept="image/*"
+                        hidden
+                        onChange={handleChangeProfileImage}
+                      />
+                      {/* TODO: 제출 버튼 */}
+                    </form>
                   </div>
                 </div>
                 <div className="mypage-profile-nickname">

@@ -41,9 +41,10 @@ export async function signOut() {
   }
 }
 
-export async function getMyPosts() {
+export async function getMyPosts(id: number) {
   try {
-    const { data } = await axios.get(`${baseUrl}/auth/my-posts`);
+    const { data: { data } }
+    = await axios.get(`${baseUrl}/auth/my-posts/${id}`);
 
     return data;
   } catch (e) {
@@ -52,13 +53,40 @@ export async function getMyPosts() {
   }
 }
 
-export async function getMyComments() {
+export async function getMyComments(id: number) {
   try {
-    const { data } = await axios.get(`${baseUrl}/auth/my-comments`);
+    const { data: { data } }
+    = await axios.get(`${baseUrl}/auth/my-comments/${id}`);
 
     return data;
   } catch (e) {
     console.error(e);
     location.href = 'error';
+  }
+}
+
+export async function editProfileImage(userId: number, avatar: File) {
+  try {
+    console.log(avatar);
+    const formData = new FormData();
+
+    formData.append('request', new Blob([
+      JSON.stringify({
+        avatar,
+      }),
+    ],
+    { type: 'application/json' }));
+
+    formData.append('img', avatar);
+
+    const { data: { data } } = await axios.put(
+      `${baseUrl}/auth/user/${userId}`,
+      formData,
+    );
+
+    return data;
+
+  } catch (e) {
+    console.log(e);
   }
 }
