@@ -94,7 +94,7 @@ function Home() {
   } = useSWRInfinite(
     getKey,
     fetcherWithParams,
-    { refreshInterval: 60000 },
+    { refreshInterval: 1000 },
   );
 
   useEffect(() => {
@@ -123,9 +123,9 @@ function Home() {
             ={handleChangeSelectedTransportations}
         />
         {!data ? <Loading /> : <PostList posts={datas} />}
-        {isValidating
+        {/* {isValidating
           ? <Loading />
-          : null}
+          : null} */}
         {!isValidating
           ? <div ref={endPointRef}>
           load more posts...
