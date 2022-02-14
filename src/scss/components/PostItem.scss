@@ -42,6 +42,10 @@ button {
 
 .post-content {
   @include text-style(body7, $title02);
+
+  &-text {
+    margin-bottom: 16px;
+  }
 }
 
 .post-bottom {
