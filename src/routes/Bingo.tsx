@@ -11,82 +11,82 @@ function Bingo() {
   const initialBingoBoard: BingoItemProps[] = [
     {
       index: 1,
-      content: '오늘의 빙고 어쩌구',
+      content: '유선 이어폰 사용자 발견',
       isSelected: false,
     },
     {
       index: 2,
-      content: '오늘의 빙고 저쩌구',
+      content: '멋쟁이 노신사',
       isSelected: false,
     },
     {
       index: 3,
-      content: '오늘의 빙고 어쩌구',
+      content: '산책중인 멍멍이',
       isSelected: false,
     },
     {
       index: 4,
-      content: '오늘의 빙고 저쩌구',
+      content: '등교중인 어린이',
       isSelected: false,
     },
     {
       index: 5,
-      content: '오늘의 빙고 어쩌구',
+      content: '마스크 안 쓴 사람',
       isSelected: false,
     },
     {
       index: 6,
-      content: '오늘의 빙고 저쩌구',
+      content: '교복입은 학생',
       isSelected: false,
     },
     {
       index: 7,
-      content: '오늘의 빙고 어쩌구',
+      content: '경찰차 발견',
       isSelected: false,
     },
     {
       index: 8,
-      content: '오늘의 빙고 저쩌구',
+      content: '내가 좋아하는 편의점',
       isSelected: false,
     },
     {
       index: 9,
-      content: '오늘의 빙고 어쩌구',
+      content: '길가에 핀 꽃',
       isSelected: false,
     },
     {
       index: 10,
-      content: '오늘의 빙고 저쩌구',
+      content: '비행기 발견',
       isSelected: false,
     },
     {
       index: 11,
-      content: '오늘의 빙고 어쩌구',
+      content: '아직 녹지 않고 남은 눈',
       isSelected: false,
     },
     {
       index: 12,
-      content: '오늘의 빙고 저쩌구',
+      content: '공사중인 현장',
       isSelected: false,
     },
     {
       index: 13,
-      content: '오늘의 빙고 어쩌구',
+      content: '누군가 버린 쓰레기',
       isSelected: false,
     },
     {
       index: 14,
-      content: '오늘의 빙고 저쩌구',
+      content: '모자를 쓴 사람',
       isSelected: false,
     },
     {
       index: 15,
-      content: '오늘의 빙고 어쩌구',
+      content: '쉬고 있는 고양이',
       isSelected: false,
     },
     {
       index: 16,
-      content: '오늘의 빙고 저쩌구',
+      content: '길가에 핀 꽃',
       isSelected: false,
     },
   ];
